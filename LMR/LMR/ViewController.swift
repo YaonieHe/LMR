@@ -7,6 +7,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let sampleVC = LMRSampleVC()
+        self.navigationController?.pushViewController(sampleVC, animated: true)
     }
 
 

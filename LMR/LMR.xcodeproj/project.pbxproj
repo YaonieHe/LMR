@@ -13,6 +13,8 @@
 		10D548722862F48800E330EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10D548702862F48800E330EA /* Main.storyboard */; };
 		10D548742862F48A00E330EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10D548732862F48A00E330EA /* Assets.xcassets */; };
 		10D548772862F48A00E330EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10D548752862F48A00E330EA /* LaunchScreen.storyboard */; };
+		10D548812862F75600E330EA /* LMRSampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D548802862F75600E330EA /* LMRSampleVC.swift */; };
+		10D548832862FD9600E330EA /* lmr_sample_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 10D548822862FD9600E330EA /* lmr_sample_shader.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		10D548732862F48A00E330EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10D548762862F48A00E330EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10D548782862F48A00E330EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10D548802862F75600E330EA /* LMRSampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRSampleVC.swift; sourceTree = "<group>"; };
+		10D548822862FD9600E330EA /* lmr_sample_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = lmr_sample_shader.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		10D548692862F48800E330EA /* LMR */ = {
 			isa = PBXGroup;
 			children = (
+				10D5487E2862F72A00E330EA /* models */,
 				10D5486A2862F48800E330EA /* AppDelegate.swift */,
 				10D5486C2862F48800E330EA /* SceneDelegate.swift */,
 				10D5486E2862F48800E330EA /* ViewController.swift */,
@@ -65,6 +70,23 @@
 				10D548782862F48A00E330EA /* Info.plist */,
 			);
 			path = LMR;
+			sourceTree = "<group>";
+		};
+		10D5487E2862F72A00E330EA /* models */ = {
+			isa = PBXGroup;
+			children = (
+				10D5487F2862F73000E330EA /* sample */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		10D5487F2862F73000E330EA /* sample */ = {
+			isa = PBXGroup;
+			children = (
+				10D548802862F75600E330EA /* LMRSampleVC.swift */,
+				10D548822862FD9600E330EA /* lmr_sample_shader.metal */,
+			);
+			path = sample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +160,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10D548832862FD9600E330EA /* lmr_sample_shader.metal in Sources */,
 				10D5486F2862F48800E330EA /* ViewController.swift in Sources */,
 				10D5486B2862F48800E330EA /* AppDelegate.swift in Sources */,
+				10D548812862F75600E330EA /* LMRSampleVC.swift in Sources */,
 				10D5486D2862F48800E330EA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
