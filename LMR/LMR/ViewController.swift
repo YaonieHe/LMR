@@ -8,10 +8,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let sampleVC = LMRSampleVC()
-        self.navigationController?.pushViewController(sampleVC, animated: true)
+
     }
 
-
+    @IBAction func clickSample(_ sender: Any) {
+        let vc = LMRSampleVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func clickSample3D(_ sender: Any) {
+        let vc = LMRSample3DVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 

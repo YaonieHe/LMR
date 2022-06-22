@@ -15,6 +15,10 @@
 		10D548772862F48A00E330EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10D548752862F48A00E330EA /* LaunchScreen.storyboard */; };
 		10D548812862F75600E330EA /* LMRSampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D548802862F75600E330EA /* LMRSampleVC.swift */; };
 		10D548832862FD9600E330EA /* lmr_sample_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 10D548822862FD9600E330EA /* lmr_sample_shader.metal */; };
+		10D54888286318FD00E330EA /* LMRSample3DVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D54887286318FD00E330EA /* LMRSample3DVC.swift */; };
+		10D5488A286319AE00E330EA /* lmr_sample3d_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 10D54889286319AE00E330EA /* lmr_sample3d_shader.metal */; };
+		10D5488D28633A3600E330EA /* ModelIOExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5488C28633A3600E330EA /* ModelIOExtensions.swift */; };
+		10D5489028633CB100E330EA /* MathUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5488F28633CB100E330EA /* MathUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		10D548782862F48A00E330EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10D548802862F75600E330EA /* LMRSampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRSampleVC.swift; sourceTree = "<group>"; };
 		10D548822862FD9600E330EA /* lmr_sample_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = lmr_sample_shader.metal; sourceTree = "<group>"; };
+		10D54887286318FD00E330EA /* LMRSample3DVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRSample3DVC.swift; sourceTree = "<group>"; };
+		10D54889286319AE00E330EA /* lmr_sample3d_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = lmr_sample3d_shader.metal; sourceTree = "<group>"; };
+		10D5488C28633A3600E330EA /* ModelIOExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelIOExtensions.swift; sourceTree = "<group>"; };
+		10D5488F28633CB100E330EA /* MathUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,7 @@
 		10D548692862F48800E330EA /* LMR */ = {
 			isa = PBXGroup;
 			children = (
+				10D5488E28633A3800E330EA /* lib */,
 				10D5487E2862F72A00E330EA /* models */,
 				10D5486A2862F48800E330EA /* AppDelegate.swift */,
 				10D5486C2862F48800E330EA /* SceneDelegate.swift */,
@@ -75,6 +84,7 @@
 		10D5487E2862F72A00E330EA /* models */ = {
 			isa = PBXGroup;
 			children = (
+				10D54884286318B400E330EA /* 3d */,
 				10D5487F2862F73000E330EA /* sample */,
 			);
 			path = models;
@@ -87,6 +97,24 @@
 				10D548822862FD9600E330EA /* lmr_sample_shader.metal */,
 			);
 			path = sample;
+			sourceTree = "<group>";
+		};
+		10D54884286318B400E330EA /* 3d */ = {
+			isa = PBXGroup;
+			children = (
+				10D54887286318FD00E330EA /* LMRSample3DVC.swift */,
+				10D54889286319AE00E330EA /* lmr_sample3d_shader.metal */,
+			);
+			path = 3d;
+			sourceTree = "<group>";
+		};
+		10D5488E28633A3800E330EA /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				10D5488F28633CB100E330EA /* MathUtilities.swift */,
+				10D5488C28633A3600E330EA /* ModelIOExtensions.swift */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,9 +189,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				10D548832862FD9600E330EA /* lmr_sample_shader.metal in Sources */,
+				10D54888286318FD00E330EA /* LMRSample3DVC.swift in Sources */,
 				10D5486F2862F48800E330EA /* ViewController.swift in Sources */,
+				10D5488D28633A3600E330EA /* ModelIOExtensions.swift in Sources */,
 				10D5486B2862F48800E330EA /* AppDelegate.swift in Sources */,
+				10D5488A286319AE00E330EA /* lmr_sample3d_shader.metal in Sources */,
 				10D548812862F75600E330EA /* LMRSampleVC.swift in Sources */,
+				10D5489028633CB100E330EA /* MathUtilities.swift in Sources */,
 				10D5486D2862F48800E330EA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

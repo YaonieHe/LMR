@@ -29,11 +29,7 @@ class LMRSampleVC: UIViewController, MTKViewDelegate {
         mtkView.device = device
         mtkView.sampleCount = 4
         mtkView.colorPixelFormat = .bgra8Unorm_srgb
-        mtkView.depthStencilPixelFormat = .depth32Float
         mtkView.delegate = self
-        
-        // Do any additional setup after loading the view.
-        mtkView.backgroundColor = .red
     }
     
      func renderPipeLineState() throws -> MTLRenderPipelineState {
@@ -57,21 +53,12 @@ class LMRSampleVC: UIViewController, MTKViewDelegate {
         pipelineDescriptor.vertexDescriptor = vertexDescriptor
         pipelineDescriptor.sampleCount = mtkView.sampleCount
         pipelineDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
-        pipelineDescriptor.depthAttachmentPixelFormat = mtkView.depthStencilPixelFormat
         
         return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
     }
     
-    func depthStencilState() -> MTLDepthStencilState {
-        let depthStateDescriptor = MTLDepthStencilDescriptor()
-        depthStateDescriptor.depthCompareFunction = .less
-        depthStateDescriptor.isDepthWriteEnabled = true
-        return device.makeDepthStencilState(descriptor: depthStateDescriptor)!
-    }
-    
     func _render(in encoder: MTLRenderCommandEncoder) throws {
         encoder.setRenderPipelineState(try renderPipeLineState())
-        encoder.setDepthStencilState(depthStencilState())
         let p = [SIMD3<Float>(-0.5, -0.5, 0), SIMD3<Float>(0.5, 0.5, 0), SIMD3<Float>(-0.5, 0.5, 0), SIMD3<Float>(-0.5, -0.5, 0), SIMD3<Float>(0.5, 0.5, 0), SIMD3<Float>(0.5, -0.5, 0)]
         let t = [SIMD2<Float>(0, 0), SIMD2<Float>(1, 1), SIMD2<Float>(0, 1), SIMD2<Float>(0, 0), SIMD2<Float>(1, 1), SIMD2<Float>(1, 0)]
         encoder.setVertexBytes(p, length: MemoryLayout<SIMD3<Float>>.stride * 6, index: 0)
