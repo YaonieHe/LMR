@@ -76,3 +76,9 @@ extension float4x4 {
 func radians_from_degrees(_ degrees: Float) -> Float {
     return (degrees / 180) * .pi
 }
+
+extension float3x3 {
+    init(_ lmr4x4: float4x4) {
+        self.init(lmr4x4[0].xyz, lmr4x4[1].xyz, lmr4x4[2].xyz)
+    }
+}

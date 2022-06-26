@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,21 @@
 		10D5488A286319AE00E330EA /* lmr_sample3d_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 10D54889286319AE00E330EA /* lmr_sample3d_shader.metal */; };
 		10D5488D28633A3600E330EA /* ModelIOExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5488C28633A3600E330EA /* ModelIOExtensions.swift */; };
 		10D5489028633CB100E330EA /* MathUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5488F28633CB100E330EA /* MathUtilities.swift */; };
+		1A6D22702868508C007A4F8A /* LMR3DBoxVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D226E2868508C007A4F8A /* LMR3DBoxVC.swift */; };
+		1A6D22712868508C007A4F8A /* lmr_sample3dbox_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D226F2868508C007A4F8A /* lmr_sample3dbox_shader.metal */; };
+		1A6D227428685275007A4F8A /* LMRMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D227328685275007A4F8A /* LMRMesh.swift */; };
+		1A6D227628685287007A4F8A /* LMRSubmesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D227528685287007A4F8A /* LMRSubmesh.swift */; };
+		1A6D2278286852CE007A4F8A /* LMRMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D2277286852CE007A4F8A /* LMRMaterial.swift */; };
+		1A6D227A2868542D007A4F8A /* LMRVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D22792868542D007A4F8A /* LMRVertex.swift */; };
+		1A6D227D28685502007A4F8A /* LMR3DBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D227C28685502007A4F8A /* LMR3DBox.swift */; };
+		1A6D22812868A3B9007A4F8A /* lmr_3dlight_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D227F2868A3B9007A4F8A /* lmr_3dlight_shader.metal */; };
+		1A6D22822868A3B9007A4F8A /* LMR3DLightVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D22802868A3B9007A4F8A /* LMR3DLightVC.swift */; };
+		1A9DA7CD28684F5600BB6113 /* bottom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7C728684F5600BB6113 /* bottom.jpg */; };
+		1A9DA7CE28684F5600BB6113 /* left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7C828684F5600BB6113 /* left.jpg */; };
+		1A9DA7CF28684F5600BB6113 /* top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7C928684F5600BB6113 /* top.jpg */; };
+		1A9DA7D028684F5600BB6113 /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7CA28684F5600BB6113 /* back.jpg */; };
+		1A9DA7D128684F5600BB6113 /* right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7CB28684F5600BB6113 /* right.jpg */; };
+		1A9DA7D228684F5600BB6113 /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7CC28684F5600BB6113 /* front.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +51,21 @@
 		10D54889286319AE00E330EA /* lmr_sample3d_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = lmr_sample3d_shader.metal; sourceTree = "<group>"; };
 		10D5488C28633A3600E330EA /* ModelIOExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelIOExtensions.swift; sourceTree = "<group>"; };
 		10D5488F28633CB100E330EA /* MathUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathUtilities.swift; sourceTree = "<group>"; };
+		1A6D226E2868508C007A4F8A /* LMR3DBoxVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMR3DBoxVC.swift; sourceTree = "<group>"; };
+		1A6D226F2868508C007A4F8A /* lmr_sample3dbox_shader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = lmr_sample3dbox_shader.metal; sourceTree = "<group>"; };
+		1A6D227328685275007A4F8A /* LMRMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRMesh.swift; sourceTree = "<group>"; };
+		1A6D227528685287007A4F8A /* LMRSubmesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRSubmesh.swift; sourceTree = "<group>"; };
+		1A6D2277286852CE007A4F8A /* LMRMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRMaterial.swift; sourceTree = "<group>"; };
+		1A6D22792868542D007A4F8A /* LMRVertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRVertex.swift; sourceTree = "<group>"; };
+		1A6D227C28685502007A4F8A /* LMR3DBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMR3DBox.swift; sourceTree = "<group>"; };
+		1A6D227F2868A3B9007A4F8A /* lmr_3dlight_shader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = lmr_3dlight_shader.metal; sourceTree = "<group>"; };
+		1A6D22802868A3B9007A4F8A /* LMR3DLightVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMR3DLightVC.swift; sourceTree = "<group>"; };
+		1A9DA7C728684F5600BB6113 /* bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom.jpg; sourceTree = "<group>"; };
+		1A9DA7C828684F5600BB6113 /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = left.jpg; sourceTree = "<group>"; };
+		1A9DA7C928684F5600BB6113 /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top.jpg; sourceTree = "<group>"; };
+		1A9DA7CA28684F5600BB6113 /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
+		1A9DA7CB28684F5600BB6113 /* right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = right.jpg; sourceTree = "<group>"; };
+		1A9DA7CC28684F5600BB6113 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +98,7 @@
 		10D548692862F48800E330EA /* LMR */ = {
 			isa = PBXGroup;
 			children = (
+				1A9DA7C528684F4500BB6113 /* res */,
 				10D5488E28633A3800E330EA /* lib */,
 				10D5487E2862F72A00E330EA /* models */,
 				10D5486A2862F48800E330EA /* AppDelegate.swift */,
@@ -84,6 +115,8 @@
 		10D5487E2862F72A00E330EA /* models */ = {
 			isa = PBXGroup;
 			children = (
+				1A6D227E2868A3B9007A4F8A /* 3d_light */,
+				1A6D226D2868508C007A4F8A /* 3d_box */,
 				10D54884286318B400E330EA /* 3d */,
 				10D5487F2862F73000E330EA /* sample */,
 			);
@@ -111,10 +144,70 @@
 		10D5488E28633A3800E330EA /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				1A6D227B286854DB007A4F8A /* 3d_model */,
+				1A6D22722868525B007A4F8A /* mesh */,
 				10D5488F28633CB100E330EA /* MathUtilities.swift */,
 				10D5488C28633A3600E330EA /* ModelIOExtensions.swift */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		1A6D226D2868508C007A4F8A /* 3d_box */ = {
+			isa = PBXGroup;
+			children = (
+				1A6D226E2868508C007A4F8A /* LMR3DBoxVC.swift */,
+				1A6D226F2868508C007A4F8A /* lmr_sample3dbox_shader.metal */,
+			);
+			path = 3d_box;
+			sourceTree = "<group>";
+		};
+		1A6D22722868525B007A4F8A /* mesh */ = {
+			isa = PBXGroup;
+			children = (
+				1A6D227328685275007A4F8A /* LMRMesh.swift */,
+				1A6D227528685287007A4F8A /* LMRSubmesh.swift */,
+				1A6D2277286852CE007A4F8A /* LMRMaterial.swift */,
+				1A6D22792868542D007A4F8A /* LMRVertex.swift */,
+			);
+			path = mesh;
+			sourceTree = "<group>";
+		};
+		1A6D227B286854DB007A4F8A /* 3d_model */ = {
+			isa = PBXGroup;
+			children = (
+				1A6D227C28685502007A4F8A /* LMR3DBox.swift */,
+			);
+			path = 3d_model;
+			sourceTree = "<group>";
+		};
+		1A6D227E2868A3B9007A4F8A /* 3d_light */ = {
+			isa = PBXGroup;
+			children = (
+				1A6D227F2868A3B9007A4F8A /* lmr_3dlight_shader.metal */,
+				1A6D22802868A3B9007A4F8A /* LMR3DLightVC.swift */,
+			);
+			path = 3d_light;
+			sourceTree = "<group>";
+		};
+		1A9DA7C528684F4500BB6113 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				1A9DA7C628684F5600BB6113 /* skybox */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		1A9DA7C628684F5600BB6113 /* skybox */ = {
+			isa = PBXGroup;
+			children = (
+				1A9DA7C728684F5600BB6113 /* bottom.jpg */,
+				1A9DA7C828684F5600BB6113 /* left.jpg */,
+				1A9DA7C928684F5600BB6113 /* top.jpg */,
+				1A9DA7CA28684F5600BB6113 /* back.jpg */,
+				1A9DA7CB28684F5600BB6113 /* right.jpg */,
+				1A9DA7CC28684F5600BB6113 /* front.jpg */,
+			);
+			path = skybox;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +236,6 @@
 		10D5485F2862F48800E330EA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
@@ -153,7 +245,7 @@
 				};
 			};
 			buildConfigurationList = 10D548622862F48800E330EA /* Build configuration list for PBXProject "LMR" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -176,7 +268,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				10D548772862F48A00E330EA /* LaunchScreen.storyboard in Resources */,
+				1A9DA7CE28684F5600BB6113 /* left.jpg in Resources */,
 				10D548742862F48A00E330EA /* Assets.xcassets in Resources */,
+				1A9DA7CF28684F5600BB6113 /* top.jpg in Resources */,
+				1A9DA7D028684F5600BB6113 /* back.jpg in Resources */,
+				1A9DA7D228684F5600BB6113 /* front.jpg in Resources */,
+				1A9DA7CD28684F5600BB6113 /* bottom.jpg in Resources */,
+				1A9DA7D128684F5600BB6113 /* right.jpg in Resources */,
 				10D548722862F48800E330EA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,12 +286,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A6D2278286852CE007A4F8A /* LMRMaterial.swift in Sources */,
 				10D548832862FD9600E330EA /* lmr_sample_shader.metal in Sources */,
 				10D54888286318FD00E330EA /* LMRSample3DVC.swift in Sources */,
 				10D5486F2862F48800E330EA /* ViewController.swift in Sources */,
+				1A6D227D28685502007A4F8A /* LMR3DBox.swift in Sources */,
+				1A6D227628685287007A4F8A /* LMRSubmesh.swift in Sources */,
+				1A6D227A2868542D007A4F8A /* LMRVertex.swift in Sources */,
 				10D5488D28633A3600E330EA /* ModelIOExtensions.swift in Sources */,
+				1A6D22712868508C007A4F8A /* lmr_sample3dbox_shader.metal in Sources */,
 				10D5486B2862F48800E330EA /* AppDelegate.swift in Sources */,
+				1A6D22702868508C007A4F8A /* LMR3DBoxVC.swift in Sources */,
+				1A6D22822868A3B9007A4F8A /* LMR3DLightVC.swift in Sources */,
 				10D5488A286319AE00E330EA /* lmr_sample3d_shader.metal in Sources */,
+				1A6D227428685275007A4F8A /* LMRMesh.swift in Sources */,
+				1A6D22812868A3B9007A4F8A /* lmr_3dlight_shader.metal in Sources */,
 				10D548812862F75600E330EA /* LMRSampleVC.swift in Sources */,
 				10D5489028633CB100E330EA /* MathUtilities.swift in Sources */,
 				10D5486D2862F48800E330EA /* SceneDelegate.swift in Sources */,
@@ -343,7 +450,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Y8YG5F7WN9;
+				DEVELOPMENT_TEAM = 55S998F6XB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LMR/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -357,7 +464,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.huxiaofei.f.LMR;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hjp.LMR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -372,7 +479,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Y8YG5F7WN9;
+				DEVELOPMENT_TEAM = 55S998F6XB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LMR/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -386,7 +493,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.huxiaofei.f.LMR;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hjp.LMR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

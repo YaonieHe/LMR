@@ -20,5 +20,15 @@ class ViewController: UIViewController {
         let vc = LMRSample3DVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func click3dBox(_ sender: Any) {
+        let vc = LMR3DBoxVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func click3dLight(_ sender: Any) {
+        let vc = LMR3DLightVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
