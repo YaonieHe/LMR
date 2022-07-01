@@ -63,12 +63,12 @@ namespace lmr_3dlight {
         float specFactor = pow(max(dot(reflectDir, viewDir), 0.0), m.shininess);
         float3 specular = light.specular * specFactor * light.color * m.color;
         
-        half3 color = half3(ambient + specular);
+        half3 color = half3(ambient + diffuse + specular);
         return half4(color, 1);
     }
     
     fragment half4 f_light(VertexOut in [[stage_in]], texture2d<half> map_md [[texture(0)]], constant Light &light [[buffer(2)]]) {
         half3 color = half3(light.color);
-        return half4(color, 1);//half4(in.texture[0], in.texture[1], 0, 1);
+        return half4(color, 1);
     }
 }
