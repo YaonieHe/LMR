@@ -28,6 +28,16 @@
 		1A6D227D28685502007A4F8A /* LMR3DBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D227C28685502007A4F8A /* LMR3DBox.swift */; };
 		1A6D22812868A3B9007A4F8A /* lmr_3dlight_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D227F2868A3B9007A4F8A /* lmr_3dlight_shader.metal */; };
 		1A6D22822868A3B9007A4F8A /* LMR3DLightVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D22802868A3B9007A4F8A /* LMR3DLightVC.swift */; };
+		1A912D2A286FE259005F90B9 /* LMRScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D29286FE259005F90B9 /* LMRScene.swift */; };
+		1A912D2C286FE26C005F90B9 /* LMRLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D2B286FE26C005F90B9 /* LMRLight.swift */; };
+		1A912D2E286FE279005F90B9 /* LMRCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D2D286FE279005F90B9 /* LMRCamera.swift */; };
+		1A912D30286FE45A005F90B9 /* LMRObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D2F286FE45A005F90B9 /* LMRObject.swift */; };
+		1A912D32286FE61E005F90B9 /* LMRLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D31286FE61E005F90B9 /* LMRLocation.swift */; };
+		1A912D34286FEB18005F90B9 /* LMRSceneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D33286FEB18005F90B9 /* LMRSceneVC.swift */; };
+		1A912D37286FEB46005F90B9 /* lmr_3d_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D36286FEB46005F90B9 /* lmr_3d_shader.metal */; };
+		1A912D3928704196005F90B9 /* LMRMesh+Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D3828704196005F90B9 /* LMRMesh+Rect.swift */; };
+		1A912D3B2870736A005F90B9 /* lmr_3d_param.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D3A2870736A005F90B9 /* lmr_3d_param.swift */; };
+		1A912D3D28707E50005F90B9 /* bottom_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A912D3C28707E50005F90B9 /* bottom_1.jpg */; };
 		1A9DA7CD28684F5600BB6113 /* bottom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7C728684F5600BB6113 /* bottom.jpg */; };
 		1A9DA7CE28684F5600BB6113 /* left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7C828684F5600BB6113 /* left.jpg */; };
 		1A9DA7CF28684F5600BB6113 /* top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7C928684F5600BB6113 /* top.jpg */; };
@@ -60,6 +70,16 @@
 		1A6D227C28685502007A4F8A /* LMR3DBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMR3DBox.swift; sourceTree = "<group>"; };
 		1A6D227F2868A3B9007A4F8A /* lmr_3dlight_shader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = lmr_3dlight_shader.metal; sourceTree = "<group>"; };
 		1A6D22802868A3B9007A4F8A /* LMR3DLightVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMR3DLightVC.swift; sourceTree = "<group>"; };
+		1A912D29286FE259005F90B9 /* LMRScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRScene.swift; sourceTree = "<group>"; };
+		1A912D2B286FE26C005F90B9 /* LMRLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRLight.swift; sourceTree = "<group>"; };
+		1A912D2D286FE279005F90B9 /* LMRCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRCamera.swift; sourceTree = "<group>"; };
+		1A912D2F286FE45A005F90B9 /* LMRObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRObject.swift; sourceTree = "<group>"; };
+		1A912D31286FE61E005F90B9 /* LMRLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRLocation.swift; sourceTree = "<group>"; };
+		1A912D33286FEB18005F90B9 /* LMRSceneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRSceneVC.swift; sourceTree = "<group>"; };
+		1A912D36286FEB46005F90B9 /* lmr_3d_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = lmr_3d_shader.metal; sourceTree = "<group>"; };
+		1A912D3828704196005F90B9 /* LMRMesh+Rect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LMRMesh+Rect.swift"; sourceTree = "<group>"; };
+		1A912D3A2870736A005F90B9 /* lmr_3d_param.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lmr_3d_param.swift; sourceTree = "<group>"; };
+		1A912D3C28707E50005F90B9 /* bottom_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom_1.jpg; sourceTree = "<group>"; };
 		1A9DA7C728684F5600BB6113 /* bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom.jpg; sourceTree = "<group>"; };
 		1A9DA7C828684F5600BB6113 /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = left.jpg; sourceTree = "<group>"; };
 		1A9DA7C928684F5600BB6113 /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top.jpg; sourceTree = "<group>"; };
@@ -115,6 +135,7 @@
 		10D5487E2862F72A00E330EA /* models */ = {
 			isa = PBXGroup;
 			children = (
+				1A912D35286FEB1C005F90B9 /* scene */,
 				1A6D227E2868A3B9007A4F8A /* 3d_light */,
 				1A6D226D2868508C007A4F8A /* 3d_box */,
 				10D54884286318B400E330EA /* 3d */,
@@ -144,6 +165,7 @@
 		10D5488E28633A3800E330EA /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				1A912D28286FE218005F90B9 /* scene */,
 				1A6D227B286854DB007A4F8A /* 3d_model */,
 				1A6D22722868525B007A4F8A /* mesh */,
 				10D5488F28633CB100E330EA /* MathUtilities.swift */,
@@ -176,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				1A6D227C28685502007A4F8A /* LMR3DBox.swift */,
+				1A912D3828704196005F90B9 /* LMRMesh+Rect.swift */,
 			);
 			path = 3d_model;
 			sourceTree = "<group>";
@@ -189,6 +212,28 @@
 			path = 3d_light;
 			sourceTree = "<group>";
 		};
+		1A912D28286FE218005F90B9 /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				1A912D29286FE259005F90B9 /* LMRScene.swift */,
+				1A912D2B286FE26C005F90B9 /* LMRLight.swift */,
+				1A912D2D286FE279005F90B9 /* LMRCamera.swift */,
+				1A912D2F286FE45A005F90B9 /* LMRObject.swift */,
+				1A912D31286FE61E005F90B9 /* LMRLocation.swift */,
+			);
+			path = scene;
+			sourceTree = "<group>";
+		};
+		1A912D35286FEB1C005F90B9 /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				1A912D33286FEB18005F90B9 /* LMRSceneVC.swift */,
+				1A912D36286FEB46005F90B9 /* lmr_3d_shader.metal */,
+				1A912D3A2870736A005F90B9 /* lmr_3d_param.swift */,
+			);
+			path = scene;
+			sourceTree = "<group>";
+		};
 		1A9DA7C528684F4500BB6113 /* res */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,12 +245,13 @@
 		1A9DA7C628684F5600BB6113 /* skybox */ = {
 			isa = PBXGroup;
 			children = (
-				1A9DA7C728684F5600BB6113 /* bottom.jpg */,
-				1A9DA7C828684F5600BB6113 /* left.jpg */,
-				1A9DA7C928684F5600BB6113 /* top.jpg */,
 				1A9DA7CA28684F5600BB6113 /* back.jpg */,
-				1A9DA7CB28684F5600BB6113 /* right.jpg */,
+				1A912D3C28707E50005F90B9 /* bottom_1.jpg */,
+				1A9DA7C728684F5600BB6113 /* bottom.jpg */,
 				1A9DA7CC28684F5600BB6113 /* front.jpg */,
+				1A9DA7C828684F5600BB6113 /* left.jpg */,
+				1A9DA7CB28684F5600BB6113 /* right.jpg */,
+				1A9DA7C928684F5600BB6113 /* top.jpg */,
 			);
 			path = skybox;
 			sourceTree = "<group>";
@@ -269,6 +315,7 @@
 			files = (
 				10D548772862F48A00E330EA /* LaunchScreen.storyboard in Resources */,
 				1A9DA7CE28684F5600BB6113 /* left.jpg in Resources */,
+				1A912D3D28707E50005F90B9 /* bottom_1.jpg in Resources */,
 				10D548742862F48A00E330EA /* Assets.xcassets in Resources */,
 				1A9DA7CF28684F5600BB6113 /* top.jpg in Resources */,
 				1A9DA7D028684F5600BB6113 /* back.jpg in Resources */,
@@ -286,7 +333,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A912D3B2870736A005F90B9 /* lmr_3d_param.swift in Sources */,
+				1A912D34286FEB18005F90B9 /* LMRSceneVC.swift in Sources */,
 				1A6D2278286852CE007A4F8A /* LMRMaterial.swift in Sources */,
+				1A912D37286FEB46005F90B9 /* lmr_3d_shader.metal in Sources */,
 				10D548832862FD9600E330EA /* lmr_sample_shader.metal in Sources */,
 				10D54888286318FD00E330EA /* LMRSample3DVC.swift in Sources */,
 				10D5486F2862F48800E330EA /* ViewController.swift in Sources */,
@@ -294,15 +344,21 @@
 				1A6D227628685287007A4F8A /* LMRSubmesh.swift in Sources */,
 				1A6D227A2868542D007A4F8A /* LMRVertex.swift in Sources */,
 				10D5488D28633A3600E330EA /* ModelIOExtensions.swift in Sources */,
+				1A912D2C286FE26C005F90B9 /* LMRLight.swift in Sources */,
 				1A6D22712868508C007A4F8A /* lmr_sample3dbox_shader.metal in Sources */,
+				1A912D30286FE45A005F90B9 /* LMRObject.swift in Sources */,
+				1A912D2A286FE259005F90B9 /* LMRScene.swift in Sources */,
 				10D5486B2862F48800E330EA /* AppDelegate.swift in Sources */,
 				1A6D22702868508C007A4F8A /* LMR3DBoxVC.swift in Sources */,
 				1A6D22822868A3B9007A4F8A /* LMR3DLightVC.swift in Sources */,
+				1A912D2E286FE279005F90B9 /* LMRCamera.swift in Sources */,
 				10D5488A286319AE00E330EA /* lmr_sample3d_shader.metal in Sources */,
 				1A6D227428685275007A4F8A /* LMRMesh.swift in Sources */,
 				1A6D22812868A3B9007A4F8A /* lmr_3dlight_shader.metal in Sources */,
 				10D548812862F75600E330EA /* LMRSampleVC.swift in Sources */,
 				10D5489028633CB100E330EA /* MathUtilities.swift in Sources */,
+				1A912D32286FE61E005F90B9 /* LMRLocation.swift in Sources */,
+				1A912D3928704196005F90B9 /* LMRMesh+Rect.swift in Sources */,
 				10D5486D2862F48800E330EA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

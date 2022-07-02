@@ -159,7 +159,7 @@ class LMR3DLightVC: UIViewController, MTKViewDelegate {
            }
        }
        
-       let box = LMRMesh.lmr_box(color: SIMD3<Float>(1, 1, 1), size: 3)
+       let box = LMRMesh.lmr_box(color: SIMD4<Float>(1, 1, 1, 1), size: 3)
        r += 0.01
        let modelM = float4x4(rotationAroundAxis: SIMD3<Float>(0, 1, 0), by: r)
        
@@ -177,7 +177,7 @@ class LMR3DLightVC: UIViewController, MTKViewDelegate {
            
            
            for submesh in box.submeshes {
-               var material = Material(color: submesh.material.md_color, shininess: submesh.material.shininess)
+               var material = Material(color: submesh.material.kd_color.xyz, shininess: submesh.material.shininess)
                encoder.setFragmentBytes(&material, length: MemoryLayout<Material>.stride, index: 3)
                encoder.setFragmentBytes(&view_pos, length: MemoryLayout<SIMD3<Float>>.stride, index: 4)
                let indexBuffer = device.makeBuffer(bytes: submesh.indexArray, length: MemoryLayout<Int>.stride * submesh.indexCount)!

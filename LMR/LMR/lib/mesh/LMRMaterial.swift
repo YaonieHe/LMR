@@ -9,7 +9,9 @@ import UIKit
 import simd
 
 class LMRMaterial: NSObject {
-    open var md_color: SIMD3<Float> = SIMD3<Float>(0, 0, 0)
-    open var map_md: String?
-    open var shininess: Float = 128
+    open var kd_color: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1)
+    open var map_kd: String?
+    open var diffuse: Float = 0.1
+    open var specular: Float = 0.5
+    open var shininess: Float = 1
 }

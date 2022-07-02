@@ -9,10 +9,12 @@ import UIKit
 import simd
 
 extension LMRMesh  {
-    class func lmr_box(color: SIMD3<Float> = SIMD3<Float>(0, 0, 0), size: Float = 1) -> LMRMesh {
+    class func lmr_box(color: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1), size s: Float = 1) -> LMRMesh {
         let mesh = LMRMesh()
         let submesh = LMRSubmesh()
-        submesh.material.md_color = color
+        submesh.material.kd_color = color
+        
+        let size = s * 0.5
         
         do { // 上
             let index = UInt32(mesh.vertexCount)
@@ -99,7 +101,7 @@ extension LMRMesh  {
             mesh.vertexArray.append(LMRVertex(position: SIMD3<Float>(size, size, size), normal: SIMD3<Float>(0, 1, 0), texture: SIMD2<Float>(1, 1)))
             
             submesh.indexArray.append(contentsOf: [index + 0, index + 1, index + 2, index + 1, index + 3, index + 2])
-            submesh.material.map_md = mds[0]
+            submesh.material.map_kd = mds[0]
             
             mesh.submeshes.append(submesh)
         }
@@ -114,7 +116,7 @@ extension LMRMesh  {
             mesh.vertexArray.append(LMRVertex(position: SIMD3<Float>(size, -size, -size), normal: SIMD3<Float>(0, -1, 0), texture: SIMD2<Float>(1, 1)))
             
             submesh.indexArray.append(contentsOf: [index + 0, index + 1, index + 2, index + 1, index + 3, index + 2])
-            submesh.material.map_md = mds[1]
+            submesh.material.map_kd = mds[1]
             
             mesh.submeshes.append(submesh)
         }
@@ -129,7 +131,7 @@ extension LMRMesh  {
             mesh.vertexArray.append(LMRVertex(position: SIMD3<Float>(-size, -size, size), normal: SIMD3<Float>(-1, 0, 0), texture: SIMD2<Float>(1, 1)))
             
             submesh.indexArray.append(contentsOf: [index + 0, index + 1, index + 2, index + 1, index + 3, index + 2])
-            submesh.material.map_md = mds[2]
+            submesh.material.map_kd = mds[2]
             
             mesh.submeshes.append(submesh)
         }
@@ -144,7 +146,7 @@ extension LMRMesh  {
             mesh.vertexArray.append(LMRVertex(position: SIMD3<Float>(size, -size, -size), normal: SIMD3<Float>(1, 0, 0), texture: SIMD2<Float>(1, 1)))
             
             submesh.indexArray.append(contentsOf: [index + 0, index + 1, index + 2, index + 1, index + 3, index + 2])
-            submesh.material.map_md = mds[3]
+            submesh.material.map_kd = mds[3]
             
             mesh.submeshes.append(submesh)
         }
@@ -159,7 +161,7 @@ extension LMRMesh  {
             mesh.vertexArray.append(LMRVertex(position: SIMD3<Float>(size, -size, size), normal: SIMD3<Float>(0, 0, 1), texture: SIMD2<Float>(1, 1)))
             
             submesh.indexArray.append(contentsOf: [index + 0, index + 1, index + 2, index + 1, index + 3, index + 2])
-            submesh.material.map_md = mds[4]
+            submesh.material.map_kd = mds[4]
             
             mesh.submeshes.append(submesh)
         }
@@ -174,7 +176,7 @@ extension LMRMesh  {
             mesh.vertexArray.append(LMRVertex(position: SIMD3<Float>(-size, -size, -size), normal: SIMD3<Float>(0, 0, -1), texture: SIMD2<Float>(1, 1)))
             
             submesh.indexArray.append(contentsOf: [index + 0, index + 1, index + 2, index + 1, index + 3, index + 2])
-            submesh.material.map_md = mds[5]
+            submesh.material.map_kd = mds[5]
             
             mesh.submeshes.append(submesh)
         }

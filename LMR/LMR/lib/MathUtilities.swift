@@ -62,6 +62,13 @@ extension float4x4 {
                            SIMD4<Float>(v.x, v.y, v.z, 1)))
     }
     
+    init(scale s: SIMD3<Float>) {
+        self.init(columns:(SIMD4<Float>(s.x, 0, 0, 0),
+                           SIMD4<Float>(0, s.y, 0, 0),
+                           SIMD4<Float>(0, 0, s.z, 0),
+                           SIMD4<Float>(0, 0, 0, 1)))
+    }
+    
     init(perspectiveProjectionRHFovY fovy: Float, aspectRatio: Float, nearZ: Float, farZ: Float) {
         let ys = 1 / tanf(fovy * 0.5)
         let xs = ys / aspectRatio

@@ -122,7 +122,7 @@ class LMR3DBoxVC: UIViewController, MTKViewDelegate {
        
        
        for submesh in box.submeshes {
-           let texture = try self.generateTexture(from: submesh.material.map_md!)
+           let texture = try self.generateTexture(from: submesh.material.map_kd!)
            encoder.setFragmentTexture(texture, index: 0)
            let indexBuffer = device.makeBuffer(bytes: submesh.indexArray, length: MemoryLayout<Int>.stride * submesh.indexCount)!
            encoder.setTriangleFillMode(.fill)
