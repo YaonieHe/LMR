@@ -19,6 +19,11 @@
 		10D5488A286319AE00E330EA /* lmr_sample3d_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 10D54889286319AE00E330EA /* lmr_sample3d_shader.metal */; };
 		10D5488D28633A3600E330EA /* ModelIOExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5488C28633A3600E330EA /* ModelIOExtensions.swift */; };
 		10D5489028633CB100E330EA /* MathUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5488F28633CB100E330EA /* MathUtilities.swift */; };
+		1A6B72A5287173BF009D34F6 /* LMRContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B72A4287173BF009D34F6 /* LMRContext.swift */; };
+		1A6B72A928717D5C009D34F6 /* kd_wall.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1A6B72A628717D5B009D34F6 /* kd_wall.jpeg */; };
+		1A6B72AA28717D5C009D34F6 /* sk_box.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6B72A728717D5B009D34F6 /* sk_box.png */; };
+		1A6B72AB28717D5C009D34F6 /* kd_box.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1A6B72A828717D5C009D34F6 /* kd_box.jpeg */; };
+		1A6B72AD28717D63009D34F6 /* kn_wall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A6B72AC28717D63009D34F6 /* kn_wall.jpg */; };
 		1A6D22702868508C007A4F8A /* LMR3DBoxVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D226E2868508C007A4F8A /* LMR3DBoxVC.swift */; };
 		1A6D22712868508C007A4F8A /* lmr_sample3dbox_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D226F2868508C007A4F8A /* lmr_sample3dbox_shader.metal */; };
 		1A6D227428685275007A4F8A /* LMRMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D227328685275007A4F8A /* LMRMesh.swift */; };
@@ -61,6 +66,11 @@
 		10D54889286319AE00E330EA /* lmr_sample3d_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = lmr_sample3d_shader.metal; sourceTree = "<group>"; };
 		10D5488C28633A3600E330EA /* ModelIOExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelIOExtensions.swift; sourceTree = "<group>"; };
 		10D5488F28633CB100E330EA /* MathUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathUtilities.swift; sourceTree = "<group>"; };
+		1A6B72A4287173BF009D34F6 /* LMRContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRContext.swift; sourceTree = "<group>"; };
+		1A6B72A628717D5B009D34F6 /* kd_wall.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kd_wall.jpeg; sourceTree = "<group>"; };
+		1A6B72A728717D5B009D34F6 /* sk_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sk_box.png; sourceTree = "<group>"; };
+		1A6B72A828717D5C009D34F6 /* kd_box.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kd_box.jpeg; sourceTree = "<group>"; };
+		1A6B72AC28717D63009D34F6 /* kn_wall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kn_wall.jpg; sourceTree = "<group>"; };
 		1A6D226E2868508C007A4F8A /* LMR3DBoxVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMR3DBoxVC.swift; sourceTree = "<group>"; };
 		1A6D226F2868508C007A4F8A /* lmr_sample3dbox_shader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = lmr_sample3dbox_shader.metal; sourceTree = "<group>"; };
 		1A6D227328685275007A4F8A /* LMRMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRMesh.swift; sourceTree = "<group>"; };
@@ -165,6 +175,7 @@
 		10D5488E28633A3800E330EA /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				1A6B72A3287173AE009D34F6 /* context */,
 				1A912D28286FE218005F90B9 /* scene */,
 				1A6D227B286854DB007A4F8A /* 3d_model */,
 				1A6D22722868525B007A4F8A /* mesh */,
@@ -172,6 +183,14 @@
 				10D5488C28633A3600E330EA /* ModelIOExtensions.swift */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		1A6B72A3287173AE009D34F6 /* context */ = {
+			isa = PBXGroup;
+			children = (
+				1A6B72A4287173BF009D34F6 /* LMRContext.swift */,
+			);
+			path = context;
 			sourceTree = "<group>";
 		};
 		1A6D226D2868508C007A4F8A /* 3d_box */ = {
@@ -245,6 +264,10 @@
 		1A9DA7C628684F5600BB6113 /* skybox */ = {
 			isa = PBXGroup;
 			children = (
+				1A6B72AC28717D63009D34F6 /* kn_wall.jpg */,
+				1A6B72A828717D5C009D34F6 /* kd_box.jpeg */,
+				1A6B72A728717D5B009D34F6 /* sk_box.png */,
+				1A6B72A628717D5B009D34F6 /* kd_wall.jpeg */,
 				1A9DA7CA28684F5600BB6113 /* back.jpg */,
 				1A912D3C28707E50005F90B9 /* bottom_1.jpg */,
 				1A9DA7C728684F5600BB6113 /* bottom.jpg */,
@@ -314,13 +337,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				10D548772862F48A00E330EA /* LaunchScreen.storyboard in Resources */,
+				1A6B72AD28717D63009D34F6 /* kn_wall.jpg in Resources */,
 				1A9DA7CE28684F5600BB6113 /* left.jpg in Resources */,
 				1A912D3D28707E50005F90B9 /* bottom_1.jpg in Resources */,
+				1A6B72A928717D5C009D34F6 /* kd_wall.jpeg in Resources */,
 				10D548742862F48A00E330EA /* Assets.xcassets in Resources */,
+				1A6B72AA28717D5C009D34F6 /* sk_box.png in Resources */,
 				1A9DA7CF28684F5600BB6113 /* top.jpg in Resources */,
 				1A9DA7D028684F5600BB6113 /* back.jpg in Resources */,
 				1A9DA7D228684F5600BB6113 /* front.jpg in Resources */,
 				1A9DA7CD28684F5600BB6113 /* bottom.jpg in Resources */,
+				1A6B72AB28717D5C009D34F6 /* kd_box.jpeg in Resources */,
 				1A9DA7D128684F5600BB6113 /* right.jpg in Resources */,
 				10D548722862F48800E330EA /* Main.storyboard in Resources */,
 			);
@@ -344,6 +371,7 @@
 				1A6D227628685287007A4F8A /* LMRSubmesh.swift in Sources */,
 				1A6D227A2868542D007A4F8A /* LMRVertex.swift in Sources */,
 				10D5488D28633A3600E330EA /* ModelIOExtensions.swift in Sources */,
+				1A6B72A5287173BF009D34F6 /* LMRContext.swift in Sources */,
 				1A912D2C286FE26C005F90B9 /* LMRLight.swift in Sources */,
 				1A6D22712868508C007A4F8A /* lmr_sample3dbox_shader.metal in Sources */,
 				1A912D30286FE45A005F90B9 /* LMRObject.swift in Sources */,

@@ -12,10 +12,10 @@ import simd
 
 class LMRSceneVC: UIViewController, MTKViewDelegate {
     var mtkView: MTKView {view as! MTKView}
-    var device: MTLDevice!
-    var commandQueue: MTLCommandQueue!
-    var library: MTLLibrary!
-    
+    var context: LMRContext = LMRContext()
+    var device: MTLDevice {
+        return context.device
+    }
     var depthStencilState: MTLDepthStencilState!
     var renderPipeLineState: MTLRenderPipelineState!
     var lightRenderPipeLineState: MTLRenderPipelineState!
@@ -92,11 +92,7 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
             slider.addTarget(self, action: #selector(changeShininessSlider(slider:)), for: .valueChanged)
             self.view.addSubview(slider)
         }
-        
-        device = MTLCreateSystemDefaultDevice()
-        commandQueue = device.makeCommandQueue()
-        library = device.makeDefaultLibrary()
-        
+
         mtkView.device = device
         mtkView.sampleCount = 4
         mtkView.colorPixelFormat = .bgra8Unorm_srgb
@@ -115,16 +111,15 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
     func _updateScene() {
         if self.scene == nil {
             let newScene = LMRScene()
-            newScene.ambientColor = simd_make_float3(0.2, 0.2, 0.2)
+            newScene.ambientColor = simd_make_float3(0.05, 0.05, 0.05)
             
-            newScene.camera.position = simd_make_float3(0, 1.8, 8)
-//            newScene.camera.position = simd_make_float3(0, 10, 0)
-            newScene.camera.rotate.y = Float.pi * 0.01
+            newScene.camera.position = simd_make_float3(0, 1.5, 10)
+            newScene.camera.target = SIMD3<Float>(0, 1, 0)
             
             for _ in 0...0 {
                 let light = LMRLight()
                 light.color = simd_make_float3(0.6, 0.6, 0.6)
-                light.position = simd_make_float3(Float((drand48() - 0.5) * 6), Float(2 + (drand48() - 0.5) * 1), Float((drand48() - 0.5) * 6))
+                light.position = simd_make_float3(0, 0, 0) //simd_make_float3(Float((drand48() - 0.5) * 6), Float(2 + (drand48() - 0.5) * 1), Float((drand48() - 0.5) * 6))
                 let lightObj  = LMRObject(mesh: LMRMesh.lmr_box())
                 lightObj.location.scale = Float(drand48() * 0.4)
                 lightObj.location.position = light.position;
@@ -132,36 +127,45 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
                 newScene.lights.append(light)
             }
             
+//            do {
+//                let mesh = LMRMesh.lmr_skyBox(mds: ["top.jpg", "bottom_1.jpg", "left.jpg", "right.jpg", "front.jpg", "back.jpg"], size: 60)
+//                for  submesh in mesh.submeshes {
+//                    submesh.material.diffuse = 0
+//                    submesh.material.specular = 0
+//                }
+//                let obj = LMRObject(mesh:mesh)
+//                obj.location.position = SIMD3<Float>(0, 59, 20)
+//                newScene.objects.append(obj)
+//            }
+            
+
             do {
-                let mesh = LMRMesh.lmr_skyBox(mds: ["top.jpg", "bottom_1.jpg", "left.jpg", "right.jpg", "front.jpg", "back.jpg"], size: 60)
-                for  submesh in mesh.submeshes {
-                    submesh.material.diffuse = 0
-                    submesh.material.specular = 0
-                }
-                let obj = LMRObject(mesh:mesh)
-                obj.location.position = SIMD3<Float>(0, 59, 20)
+                let obj = LMRObject(mesh:LMRMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
+                obj.location.rotate.y = -Float.pi * 0.5
                 newScene.objects.append(obj)
             }
             
-//
-//            do {
-//                let obj = LMRObject(mesh:LMRMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
-//                obj.location.rotate.y = -Float.pi * 0.5
-//                newScene.objects.append(obj)
-//            }
-            
-//            do {
-//                let obj = LMRObject(mesh:LMRMesh.lmr_rect(size: SIMD2<Float>(10, 10), color: simd_make_float4(0.5, 0.4, 0.6, 1)))
-//                obj.location.position = SIMD3<Float>(0, 5, -8)
-//                newScene.objects.append(obj)
-//            }
+            do {
+                let mesh = LMRMesh.lmr_rect(size: SIMD2<Float>(10, 10), color: simd_make_float4(0.5, 0.4, 0.6, 1))
+                if let submesh = mesh.submeshes.first {
+                    submesh.material.map_kd = "kd_wall.jpeg"
+                }
+                let obj = LMRObject(mesh:mesh)
+                obj.location.position = SIMD3<Float>(0, 5, -8)
+                newScene.objects.append(obj)
+            }
             
             for _ in 0...5 {
                 let size = Float(0.1 + drand48() * 0.8)
                 let x = Float((drand48() - 0.5) * 6)
                 let z = Float((drand48() - 0.5) * 6)
                 let r = Float((drand48() - 0.5) * Double.pi)
-                let obj = LMRObject(mesh:LMRMesh.lmr_box(color: simd_make_float4(0.4, 0.7, 0.8, 1), size: size))
+                let mesh = LMRMesh.lmr_box(color: simd_make_float4(0.4, 0.7, 0.8, 1), size: size)
+                if let submesh = mesh.submeshes.first {
+                    submesh.material.map_kd = "kd_box.jpeg"
+                }
+                let obj = LMRObject(mesh:mesh)
+                
                 obj.location.position = SIMD3<Float>(x, size * 0.5, z)
                 obj.location.rotate.x = r
                 newScene.objects.append(obj)
@@ -177,11 +181,73 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
         let c = Int(floor(time / 60))
         let p = time - Float(c) * 60
 
-        scene.camera.rotate.x = (p - 30) / 180 * Float.pi * (c % 2 == 1 ? -1 : 1)
+        scene.camera.target.x = (p - 30) / 18 * Float.pi * (c % 2 == 1 ? -1 : 1)
         
     }
     
-    func _render(in encoder: MTLRenderCommandEncoder) throws {
+    func _renderShadow(at commandBuffer: MTLCommandBuffer, scene: LMRScene) throws -> MTLTexture? {
+        guard let light = scene.lights.first  else {
+            return nil
+        }
+ 
+        let textureDescriptor = MTLTextureDescriptor.textureCubeDescriptor(pixelFormat: .depth32Float, size: 1000, mipmapped: false)
+        textureDescriptor.storageMode = .private
+        textureDescriptor.usage = .renderTarget
+        let depthTexture = device.makeTexture(descriptor:textureDescriptor)
+        
+//        let textureDescriptor2 = MTLTextureDescriptor.textureCubeDescriptor(pixelFormat: .rgba8Unorm_srgb, size: 1000, mipmapped: false)
+//        textureDescriptor2.storageMode = .shared
+//        textureDescriptor2.usage = .renderTarget
+//        let colorTexture = device.makeTexture(descriptor:textureDescriptor2)
+
+        let renderPassDescriptor = MTLRenderPassDescriptor()
+//        renderPassDescriptor.colorAttachments[0].texture = colorTexture
+//        renderPassDescriptor.colorAttachments[0].loadAction = .clear
+//        renderPassDescriptor.colorAttachments[0].storeAction = .store
+        renderPassDescriptor.depthAttachment.texture = depthTexture
+        renderPassDescriptor.depthAttachment.clearDepth = 1
+        renderPassDescriptor.depthAttachment.storeAction = .store
+        renderPassDescriptor.renderTargetArrayLength = 6
+        
+        let view_pos = light.position
+        var projectM = float4x4(perspectiveProjectionRHFovY: Float.pi * 0.5, aspectRatio: 1, nearZ: 0.1, farZ: 100)
+        var viewMs = [
+            float4x4.lookAt(eye: view_pos, center: view_pos + SIMD3<Float>(0, 0, -1), up: SIMD3<Float>(0, 1, 0)),
+            float4x4.lookAt(eye: view_pos, center: view_pos + SIMD3<Float>(0, 0, 1), up: SIMD3<Float>(0, 1, 0)),
+            float4x4.lookAt(eye: view_pos, center: view_pos + SIMD3<Float>(1, 0, 0), up: SIMD3<Float>(0, 1, 0)),
+            float4x4.lookAt(eye: view_pos, center: view_pos + SIMD3<Float>(-1, 0, 0), up: SIMD3<Float>(0, 1, 0)),
+            float4x4.lookAt(eye: view_pos, center: view_pos + SIMD3<Float>(0, 1, 0), up: SIMD3<Float>(0, 1, 0)),
+            float4x4.lookAt(eye: view_pos, center: view_pos + SIMD3<Float>(0, -1, 0), up: SIMD3<Float>(0, 1, 0))
+        ]
+        
+        guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {throw LMR3DError(description: "create encoder fail")}
+        let renderPipeLineState = try self.getRenderPipeLineState(vertFunc: "lmr_3d::shadow_depth_v", fragFunc: "lmr_3d::shadow_depth_f", onlyDepth: true)
+        
+        encoder.setRenderPipelineState(renderPipeLineState)
+        encoder.setDepthStencilState(depthStencilState)
+        
+        for object in scene.objects {
+            var modelM = object.location.transform
+            if let mesh = object.mesh {
+                
+                let vertexBuffer = device.makeBuffer(bytes: mesh.vertexArray, length: MemoryLayout<LMRVertex>.stride * mesh.vertexCount)
+                encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+                
+                encoder.setVertexBytes(&modelM, length: MemoryLayout<float4x4>.stride, index: 1)
+                encoder.setVertexBytes(&viewMs, length: MemoryLayout<float4x4>.stride * 6, index: 2)
+                encoder.setVertexBytes(&projectM, length: MemoryLayout<float4x4>.stride, index: 3)
+                for submesh in mesh.submeshes {
+                    let indexBuffer = device.makeBuffer(bytes: submesh.indexArray, length: MemoryLayout<Int>.stride * submesh.indexCount)!
+                    encoder.setTriangleFillMode(.fill)
+                    encoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: .uint32, indexBuffer: indexBuffer, indexBufferOffset: 0, instanceCount: 6)
+                }
+            }
+        }
+        encoder.endEncoding()
+        return depthTexture
+    }
+    
+    func _render(view: MTKView, at commandBuffer: MTLCommandBuffer) throws {
         time += 0.2
         NSLog("%f", time)
         self._updateScene()
@@ -189,6 +255,11 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
         guard let scene = self.scene else {
             return
         }
+        
+        let depthTexture = try self._renderShadow(at: commandBuffer, scene: scene)
+        
+        guard let renderPassDescriptor = view.currentRenderPassDescriptor else {return}
+        guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {return}
         
         let w = Float(view.bounds.size.width)
         let h = Float(view.bounds.size.height)
@@ -225,6 +296,8 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
             }
         }
         
+        encoder.setFragmentTexture(depthTexture, index: 2)
+        
         for object in scene.objects {
             let modelM = object.location.transform
             if let mesh = object.mesh {
@@ -251,7 +324,7 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
                 for submesh in mesh.submeshes {
 //                    var material = Material(color: submesh.material.md_color, diffuse: submesh.material.diffuse, specular: submesh.material.specular, shininess: submesh.material.shininess)
                     if let map_kd = submesh.material.map_kd {
-                        let texture = try self.generateTexture(from: map_kd)
+                        let texture = try self.context.generateTexture(from: map_kd)
                         encoder.setFragmentTexture(texture, index: 0)
                     }
                     var material = LMR3DFragMaterial(isMapKd:(submesh.material.map_kd != nil), color: submesh.material.kd_color, diffuse: _diffuse, specular: _specular, shininess: _shininess)
@@ -263,18 +336,16 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
                 }
             }
         }
+        encoder.endEncoding()
     }
     
     func draw(in view: MTKView) {
-        guard let commandBuffer = commandQueue.makeCommandBuffer() else {return}
-        guard let renderPassDescriptor = view.currentRenderPassDescriptor else {return}
-        guard let renderCommandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {return}
+        guard let commandBuffer = context.commandQueue.makeCommandBuffer() else {return}
         do {
-            try _render(in: renderCommandEncoder)
+            try self._render(view: view, at: commandBuffer)
         } catch {
-            return
+            
         }
-        renderCommandEncoder.endEncoding()
         
         if let drawable = view.currentDrawable {
             commandBuffer.present(drawable)
@@ -287,9 +358,9 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
 }
 
 extension LMRSceneVC {
-    func getRenderPipeLineState(vertFunc: String, fragFunc: String) throws -> MTLRenderPipelineState {
-        let vertexFunc = library.makeFunction(name: vertFunc)
-        let fragFunc = library.makeFunction(name: fragFunc)
+    func getRenderPipeLineState(vertFunc: String, fragFunc: String, onlyDepth: Bool = false) throws -> MTLRenderPipelineState {
+        let vertexFunc = self.context.library.makeFunction(name: vertFunc)
+        let fragFunc = self.context.library.makeFunction(name: fragFunc)
        
         let vertexDescriptor = MTLVertexDescriptor()
         vertexDescriptor.attributes[0].offset = 0;
@@ -310,8 +381,13 @@ extension LMRSceneVC {
         pipelineDescriptor.vertexFunction = vertexFunc
         pipelineDescriptor.fragmentFunction = fragFunc
         pipelineDescriptor.vertexDescriptor = vertexDescriptor
-        pipelineDescriptor.sampleCount = mtkView.sampleCount
-        pipelineDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
+        if !onlyDepth {
+            pipelineDescriptor.sampleCount = mtkView.sampleCount
+            pipelineDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
+        } else {
+            pipelineDescriptor.inputPrimitiveTopology = .triangle
+            pipelineDescriptor.sampleCount = 1
+        }
         pipelineDescriptor.depthAttachmentPixelFormat = mtkView.depthStencilPixelFormat
 
         return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
@@ -323,22 +399,4 @@ extension LMRSceneVC {
        depthStateDescriptor.isDepthWriteEnabled = true
        return device.makeDepthStencilState(descriptor: depthStateDescriptor)!
    }
-    
-    func generateTexture(from imageName: String) throws -> MTLTexture {
-        
-        if let texture = _textureMap[imageName] {
-            return texture
-        }
-        
-        let path = Bundle.main.path(forResource: imageName, ofType: nil)!
-//        let image = UIImage.init(contentsOfFile: path)!
-        
-        let loader = MTKTextureLoader(device: device)
-        
-        let texture = try loader.newTexture(URL: URL.init(fileURLWithPath: path))
-        
-        _textureMap[imageName] = texture
-        
-        return texture
-    }
 }

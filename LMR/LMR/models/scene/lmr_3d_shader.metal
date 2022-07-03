@@ -54,20 +54,30 @@ namespace lmr_3d {
         }
     }
     
-    vertex VertexOut obj_v(VertexIn in [[stage_in]], constant VertexParam &param [[buffer(1)]]) {
+    vertex VertexOut obj_v(VertexIn in [[stage_in]],
+                           constant VertexParam &param [[buffer(1)]]) {
+//                         ushort iid [[instance_id]]
         VertexOut out;
         float4 pos = param.modelM * float4(in.position, 1);
         out.position = param.projectM * param.viewM * pos;
-        out.pos = pos.xyz/ pos.w;
+        out.pos = pos.xyz / pos.w;
         out.normal = param.normalM * in.normal;
         out.texture = in.texture;
         return out;
     }
     
     
+    float shadow_calculation(float3 pos, float3 light_pos, texturecube<float> map) {
+        float3 pos_to_light = pos - light_pos;
+        float closest_depth = map.sample(sampler, pos_to_light).r;
+        float current_depth = length(pos_to_light);
+        return closest_depth;//current_depth -  closest_depth > 0.01 ? 1.0 : 0.0;
+    }
+    
     
     fragment half4 obj_f_phong(VertexOut in [[stage_in]],
                          texture2d<half> map_md [[texture(0)]],
+                         texturecube<float> shadow_depth [[texture(1)]],
                          constant float3 &view_pos [[buffer(0)]],
                          constant Material &m [[buffer(1)]],
                          constant float3 &ambient_color [[buffer(2)]],
@@ -80,6 +90,8 @@ namespace lmr_3d {
         
         for (int i = 0; i < light_count; i++) {
             Light light = lights[i];
+            
+            float shadow = shadow_calculation(in.pos, light.position, shadow_depth);
             
             float3 lightDir = normalize(light.position - in.pos);
             float3 normal = normalize(in.normal);
@@ -92,7 +104,7 @@ namespace lmr_3d {
             float specFactor = pow(max(dot(reflectDir, viewDir), 0.0), m.shininess);
             float3 specular = m.specular * specFactor * light.color * md.rgb;
             
-            color = color + clamp(diffuse + specular, 0, 1);
+            color = color + clamp(diffuse + specular, 0, 1)  * (1 - shadow);
         }
         color = clamp(color, 0, 1);
         return half4(half3(color), md.a);
@@ -100,6 +112,7 @@ namespace lmr_3d {
     
     fragment half4 obj_f_blinn_phong(VertexOut in [[stage_in]],
                          texture2d<half> map_md [[texture(0)]],
+                         texturecube<float> shadow_depth [[texture(1)]],
                          constant float3 &view_pos [[buffer(0)]],
                          constant Material &m [[buffer(1)]],
                          constant float3 &ambient_color [[buffer(2)]],
@@ -114,6 +127,10 @@ namespace lmr_3d {
         for (int i = 0; i < light_count; i++) {
             Light light = lights[i];
             
+            
+            return half4(half(shadow_depth.sample(sampler, in.pos - light.position).a), 0, 0, 1);
+            float shadow = shadow_calculation(in.pos, light.position, shadow_depth);
+            
             float3 lightDir = normalize(light.position - in.pos);
             float3 normal = normalize(in.normal);
             
@@ -125,14 +142,44 @@ namespace lmr_3d {
             float specFactor = pow(max(dot(normal, h), 0.0), m.shininess);
             float3 specular = m.specular * specFactor * light.color * md.rgb;
             
-            color = color + clamp(diffuse + specular, 0, 1);
+            color = color + clamp(diffuse + specular, 0, 1) * (1 - shadow);
         }
         color = clamp(color, 0, 1);
         return half4(half3(color), md.a);
     }
     
-    fragment half4 light_f(VertexOut in [[stage_in]], texture2d<half> map_md [[texture(0)]], constant Light &light [[buffer(0)]]) {
+    fragment half4 light_f(VertexOut in [[stage_in]], texture2d<half> map_md [[texture(0)]],
+                           constant Light &light [[buffer(0)]]) {
         half3 color = half3(light.color);
         return half4(color, 1);
+    }
+    
+    struct ShadowVertexOut {
+        float4 position [[position]];
+        float3 pos;
+        uint layer [[render_target_array_index]];
+    };
+    
+    struct ShadowFragmentOut {
+        float depth [[depth(less)]];
+    };
+    
+    vertex ShadowVertexOut shadow_depth_v(VertexIn in [[stage_in]],
+                          constant float4x4 &modelM [[buffer(1)]],
+                          constant float4x4 &viewM [[buffer(2)]],
+                          constant float4x4 &projectM [[buffer(3)]],
+                          uint iid [[instance_id]]) {
+        ShadowVertexOut out;
+        float4 pos = viewM[iid] * modelM * float4(in.position, 1);
+        out.position = projectM * pos;
+        out.pos = pos.xyz / pos.w;
+        out.layer = iid;
+        return out;
+    }
+    
+    fragment ShadowFragmentOut shadow_depth_f(ShadowVertexOut in [[stage_in]]) {
+        ShadowFragmentOut out;
+        out.depth = 0.5;//length(in.pos);
+        return out;
     }
 }

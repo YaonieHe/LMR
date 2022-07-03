@@ -78,6 +78,39 @@ extension float4x4 {
                            SIMD4<Float>( 0,  0, zs, -1),
                            SIMD4<Float>( 0,  0, zs * nearZ, 0)))
     }
+    
+    static func lookAt(eye: SIMD3<Float>, center: SIMD3<Float>, up: SIMD3<Float>) -> float4x4 {
+        let zAxis = normalize(eye - center);
+        let xAxis = normalize(cross(up, zAxis));
+        let yAxis = cross(zAxis, xAxis);
+
+        var P = SIMD4<Float>();
+        var Q = SIMD4<Float>();
+        var R = SIMD4<Float>();
+        var S = SIMD4<Float>();
+
+        P.x = xAxis.x;
+        P.y = yAxis.x;
+        P.z = zAxis.x;
+        P.w = 0.0;
+
+        Q.x = xAxis.y;
+        Q.y = yAxis.y;
+        Q.z = zAxis.y;
+        Q.w = 0.0;
+
+        R.x = xAxis.z;
+        R.y = yAxis.z;
+        R.z = zAxis.z;
+        R.w = 0.0;
+
+        S.x = -dot(xAxis, eye);
+        S.y = -dot(yAxis, eye);
+        S.z = -dot(zAxis, eye);
+        S.w =  1.0;
+
+        return float4x4(P, Q, R, S);
+   }
 }
 
 func radians_from_degrees(_ degrees: Float) -> Float {

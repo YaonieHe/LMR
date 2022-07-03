@@ -10,16 +10,12 @@ import UIKit
 import simd
 
 class LMRCamera {
-    open var position: SIMD3<Float> = SIMD3<Float>(0, 0, 0)
-    /// x - 左右旋转， y 上下旋转
-    open var rotate: SIMD2<Float> = SIMD2<Float>(0, 0)
+    open var position: SIMD3<Float> = SIMD3<Float>(0, 0, 1)
+    open var up: SIMD3<Float> = SIMD3<Float>(0, 1, 0)
+    open var target: SIMD3<Float> = SIMD3<Float>(0, 0, 0)
     
     open var viewMatrix: float4x4 {
-        var matrix = matrix_identity_float4x4
-        matrix = matrix * float4x4(rotationAroundAxis: SIMD3<Float>(1, 0, 0), by: -rotate.y)
-        matrix = matrix * float4x4(rotationAroundAxis: SIMD3<Float>(0, 1, 0), by: -rotate.x)
-        matrix = matrix * float4x4(translationBy: -position)
-        return matrix
+        return float4x4.lookAt(eye: position, center: target, up: up)
     }
     
     open var nearZ: Float = 0.1
