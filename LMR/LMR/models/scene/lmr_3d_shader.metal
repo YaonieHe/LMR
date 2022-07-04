@@ -43,9 +43,11 @@ namespace lmr_3d {
         float3 position;
     };
     
+#define maxDepth 200
+    
     constexpr sampler sampler (mag_filter::linear,
                                           min_filter::linear);
-    
+
     float4 get_md_color(texture2d<half> map_md, constant Material &m, float2 texture) {
         if (m.map_md) {
             return float4(map_md.sample(sampler, texture));
@@ -67,22 +69,26 @@ namespace lmr_3d {
     }
     
     
-    float shadow_calculation(float3 pos, float3 light_pos, texturecube<float> map) {
+    float shadow_calculation(float3 pos, float3 light_pos, depthcube<float> map) {
         float3 pos_to_light = pos - light_pos;
-        float closest_depth = map.sample(sampler, pos_to_light).r;
+        float closest_depth = map.sample(sampler, pos_to_light) * maxDepth + 0.01;
         float current_depth = length(pos_to_light);
-        return closest_depth;//current_depth -  closest_depth > 0.01 ? 1.0 : 0.0;
+        if (current_depth <= closest_depth) {
+            return 0;
+        }
+        return fmin((current_depth - closest_depth) * 5.0, 1);
     }
     
     
     fragment half4 obj_f_phong(VertexOut in [[stage_in]],
                          texture2d<half> map_md [[texture(0)]],
-                         texturecube<float> shadow_depth [[texture(1)]],
+                         depthcube<float> shadow_depth [[texture(1)]],
                          constant float3 &view_pos [[buffer(0)]],
                          constant Material &m [[buffer(1)]],
                          constant float3 &ambient_color [[buffer(2)]],
                          constant int &light_count [[buffer(3)]],
                          constant Light *lights [[buffer(4)]]) {
+        
         float3 color = float3(0, 0, 0);
         float4 md = get_md_color(map_md, m, in.texture);
         float3 ambient = ambient_color * md.rgb;
@@ -112,7 +118,7 @@ namespace lmr_3d {
     
     fragment half4 obj_f_blinn_phong(VertexOut in [[stage_in]],
                          texture2d<half> map_md [[texture(0)]],
-                         texturecube<float> shadow_depth [[texture(1)]],
+                         depthcube<float> shadow_depth [[texture(1)]],
                          constant float3 &view_pos [[buffer(0)]],
                          constant Material &m [[buffer(1)]],
                          constant float3 &ambient_color [[buffer(2)]],
@@ -128,7 +134,6 @@ namespace lmr_3d {
             Light light = lights[i];
             
             
-            return half4(half(shadow_depth.sample(sampler, in.pos - light.position).a), 0, 0, 1);
             float shadow = shadow_calculation(in.pos, light.position, shadow_depth);
             
             float3 lightDir = normalize(light.position - in.pos);
@@ -161,12 +166,13 @@ namespace lmr_3d {
     };
     
     struct ShadowFragmentOut {
+        half4 color [[color(0)]];
         float depth [[depth(less)]];
     };
     
     vertex ShadowVertexOut shadow_depth_v(VertexIn in [[stage_in]],
                           constant float4x4 &modelM [[buffer(1)]],
-                          constant float4x4 &viewM [[buffer(2)]],
+                          constant float4x4 *viewM [[buffer(2)]],
                           constant float4x4 &projectM [[buffer(3)]],
                           uint iid [[instance_id]]) {
         ShadowVertexOut out;
@@ -179,7 +185,8 @@ namespace lmr_3d {
     
     fragment ShadowFragmentOut shadow_depth_f(ShadowVertexOut in [[stage_in]]) {
         ShadowFragmentOut out;
-        out.depth = 0.5;//length(in.pos);
+        out.color = half4(1, 0, 0, 1);
+        out.depth = length(in.pos) / maxDepth;
         return out;
     }
 }

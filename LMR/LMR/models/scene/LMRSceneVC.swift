@@ -119,7 +119,7 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
             for _ in 0...0 {
                 let light = LMRLight()
                 light.color = simd_make_float3(0.6, 0.6, 0.6)
-                light.position = simd_make_float3(0, 0, 0) //simd_make_float3(Float((drand48() - 0.5) * 6), Float(2 + (drand48() - 0.5) * 1), Float((drand48() - 0.5) * 6))
+                light.position = SIMD3<Float>(0, 1.5, -2)//simd_make_float3(Float((drand48() - 0.5) * 6), Float(2 + (drand48() - 0.5) * 1), Float((drand48() - 0.5) * 6))
                 let lightObj  = LMRObject(mesh: LMRMesh.lmr_box())
                 lightObj.location.scale = Float(drand48() * 0.4)
                 lightObj.location.position = light.position;
@@ -191,11 +191,11 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
         }
  
         let textureDescriptor = MTLTextureDescriptor.textureCubeDescriptor(pixelFormat: .depth32Float, size: 1000, mipmapped: false)
-        textureDescriptor.storageMode = .private
-        textureDescriptor.usage = .renderTarget
+        textureDescriptor.storageMode = .shared
+        textureDescriptor.usage = [.renderTarget, .shaderRead]
         let depthTexture = device.makeTexture(descriptor:textureDescriptor)
         
-//        let textureDescriptor2 = MTLTextureDescriptor.textureCubeDescriptor(pixelFormat: .rgba8Unorm_srgb, size: 1000, mipmapped: false)
+//        let textureDescriptor2 = MTLTextureDescriptor.textureCubeDescriptor(pixelFormat: .bgra8Unorm_srgb, size: 1000, mipmapped: false)
 //        textureDescriptor2.storageMode = .shared
 //        textureDescriptor2.usage = .renderTarget
 //        let colorTexture = device.makeTexture(descriptor:textureDescriptor2)
@@ -211,14 +211,19 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
         
         let view_pos = light.position
         var projectM = float4x4(perspectiveProjectionRHFovY: Float.pi * 0.5, aspectRatio: 1, nearZ: 0.1, farZ: 100)
-        var viewMs = [
-            float4x4.lookAt(eye: view_pos, center: view_pos + SIMD3<Float>(0, 0, -1), up: SIMD3<Float>(0, 1, 0)),
-            float4x4.lookAt(eye: view_pos, center: view_pos + SIMD3<Float>(0, 0, 1), up: SIMD3<Float>(0, 1, 0)),
-            float4x4.lookAt(eye: view_pos, center: view_pos + SIMD3<Float>(1, 0, 0), up: SIMD3<Float>(0, 1, 0)),
-            float4x4.lookAt(eye: view_pos, center: view_pos + SIMD3<Float>(-1, 0, 0), up: SIMD3<Float>(0, 1, 0)),
-            float4x4.lookAt(eye: view_pos, center: view_pos + SIMD3<Float>(0, 1, 0), up: SIMD3<Float>(0, 1, 0)),
-            float4x4.lookAt(eye: view_pos, center: view_pos + SIMD3<Float>(0, -1, 0), up: SIMD3<Float>(0, 1, 0))
-        ]
+        var viewMs = [float4x4]()
+        for i in 0...5 {
+//            viewMs.append(scene.camera.viewMatrix)
+            viewMs.append(float4x4.look_at_cube(eye: view_pos, face: i))
+        }
+//        var viewMs = [
+//            scene.camera.viewMatrix,
+//            scene.camera.viewMatrix,
+//            scene.camera.viewMatrix,
+//            scene.camera.viewMatrix,
+//            scene.camera.viewMatrix,
+//            scene.camera.viewMatrix
+//        ]
         
         guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {throw LMR3DError(description: "create encoder fail")}
         let renderPipeLineState = try self.getRenderPipeLineState(vertFunc: "lmr_3d::shadow_depth_v", fragFunc: "lmr_3d::shadow_depth_f", onlyDepth: true)
@@ -296,7 +301,7 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
             }
         }
         
-        encoder.setFragmentTexture(depthTexture, index: 2)
+        encoder.setFragmentTexture(depthTexture, index: 1)
         
         for object in scene.objects {
             let modelM = object.location.transform
@@ -387,6 +392,7 @@ extension LMRSceneVC {
         } else {
             pipelineDescriptor.inputPrimitiveTopology = .triangle
             pipelineDescriptor.sampleCount = 1
+//            pipelineDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
         }
         pipelineDescriptor.depthAttachmentPixelFormat = mtkView.depthStencilPixelFormat
 
