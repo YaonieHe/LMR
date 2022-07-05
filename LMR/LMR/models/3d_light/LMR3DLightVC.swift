@@ -76,7 +76,7 @@ class LMR3DLightVC: UIViewController, MTKViewDelegate {
         vertexDescriptor.attributes[2].format = .float2
         vertexDescriptor.attributes[2].bufferIndex = 0
         
-        vertexDescriptor.layouts[0].stride = MemoryLayout<LMRVertex>.stride
+        vertexDescriptor.layouts[0].stride = MemoryLayout<LMDVertex>.stride
         
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = vertexFunc
@@ -137,7 +137,7 @@ class LMR3DLightVC: UIViewController, MTKViewDelegate {
        
        let lightPosition = SIMD3<Float>(-10 * sin(2.23 * r), 1, -10 * cos(3.12 * r))
        var light = Light(ambient: 0.1, specular: 0.5, color: SIMD3<Float>(1, 1, 1), position: lightPosition)
-       let lightMesh = LMRMesh.lmr_box()
+       let lightMesh = LMDMesh.lmr_box()
        
        let lightModelM = float4x4(translationBy: lightPosition)
        
@@ -149,7 +149,7 @@ class LMR3DLightVC: UIViewController, MTKViewDelegate {
            encoder.setVertexBytes(&param, length: MemoryLayout<LMR3DLightVertexParam>.stride, index: 1)
            encoder.setFragmentBytes(&light, length: MemoryLayout<Light>.stride, index: 2)
            
-           let vertexBuffer = device.makeBuffer(bytes: lightMesh.vertexArray, length: MemoryLayout<LMRVertex>.stride * lightMesh.vertexCount)
+           let vertexBuffer = device.makeBuffer(bytes: lightMesh.vertexArray, length: MemoryLayout<LMDVertex>.stride * lightMesh.vertexCount)
            encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
            
            for submesh in lightMesh.submeshes {
@@ -159,7 +159,7 @@ class LMR3DLightVC: UIViewController, MTKViewDelegate {
            }
        }
        
-       let box = LMRMesh.lmr_box(color: SIMD4<Float>(1, 1, 1, 1), size: 3)
+       let box = LMDMesh.lmr_box(color: SIMD4<Float>(1, 1, 1, 1), size: 3)
        r += 0.01
        let modelM = float4x4(rotationAroundAxis: SIMD3<Float>(0, 1, 0), by: r)
        
@@ -172,7 +172,7 @@ class LMR3DLightVC: UIViewController, MTKViewDelegate {
            encoder.setFragmentBytes(&light, length: MemoryLayout<Light>.stride, index: 2)
            encoder.setFragmentBytes(&view_pos, length: MemoryLayout<SIMD3<Float>>.stride, index: 3)
            
-           let vertexBuffer = device.makeBuffer(bytes: box.vertexArray, length: MemoryLayout<LMRVertex>.stride * box.vertexCount)
+           let vertexBuffer = device.makeBuffer(bytes: box.vertexArray, length: MemoryLayout<LMDVertex>.stride * box.vertexCount)
            encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
            
            

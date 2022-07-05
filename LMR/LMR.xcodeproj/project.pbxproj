@@ -7,6 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1005229828743D7E000914AE /* ModelIOExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1005229628743D7E000914AE /* ModelIOExtensions.swift */; };
+		1005229928743D7E000914AE /* MathUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1005229728743D7E000914AE /* MathUtilities.swift */; };
+		100522BD28743D87000914AE /* LMDVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1005229C28743D87000914AE /* LMDVertex.swift */; };
+		100522BE28743D87000914AE /* LMDMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1005229D28743D87000914AE /* LMDMesh.swift */; };
+		100522BF28743D87000914AE /* LMDSubmesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1005229E28743D87000914AE /* LMDSubmesh.swift */; };
+		100522C028743D87000914AE /* LMDMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1005229F28743D87000914AE /* LMDMaterial.swift */; };
+		100522C128743D87000914AE /* LMDMesh+Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522A128743D87000914AE /* LMDMesh+Rect.swift */; };
+		100522C228743D87000914AE /* LMDMesh+Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522A228743D87000914AE /* LMDMesh+Box.swift */; };
+		100522C328743D87000914AE /* LMRSubmesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522A528743D87000914AE /* LMRSubmesh.swift */; };
+		100522C428743D87000914AE /* LMRMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522A628743D87000914AE /* LMRMesh.swift */; };
+		100522C528743D87000914AE /* LMRRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522A828743D87000914AE /* LMRRenderer.swift */; };
+		100522C628743D87000914AE /* LMRShaderCommon.metal in Sources */ = {isa = PBXBuildFile; fileRef = 100522AB28743D87000914AE /* LMRShaderCommon.metal */; };
+		100522C828743D87000914AE /* LMR3DObjPainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522AF28743D87000914AE /* LMR3DObjPainter.swift */; };
+		100522C928743D87000914AE /* LMRShader3DObject.metal in Sources */ = {isa = PBXBuildFile; fileRef = 100522B028743D87000914AE /* LMRShader3DObject.metal */; };
+		100522CA28743D87000914AE /* LMR3DRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522B128743D87000914AE /* LMR3DRenderer.swift */; };
+		100522CB28743D87000914AE /* MDLMesh+LMR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522B328743D87000914AE /* MDLMesh+LMR.swift */; };
+		100522CC28743D87000914AE /* LMRContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522B528743D87000914AE /* LMRContext.swift */; };
+		100522CD28743D87000914AE /* LMRConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522B628743D87000914AE /* LMRConst.swift */; };
+		100522CE28743D87000914AE /* LMRLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522B828743D87000914AE /* LMRLight.swift */; };
+		100522CF28743D87000914AE /* LMRObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522B928743D87000914AE /* LMRObject.swift */; };
+		100522D028743D87000914AE /* LMRCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522BA28743D87000914AE /* LMRCamera.swift */; };
+		100522D128743D87000914AE /* LMRLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522BB28743D87000914AE /* LMRLocation.swift */; };
+		100522D228743D87000914AE /* LMRScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522BC28743D87000914AE /* LMRScene.swift */; };
+		100522D428743EC9000914AE /* LMRShaderCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522D328743EC9000914AE /* LMRShaderCommon.swift */; };
 		10D5486B2862F48800E330EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486A2862F48800E330EA /* AppDelegate.swift */; };
 		10D5486D2862F48800E330EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486C2862F48800E330EA /* SceneDelegate.swift */; };
 		10D5486F2862F48800E330EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486E2862F48800E330EA /* ViewController.swift */; };
@@ -17,31 +41,16 @@
 		10D548832862FD9600E330EA /* lmr_sample_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 10D548822862FD9600E330EA /* lmr_sample_shader.metal */; };
 		10D54888286318FD00E330EA /* LMRSample3DVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D54887286318FD00E330EA /* LMRSample3DVC.swift */; };
 		10D5488A286319AE00E330EA /* lmr_sample3d_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 10D54889286319AE00E330EA /* lmr_sample3d_shader.metal */; };
-		10D5488D28633A3600E330EA /* ModelIOExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5488C28633A3600E330EA /* ModelIOExtensions.swift */; };
-		10D5489028633CB100E330EA /* MathUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5488F28633CB100E330EA /* MathUtilities.swift */; };
-		1A6B72A5287173BF009D34F6 /* LMRContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B72A4287173BF009D34F6 /* LMRContext.swift */; };
 		1A6B72A928717D5C009D34F6 /* kd_wall.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1A6B72A628717D5B009D34F6 /* kd_wall.jpeg */; };
 		1A6B72AA28717D5C009D34F6 /* sk_box.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6B72A728717D5B009D34F6 /* sk_box.png */; };
 		1A6B72AB28717D5C009D34F6 /* kd_box.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1A6B72A828717D5C009D34F6 /* kd_box.jpeg */; };
 		1A6B72AD28717D63009D34F6 /* kn_wall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A6B72AC28717D63009D34F6 /* kn_wall.jpg */; };
 		1A6D22702868508C007A4F8A /* LMR3DBoxVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D226E2868508C007A4F8A /* LMR3DBoxVC.swift */; };
 		1A6D22712868508C007A4F8A /* lmr_sample3dbox_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D226F2868508C007A4F8A /* lmr_sample3dbox_shader.metal */; };
-		1A6D227428685275007A4F8A /* LMRMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D227328685275007A4F8A /* LMRMesh.swift */; };
-		1A6D227628685287007A4F8A /* LMRSubmesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D227528685287007A4F8A /* LMRSubmesh.swift */; };
-		1A6D2278286852CE007A4F8A /* LMRMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D2277286852CE007A4F8A /* LMRMaterial.swift */; };
-		1A6D227A2868542D007A4F8A /* LMRVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D22792868542D007A4F8A /* LMRVertex.swift */; };
-		1A6D227D28685502007A4F8A /* LMR3DBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D227C28685502007A4F8A /* LMR3DBox.swift */; };
 		1A6D22812868A3B9007A4F8A /* lmr_3dlight_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D227F2868A3B9007A4F8A /* lmr_3dlight_shader.metal */; };
 		1A6D22822868A3B9007A4F8A /* LMR3DLightVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D22802868A3B9007A4F8A /* LMR3DLightVC.swift */; };
-		1A912D2A286FE259005F90B9 /* LMRScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D29286FE259005F90B9 /* LMRScene.swift */; };
-		1A912D2C286FE26C005F90B9 /* LMRLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D2B286FE26C005F90B9 /* LMRLight.swift */; };
-		1A912D2E286FE279005F90B9 /* LMRCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D2D286FE279005F90B9 /* LMRCamera.swift */; };
-		1A912D30286FE45A005F90B9 /* LMRObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D2F286FE45A005F90B9 /* LMRObject.swift */; };
-		1A912D32286FE61E005F90B9 /* LMRLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D31286FE61E005F90B9 /* LMRLocation.swift */; };
 		1A912D34286FEB18005F90B9 /* LMRSceneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D33286FEB18005F90B9 /* LMRSceneVC.swift */; };
 		1A912D37286FEB46005F90B9 /* lmr_3d_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D36286FEB46005F90B9 /* lmr_3d_shader.metal */; };
-		1A912D3928704196005F90B9 /* LMRMesh+Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D3828704196005F90B9 /* LMRMesh+Rect.swift */; };
-		1A912D3B2870736A005F90B9 /* lmr_3d_param.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A912D3A2870736A005F90B9 /* lmr_3d_param.swift */; };
 		1A912D3D28707E50005F90B9 /* bottom_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A912D3C28707E50005F90B9 /* bottom_1.jpg */; };
 		1A9DA7CD28684F5600BB6113 /* bottom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7C728684F5600BB6113 /* bottom.jpg */; };
 		1A9DA7CE28684F5600BB6113 /* left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7C828684F5600BB6113 /* left.jpg */; };
@@ -52,6 +61,31 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1005229628743D7E000914AE /* ModelIOExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelIOExtensions.swift; sourceTree = "<group>"; };
+		1005229728743D7E000914AE /* MathUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathUtilities.swift; sourceTree = "<group>"; };
+		1005229C28743D87000914AE /* LMDVertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMDVertex.swift; sourceTree = "<group>"; };
+		1005229D28743D87000914AE /* LMDMesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMDMesh.swift; sourceTree = "<group>"; };
+		1005229E28743D87000914AE /* LMDSubmesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMDSubmesh.swift; sourceTree = "<group>"; };
+		1005229F28743D87000914AE /* LMDMaterial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMDMaterial.swift; sourceTree = "<group>"; };
+		100522A128743D87000914AE /* LMDMesh+Rect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LMDMesh+Rect.swift"; sourceTree = "<group>"; };
+		100522A228743D87000914AE /* LMDMesh+Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LMDMesh+Box.swift"; sourceTree = "<group>"; };
+		100522A528743D87000914AE /* LMRSubmesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRSubmesh.swift; sourceTree = "<group>"; };
+		100522A628743D87000914AE /* LMRMesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRMesh.swift; sourceTree = "<group>"; };
+		100522A828743D87000914AE /* LMRRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRRenderer.swift; sourceTree = "<group>"; };
+		100522AB28743D87000914AE /* LMRShaderCommon.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = LMRShaderCommon.metal; sourceTree = "<group>"; };
+		100522AC28743D87000914AE /* LMRShaderCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMRShaderCommon.h; sourceTree = "<group>"; };
+		100522AF28743D87000914AE /* LMR3DObjPainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMR3DObjPainter.swift; sourceTree = "<group>"; };
+		100522B028743D87000914AE /* LMRShader3DObject.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = LMRShader3DObject.metal; sourceTree = "<group>"; };
+		100522B128743D87000914AE /* LMR3DRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMR3DRenderer.swift; sourceTree = "<group>"; };
+		100522B328743D87000914AE /* MDLMesh+LMR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MDLMesh+LMR.swift"; sourceTree = "<group>"; };
+		100522B528743D87000914AE /* LMRContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRContext.swift; sourceTree = "<group>"; };
+		100522B628743D87000914AE /* LMRConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRConst.swift; sourceTree = "<group>"; };
+		100522B828743D87000914AE /* LMRLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRLight.swift; sourceTree = "<group>"; };
+		100522B928743D87000914AE /* LMRObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRObject.swift; sourceTree = "<group>"; };
+		100522BA28743D87000914AE /* LMRCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRCamera.swift; sourceTree = "<group>"; };
+		100522BB28743D87000914AE /* LMRLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRLocation.swift; sourceTree = "<group>"; };
+		100522BC28743D87000914AE /* LMRScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRScene.swift; sourceTree = "<group>"; };
+		100522D328743EC9000914AE /* LMRShaderCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRShaderCommon.swift; sourceTree = "<group>"; };
 		10D548672862F48800E330EA /* LMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D5486A2862F48800E330EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10D5486C2862F48800E330EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,31 +98,16 @@
 		10D548822862FD9600E330EA /* lmr_sample_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = lmr_sample_shader.metal; sourceTree = "<group>"; };
 		10D54887286318FD00E330EA /* LMRSample3DVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRSample3DVC.swift; sourceTree = "<group>"; };
 		10D54889286319AE00E330EA /* lmr_sample3d_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = lmr_sample3d_shader.metal; sourceTree = "<group>"; };
-		10D5488C28633A3600E330EA /* ModelIOExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelIOExtensions.swift; sourceTree = "<group>"; };
-		10D5488F28633CB100E330EA /* MathUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathUtilities.swift; sourceTree = "<group>"; };
-		1A6B72A4287173BF009D34F6 /* LMRContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRContext.swift; sourceTree = "<group>"; };
 		1A6B72A628717D5B009D34F6 /* kd_wall.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kd_wall.jpeg; sourceTree = "<group>"; };
 		1A6B72A728717D5B009D34F6 /* sk_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sk_box.png; sourceTree = "<group>"; };
 		1A6B72A828717D5C009D34F6 /* kd_box.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kd_box.jpeg; sourceTree = "<group>"; };
 		1A6B72AC28717D63009D34F6 /* kn_wall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kn_wall.jpg; sourceTree = "<group>"; };
 		1A6D226E2868508C007A4F8A /* LMR3DBoxVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMR3DBoxVC.swift; sourceTree = "<group>"; };
 		1A6D226F2868508C007A4F8A /* lmr_sample3dbox_shader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = lmr_sample3dbox_shader.metal; sourceTree = "<group>"; };
-		1A6D227328685275007A4F8A /* LMRMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRMesh.swift; sourceTree = "<group>"; };
-		1A6D227528685287007A4F8A /* LMRSubmesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRSubmesh.swift; sourceTree = "<group>"; };
-		1A6D2277286852CE007A4F8A /* LMRMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRMaterial.swift; sourceTree = "<group>"; };
-		1A6D22792868542D007A4F8A /* LMRVertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRVertex.swift; sourceTree = "<group>"; };
-		1A6D227C28685502007A4F8A /* LMR3DBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMR3DBox.swift; sourceTree = "<group>"; };
 		1A6D227F2868A3B9007A4F8A /* lmr_3dlight_shader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = lmr_3dlight_shader.metal; sourceTree = "<group>"; };
 		1A6D22802868A3B9007A4F8A /* LMR3DLightVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMR3DLightVC.swift; sourceTree = "<group>"; };
-		1A912D29286FE259005F90B9 /* LMRScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRScene.swift; sourceTree = "<group>"; };
-		1A912D2B286FE26C005F90B9 /* LMRLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRLight.swift; sourceTree = "<group>"; };
-		1A912D2D286FE279005F90B9 /* LMRCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRCamera.swift; sourceTree = "<group>"; };
-		1A912D2F286FE45A005F90B9 /* LMRObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRObject.swift; sourceTree = "<group>"; };
-		1A912D31286FE61E005F90B9 /* LMRLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRLocation.swift; sourceTree = "<group>"; };
 		1A912D33286FEB18005F90B9 /* LMRSceneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRSceneVC.swift; sourceTree = "<group>"; };
 		1A912D36286FEB46005F90B9 /* lmr_3d_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = lmr_3d_shader.metal; sourceTree = "<group>"; };
-		1A912D3828704196005F90B9 /* LMRMesh+Rect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LMRMesh+Rect.swift"; sourceTree = "<group>"; };
-		1A912D3A2870736A005F90B9 /* lmr_3d_param.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lmr_3d_param.swift; sourceTree = "<group>"; };
 		1A912D3C28707E50005F90B9 /* bottom_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom_1.jpg; sourceTree = "<group>"; };
 		1A9DA7C728684F5600BB6113 /* bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom.jpg; sourceTree = "<group>"; };
 		1A9DA7C828684F5600BB6113 /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = left.jpg; sourceTree = "<group>"; };
@@ -109,6 +128,132 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1005229528743D7E000914AE /* math */ = {
+			isa = PBXGroup;
+			children = (
+				1005229628743D7E000914AE /* ModelIOExtensions.swift */,
+				1005229728743D7E000914AE /* MathUtilities.swift */,
+			);
+			path = math;
+			sourceTree = "<group>";
+		};
+		1005229A28743D87000914AE /* LMDKit */ = {
+			isa = PBXGroup;
+			children = (
+				1005229B28743D87000914AE /* mesh */,
+				100522A028743D87000914AE /* model */,
+			);
+			path = LMDKit;
+			sourceTree = "<group>";
+		};
+		1005229B28743D87000914AE /* mesh */ = {
+			isa = PBXGroup;
+			children = (
+				1005229C28743D87000914AE /* LMDVertex.swift */,
+				1005229D28743D87000914AE /* LMDMesh.swift */,
+				1005229E28743D87000914AE /* LMDSubmesh.swift */,
+				1005229F28743D87000914AE /* LMDMaterial.swift */,
+			);
+			path = mesh;
+			sourceTree = "<group>";
+		};
+		100522A028743D87000914AE /* model */ = {
+			isa = PBXGroup;
+			children = (
+				100522A128743D87000914AE /* LMDMesh+Rect.swift */,
+				100522A228743D87000914AE /* LMDMesh+Box.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		100522A328743D87000914AE /* LMRKit */ = {
+			isa = PBXGroup;
+			children = (
+				100522A428743D87000914AE /* mesh */,
+				100522A728743D87000914AE /* renderer */,
+				100522B228743D87000914AE /* mdl */,
+				100522B428743D87000914AE /* context */,
+				100522B628743D87000914AE /* LMRConst.swift */,
+				100522B728743D87000914AE /* scene */,
+			);
+			path = LMRKit;
+			sourceTree = "<group>";
+		};
+		100522A428743D87000914AE /* mesh */ = {
+			isa = PBXGroup;
+			children = (
+				100522A528743D87000914AE /* LMRSubmesh.swift */,
+				100522A628743D87000914AE /* LMRMesh.swift */,
+			);
+			path = mesh;
+			sourceTree = "<group>";
+		};
+		100522A728743D87000914AE /* renderer */ = {
+			isa = PBXGroup;
+			children = (
+				100522A828743D87000914AE /* LMRRenderer.swift */,
+				100522A928743D87000914AE /* filter */,
+				100522B128743D87000914AE /* LMR3DRenderer.swift */,
+			);
+			path = renderer;
+			sourceTree = "<group>";
+		};
+		100522A928743D87000914AE /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				100522AA28743D87000914AE /* common */,
+				100522AD28743D87000914AE /* object */,
+			);
+			path = filter;
+			sourceTree = "<group>";
+		};
+		100522AA28743D87000914AE /* common */ = {
+			isa = PBXGroup;
+			children = (
+				100522AB28743D87000914AE /* LMRShaderCommon.metal */,
+				100522AC28743D87000914AE /* LMRShaderCommon.h */,
+				100522D328743EC9000914AE /* LMRShaderCommon.swift */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		100522AD28743D87000914AE /* object */ = {
+			isa = PBXGroup;
+			children = (
+				100522AF28743D87000914AE /* LMR3DObjPainter.swift */,
+				100522B028743D87000914AE /* LMRShader3DObject.metal */,
+			);
+			path = object;
+			sourceTree = "<group>";
+		};
+		100522B228743D87000914AE /* mdl */ = {
+			isa = PBXGroup;
+			children = (
+				100522B328743D87000914AE /* MDLMesh+LMR.swift */,
+			);
+			path = mdl;
+			sourceTree = "<group>";
+		};
+		100522B428743D87000914AE /* context */ = {
+			isa = PBXGroup;
+			children = (
+				100522B528743D87000914AE /* LMRContext.swift */,
+			);
+			path = context;
+			sourceTree = "<group>";
+		};
+		100522B728743D87000914AE /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				100522B828743D87000914AE /* LMRLight.swift */,
+				100522B928743D87000914AE /* LMRObject.swift */,
+				100522BA28743D87000914AE /* LMRCamera.swift */,
+				100522BB28743D87000914AE /* LMRLocation.swift */,
+				100522BC28743D87000914AE /* LMRScene.swift */,
+			);
+			path = scene;
+			sourceTree = "<group>";
+		};
 		10D5485E2862F48800E330EA = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +273,8 @@
 		10D548692862F48800E330EA /* LMR */ = {
 			isa = PBXGroup;
 			children = (
+				1005229A28743D87000914AE /* LMDKit */,
+				100522A328743D87000914AE /* LMRKit */,
 				1A9DA7C528684F4500BB6113 /* res */,
 				10D5488E28633A3800E330EA /* lib */,
 				10D5487E2862F72A00E330EA /* models */,
@@ -175,22 +322,9 @@
 		10D5488E28633A3800E330EA /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				1A6B72A3287173AE009D34F6 /* context */,
-				1A912D28286FE218005F90B9 /* scene */,
-				1A6D227B286854DB007A4F8A /* 3d_model */,
-				1A6D22722868525B007A4F8A /* mesh */,
-				10D5488F28633CB100E330EA /* MathUtilities.swift */,
-				10D5488C28633A3600E330EA /* ModelIOExtensions.swift */,
+				1005229528743D7E000914AE /* math */,
 			);
 			path = lib;
-			sourceTree = "<group>";
-		};
-		1A6B72A3287173AE009D34F6 /* context */ = {
-			isa = PBXGroup;
-			children = (
-				1A6B72A4287173BF009D34F6 /* LMRContext.swift */,
-			);
-			path = context;
 			sourceTree = "<group>";
 		};
 		1A6D226D2868508C007A4F8A /* 3d_box */ = {
@@ -202,26 +336,6 @@
 			path = 3d_box;
 			sourceTree = "<group>";
 		};
-		1A6D22722868525B007A4F8A /* mesh */ = {
-			isa = PBXGroup;
-			children = (
-				1A6D227328685275007A4F8A /* LMRMesh.swift */,
-				1A6D227528685287007A4F8A /* LMRSubmesh.swift */,
-				1A6D2277286852CE007A4F8A /* LMRMaterial.swift */,
-				1A6D22792868542D007A4F8A /* LMRVertex.swift */,
-			);
-			path = mesh;
-			sourceTree = "<group>";
-		};
-		1A6D227B286854DB007A4F8A /* 3d_model */ = {
-			isa = PBXGroup;
-			children = (
-				1A6D227C28685502007A4F8A /* LMR3DBox.swift */,
-				1A912D3828704196005F90B9 /* LMRMesh+Rect.swift */,
-			);
-			path = 3d_model;
-			sourceTree = "<group>";
-		};
 		1A6D227E2868A3B9007A4F8A /* 3d_light */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,24 +345,11 @@
 			path = 3d_light;
 			sourceTree = "<group>";
 		};
-		1A912D28286FE218005F90B9 /* scene */ = {
-			isa = PBXGroup;
-			children = (
-				1A912D29286FE259005F90B9 /* LMRScene.swift */,
-				1A912D2B286FE26C005F90B9 /* LMRLight.swift */,
-				1A912D2D286FE279005F90B9 /* LMRCamera.swift */,
-				1A912D2F286FE45A005F90B9 /* LMRObject.swift */,
-				1A912D31286FE61E005F90B9 /* LMRLocation.swift */,
-			);
-			path = scene;
-			sourceTree = "<group>";
-		};
 		1A912D35286FEB1C005F90B9 /* scene */ = {
 			isa = PBXGroup;
 			children = (
 				1A912D33286FEB18005F90B9 /* LMRSceneVC.swift */,
 				1A912D36286FEB46005F90B9 /* lmr_3d_shader.metal */,
-				1A912D3A2870736A005F90B9 /* lmr_3d_param.swift */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -360,33 +461,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A912D3B2870736A005F90B9 /* lmr_3d_param.swift in Sources */,
+				100522D228743D87000914AE /* LMRScene.swift in Sources */,
+				100522C128743D87000914AE /* LMDMesh+Rect.swift in Sources */,
 				1A912D34286FEB18005F90B9 /* LMRSceneVC.swift in Sources */,
-				1A6D2278286852CE007A4F8A /* LMRMaterial.swift in Sources */,
 				1A912D37286FEB46005F90B9 /* lmr_3d_shader.metal in Sources */,
 				10D548832862FD9600E330EA /* lmr_sample_shader.metal in Sources */,
+				100522C628743D87000914AE /* LMRShaderCommon.metal in Sources */,
 				10D54888286318FD00E330EA /* LMRSample3DVC.swift in Sources */,
+				1005229928743D7E000914AE /* MathUtilities.swift in Sources */,
+				100522D028743D87000914AE /* LMRCamera.swift in Sources */,
+				100522C428743D87000914AE /* LMRMesh.swift in Sources */,
+				100522CE28743D87000914AE /* LMRLight.swift in Sources */,
+				100522D428743EC9000914AE /* LMRShaderCommon.swift in Sources */,
+				100522BF28743D87000914AE /* LMDSubmesh.swift in Sources */,
+				100522BD28743D87000914AE /* LMDVertex.swift in Sources */,
+				100522C828743D87000914AE /* LMR3DObjPainter.swift in Sources */,
 				10D5486F2862F48800E330EA /* ViewController.swift in Sources */,
-				1A6D227D28685502007A4F8A /* LMR3DBox.swift in Sources */,
-				1A6D227628685287007A4F8A /* LMRSubmesh.swift in Sources */,
-				1A6D227A2868542D007A4F8A /* LMRVertex.swift in Sources */,
-				10D5488D28633A3600E330EA /* ModelIOExtensions.swift in Sources */,
-				1A6B72A5287173BF009D34F6 /* LMRContext.swift in Sources */,
-				1A912D2C286FE26C005F90B9 /* LMRLight.swift in Sources */,
+				100522C928743D87000914AE /* LMRShader3DObject.metal in Sources */,
 				1A6D22712868508C007A4F8A /* lmr_sample3dbox_shader.metal in Sources */,
-				1A912D30286FE45A005F90B9 /* LMRObject.swift in Sources */,
-				1A912D2A286FE259005F90B9 /* LMRScene.swift in Sources */,
 				10D5486B2862F48800E330EA /* AppDelegate.swift in Sources */,
+				100522BE28743D87000914AE /* LMDMesh.swift in Sources */,
+				100522CB28743D87000914AE /* MDLMesh+LMR.swift in Sources */,
+				1005229828743D7E000914AE /* ModelIOExtensions.swift in Sources */,
+				100522C028743D87000914AE /* LMDMaterial.swift in Sources */,
 				1A6D22702868508C007A4F8A /* LMR3DBoxVC.swift in Sources */,
 				1A6D22822868A3B9007A4F8A /* LMR3DLightVC.swift in Sources */,
-				1A912D2E286FE279005F90B9 /* LMRCamera.swift in Sources */,
+				100522CF28743D87000914AE /* LMRObject.swift in Sources */,
+				100522CC28743D87000914AE /* LMRContext.swift in Sources */,
 				10D5488A286319AE00E330EA /* lmr_sample3d_shader.metal in Sources */,
-				1A6D227428685275007A4F8A /* LMRMesh.swift in Sources */,
 				1A6D22812868A3B9007A4F8A /* lmr_3dlight_shader.metal in Sources */,
+				100522D128743D87000914AE /* LMRLocation.swift in Sources */,
+				100522C228743D87000914AE /* LMDMesh+Box.swift in Sources */,
+				100522C328743D87000914AE /* LMRSubmesh.swift in Sources */,
+				100522CD28743D87000914AE /* LMRConst.swift in Sources */,
 				10D548812862F75600E330EA /* LMRSampleVC.swift in Sources */,
-				10D5489028633CB100E330EA /* MathUtilities.swift in Sources */,
-				1A912D32286FE61E005F90B9 /* LMRLocation.swift in Sources */,
-				1A912D3928704196005F90B9 /* LMRMesh+Rect.swift in Sources */,
+				100522C528743D87000914AE /* LMRRenderer.swift in Sources */,
+				100522CA28743D87000914AE /* LMR3DRenderer.swift in Sources */,
 				10D5486D2862F48800E330EA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

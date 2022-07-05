@@ -108,259 +108,259 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
         }
     }
     
-    func _updateScene() {
-        if self.scene == nil {
-            let newScene = LMRScene()
-            newScene.ambientColor = simd_make_float3(0.05, 0.05, 0.05)
-            
-            newScene.camera.position = simd_make_float3(0, 1.5, 10)
-            newScene.camera.target = SIMD3<Float>(0, 1, 0)
-            
-            for _ in 0...0 {
-                let light = LMRLight()
-                light.color = simd_make_float3(0.6, 0.6, 0.6)
-                light.position = SIMD3<Float>(-0.2, 1.5, -2)//simd_make_float3(Float((drand48() - 0.5) * 6), Float(2 + (drand48() - 0.5) * 1), Float((drand48() - 0.5) * 6))
-                let lightObj  = LMRObject(mesh: LMRMesh.lmr_box())
-                lightObj.location.scale = Float(drand48() * 0.4)
-                lightObj.location.position = light.position;
-                light.object = lightObj
-                newScene.lights.append(light)
-            }
-            
-//            do {
-//                let mesh = LMRMesh.lmr_skyBox(mds: ["top.jpg", "bottom_1.jpg", "left.jpg", "right.jpg", "front.jpg", "back.jpg"], size: 60)
-//                for  submesh in mesh.submeshes {
-//                    submesh.material.diffuse = 0
-//                    submesh.material.specular = 0
-//                }
-//                let obj = LMRObject(mesh:mesh)
-//                obj.location.position = SIMD3<Float>(0, 59, 20)
-//                newScene.objects.append(obj)
+//    func _updateScene() {
+//        if self.scene == nil {
+//            let newScene = LMRScene()
+//            newScene.ambientColor = simd_make_float3(0.05, 0.05, 0.05)
+//
+//            newScene.camera.position = simd_make_float3(0, 1.5, 10)
+//            newScene.camera.target = SIMD3<Float>(0, 1, 0)
+//
+//            for _ in 0...0 {
+//                let light = LMRLight()
+//                light.color = simd_make_float3(0.6, 0.6, 0.6)
+//                light.position = SIMD3<Float>(-0.2, 1.5, -2)//simd_make_float3(Float((drand48() - 0.5) * 6), Float(2 + (drand48() - 0.5) * 1), Float((drand48() - 0.5) * 6))
+//                let lightObj  = LMRObject(mesh: LMDMesh.lmr_box())
+//                lightObj.location.scale = Float(drand48() * 0.4)
+//                lightObj.location.position = light.position;
+//                light.object = lightObj
+//                newScene.lights.append(light)
 //            }
-            
-
-            do {
-                let obj = LMRObject(mesh:LMRMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
-                obj.location.rotate.y = -Float.pi * 0.5
-                newScene.objects.append(obj)
-            }
+//
+////            do {
+////                let mesh = LMDMesh.lmr_skyBox(mds: ["top.jpg", "bottom_1.jpg", "left.jpg", "right.jpg", "front.jpg", "back.jpg"], size: 60)
+////                for  submesh in mesh.submeshes {
+////                    submesh.material.diffuse = 0
+////                    submesh.material.specular = 0
+////                }
+////                let obj = LMRObject(mesh:mesh)
+////                obj.location.position = SIMD3<Float>(0, 59, 20)
+////                newScene.objects.append(obj)
+////            }
+//
+//
 //            do {
-//                let obj = LMRObject(mesh:LMRMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
-//                obj.location.position.y = 2;
+//                let obj = LMRObject(mesh:LMDMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
 //                obj.location.rotate.y = -Float.pi * 0.5
 //                newScene.objects.append(obj)
 //            }
-//            do {
-//                let obj = LMRObject(mesh:LMRMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
-//                obj.location.position.x = 0.9;
-//                obj.location.rotate.x = -Float.pi * 0.5
-//                newScene.objects.append(obj)
-//            }
-//            do {
-//                let obj = LMRObject(mesh:LMRMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
-//                obj.location.position.x = -0.7;
-//                obj.location.rotate.x = -Float.pi * 0.5
-//                newScene.objects.append(obj)
-//            }
-//            
-//            do {
-//                let mesh = LMRMesh.lmr_rect(size: SIMD2<Float>(2, 2), color: simd_make_float4(0.5, 0.4, 0.6, 1))
+////            do {
+////                let obj = LMRObject(mesh:LMRMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
+////                obj.location.position.y = 2;
+////                obj.location.rotate.y = -Float.pi * 0.5
+////                newScene.objects.append(obj)
+////            }
+////            do {
+////                let obj = LMRObject(mesh:LMDMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
+////                obj.location.position.x = 0.9;
+////                obj.location.rotate.x = -Float.pi * 0.5
+////                newScene.objects.append(obj)
+////            }
+////            do {
+////                let obj = LMRObject(mesh:LMDMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
+////                obj.location.position.x = -0.7;
+////                obj.location.rotate.x = -Float.pi * 0.5
+////                newScene.objects.append(obj)
+////            }
+////
+////            do {
+////                let mesh = LMDMesh.lmr_rect(size: SIMD2<Float>(2, 2), color: simd_make_float4(0.5, 0.4, 0.6, 1))
+////                if let submesh = mesh.submeshes.first {
+////                    submesh.material.map_kd = "kd_wall.jpeg"
+////                }
+////                let obj = LMRObject(mesh:mesh)
+////                obj.location.position = SIMD3<Float>(0, 1, 3)
+////                obj.location.rotate.x = Float.pi * 0.3
+////                newScene.objects.append(obj)
+////            }
+//
+//            for _ in 0...5 {
+//                let size = Float(0.1 + drand48() * 0.8)
+//                let x = Float((drand48() - 0.5) * 6)
+//                let z = Float((drand48() - 0.5) * 6)
+//                let r = Float((drand48() - 0.5) * Double.pi)
+//                let mesh = LMDMesh.lmr_box(color: simd_make_float4(0.4, 0.7, 0.8, 1), size: size)
 //                if let submesh = mesh.submeshes.first {
-//                    submesh.material.map_kd = "kd_wall.jpeg"
+//                    submesh.material.map_kd = "kd_box.jpeg"
 //                }
 //                let obj = LMRObject(mesh:mesh)
-//                obj.location.position = SIMD3<Float>(0, 1, 3)
-//                obj.location.rotate.x = Float.pi * 0.3
+//
+//                obj.location.position = SIMD3<Float>(x, size * 0.5, z)
+//                obj.location.rotate.x = r
 //                newScene.objects.append(obj)
 //            }
-            
-            for _ in 0...5 {
-                let size = Float(0.1 + drand48() * 0.8)
-                let x = Float((drand48() - 0.5) * 6)
-                let z = Float((drand48() - 0.5) * 6)
-                let r = Float((drand48() - 0.5) * Double.pi)
-                let mesh = LMRMesh.lmr_box(color: simd_make_float4(0.4, 0.7, 0.8, 1), size: size)
-                if let submesh = mesh.submeshes.first {
-                    submesh.material.map_kd = "kd_box.jpeg"
-                }
-                let obj = LMRObject(mesh:mesh)
-
-                obj.location.position = SIMD3<Float>(x, size * 0.5, z)
-                obj.location.rotate.x = r
-                newScene.objects.append(obj)
-            }
-            
-            self.scene = newScene
-        }
-        
-        guard let scene = scene else {
-            return
-        }
-        
-        let c = Int(floor(time / 60))
-        let p = time - Float(c) * 60
-
-//        scene.camera.target.x = (p - 30) / 18 * Float.pi * (c % 2 == 1 ? -1 : 1)
-        
-    }
-    
-    func _renderShadow(at commandBuffer: MTLCommandBuffer, scene: LMRScene) throws -> MTLTexture? {
-        guard let light = scene.lights.first  else {
-            return nil
-        }
- 
-        let textureDescriptor = MTLTextureDescriptor.textureCubeDescriptor(pixelFormat: .depth32Float, size: 1000, mipmapped: false)
-        textureDescriptor.storageMode = .shared
-        textureDescriptor.usage = [.renderTarget, .shaderRead]
-        let depthTexture = device.makeTexture(descriptor:textureDescriptor)
-        
-//        let textureDescriptor2 = MTLTextureDescriptor.textureCubeDescriptor(pixelFormat: .bgra8Unorm_srgb, size: 1000, mipmapped: false)
-//        textureDescriptor2.storageMode = .shared
-//        textureDescriptor2.usage = .renderTarget
-//        let colorTexture = device.makeTexture(descriptor:textureDescriptor2)
-
-        let renderPassDescriptor = MTLRenderPassDescriptor()
-//        renderPassDescriptor.colorAttachments[0].texture = colorTexture
-//        renderPassDescriptor.colorAttachments[0].loadAction = .clear
-//        renderPassDescriptor.colorAttachments[0].storeAction = .store
-        renderPassDescriptor.depthAttachment.texture = depthTexture
-        renderPassDescriptor.depthAttachment.clearDepth = 1
-        renderPassDescriptor.depthAttachment.storeAction = .store
-        renderPassDescriptor.renderTargetArrayLength = 6
-        
-        let view_pos = light.position
-        var projectM = float4x4(perspectiveRightHandWithFovy: Float.pi * 0.5, aspectRatio: 1, nearZ: 0.1, farZ: 100)
-        var viewMs = [float4x4]()
-        for i in 0...5 {
-//            viewMs.append(scene.camera.viewMatrix)
-            viewMs.append(float4x4.look_at_cube(eye: view_pos, face: i))
-        }
-//        var viewMs = [
-//            scene.camera.viewMatrix,
-//            scene.camera.viewMatrix,
-//            scene.camera.viewMatrix,
-//            scene.camera.viewMatrix,
-//            scene.camera.viewMatrix,
-//            scene.camera.viewMatrix
-//        ]
-        
-        guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {throw LMR3DError(description: "create encoder fail")}
-        let renderPipeLineState = try self.getRenderPipeLineState(vertFunc: "lmr_3d::shadow_depth_v", fragFunc: "lmr_3d::shadow_depth_f", onlyDepth: true)
-        
-        encoder.setRenderPipelineState(renderPipeLineState)
-        encoder.setDepthStencilState(depthStencilState)
-        
-        for object in scene.objects {
-            var modelM = object.location.transform
-            if let mesh = object.mesh {
-                
-                let vertexBuffer = device.makeBuffer(bytes: mesh.vertexArray, length: MemoryLayout<LMRVertex>.stride * mesh.vertexCount)
-                encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-                
-                encoder.setVertexBytes(&modelM, length: MemoryLayout<float4x4>.stride, index: 1)
-                encoder.setVertexBytes(&viewMs, length: MemoryLayout<float4x4>.stride * 6, index: 2)
-                encoder.setVertexBytes(&projectM, length: MemoryLayout<float4x4>.stride, index: 3)
-                for submesh in mesh.submeshes {
-                    let indexBuffer = device.makeBuffer(bytes: submesh.indexArray, length: MemoryLayout<Int>.stride * submesh.indexCount)!
-                    encoder.setTriangleFillMode(.fill)
-                    encoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: .uint32, indexBuffer: indexBuffer, indexBufferOffset: 0, instanceCount: 6)
-                }
-            }
-        }
-        encoder.endEncoding()
-        return depthTexture
-    }
+//
+//            self.scene = newScene
+//        }
+//
+//        guard let scene = scene else {
+//            return
+//        }
+//
+//        let c = Int(floor(time / 60))
+//        let p = time - Float(c) * 60
+//
+////        scene.camera.target.x = (p - 30) / 18 * Float.pi * (c % 2 == 1 ? -1 : 1)
+//
+//    }
+//
+//    func _renderShadow(at commandBuffer: MTLCommandBuffer, scene: LMRScene) throws -> MTLTexture? {
+//        guard let light = scene.lights.first  else {
+//            return nil
+//        }
+//
+//        let textureDescriptor = MTLTextureDescriptor.textureCubeDescriptor(pixelFormat: .depth32Float, size: 1000, mipmapped: false)
+//        textureDescriptor.storageMode = .shared
+//        textureDescriptor.usage = [.renderTarget, .shaderRead]
+//        let depthTexture = device.makeTexture(descriptor:textureDescriptor)
+//
+////        let textureDescriptor2 = MTLTextureDescriptor.textureCubeDescriptor(pixelFormat: .bgra8Unorm_srgb, size: 1000, mipmapped: false)
+////        textureDescriptor2.storageMode = .shared
+////        textureDescriptor2.usage = .renderTarget
+////        let colorTexture = device.makeTexture(descriptor:textureDescriptor2)
+//
+//        let renderPassDescriptor = MTLRenderPassDescriptor()
+////        renderPassDescriptor.colorAttachments[0].texture = colorTexture
+////        renderPassDescriptor.colorAttachments[0].loadAction = .clear
+////        renderPassDescriptor.colorAttachments[0].storeAction = .store
+//        renderPassDescriptor.depthAttachment.texture = depthTexture
+//        renderPassDescriptor.depthAttachment.clearDepth = 1
+//        renderPassDescriptor.depthAttachment.storeAction = .store
+//        renderPassDescriptor.renderTargetArrayLength = 6
+//
+//        let view_pos = light.position
+//        var projectM = float4x4(perspectiveRightHandWithFovy: Float.pi * 0.5, aspectRatio: 1, nearZ: 0.1, farZ: 100)
+//        var viewMs = [float4x4]()
+//        for i in 0...5 {
+////            viewMs.append(scene.camera.viewMatrix)
+//            viewMs.append(float4x4.look_at_cube(eye: view_pos, face: i))
+//        }
+////        var viewMs = [
+////            scene.camera.viewMatrix,
+////            scene.camera.viewMatrix,
+////            scene.camera.viewMatrix,
+////            scene.camera.viewMatrix,
+////            scene.camera.viewMatrix,
+////            scene.camera.viewMatrix
+////        ]
+//
+//        guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {throw LMR3DError(description: "create encoder fail")}
+//        let renderPipeLineState = try self.getRenderPipeLineState(vertFunc: "lmr_3d::shadow_depth_v", fragFunc: "lmr_3d::shadow_depth_f", onlyDepth: true)
+//
+//        encoder.setRenderPipelineState(renderPipeLineState)
+//        encoder.setDepthStencilState(depthStencilState)
+//
+//        for object in scene.objects {
+//            var modelM = object.location.transform
+//            if let mesh = object.mesh {
+//
+//                let vertexBuffer = device.makeBuffer(bytes: mesh.vertexArray, length: MemoryLayout<LMDVertex>.stride * mesh.vertexCount)
+//                encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+//
+//                encoder.setVertexBytes(&modelM, length: MemoryLayout<float4x4>.stride, index: 1)
+//                encoder.setVertexBytes(&viewMs, length: MemoryLayout<float4x4>.stride * 6, index: 2)
+//                encoder.setVertexBytes(&projectM, length: MemoryLayout<float4x4>.stride, index: 3)
+//                for submesh in mesh.submeshes {
+//                    let indexBuffer = device.makeBuffer(bytes: submesh.indexArray, length: MemoryLayout<Int>.stride * submesh.indexCount)!
+//                    encoder.setTriangleFillMode(.fill)
+//                    encoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: .uint32, indexBuffer: indexBuffer, indexBufferOffset: 0, instanceCount: 6)
+//                }
+//            }
+//        }
+//        encoder.endEncoding()
+//        return depthTexture
+//    }
     
     func _render(view: MTKView, at commandBuffer: MTLCommandBuffer) throws {
-        time += 0.2
-        NSLog("%f", time)
-        self._updateScene()
-        
-        guard let scene = self.scene else {
-            return
-        }
-        
-        let depthTexture = try self._renderShadow(at: commandBuffer, scene: scene)
-        
-        guard let renderPassDescriptor = view.currentRenderPassDescriptor else {return}
-        guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {return}
-        
-        let w = Float(view.bounds.size.width)
-        let h = Float(view.bounds.size.height)
-        
-        scene.camera.aspect = w / h
-        var view_pos = scene.camera.position
-        let viewM = scene.camera.viewMatrix
-        let projectM = scene.camera.projectMatrix
-        
-        var lightParams: [LMR3DFragLight] = [LMR3DFragLight]()
-        for light in scene.lights {
-            var lightParam = LMR3DFragLight(color: light.color, position: light.position)
-            lightParams.append(lightParam)
-            if let object = light.object {
-                let modelM = object.location.transform
-                if let mesh = object.mesh {
-                    let normalM = float3x3(modelM.inverse.transpose)
-                    var param = LMR3DVertexParam(projectM: projectM, viewM: viewM, modelM: modelM, normalM: normalM)
-                    encoder.setRenderPipelineState(lightRenderPipeLineState)
-                    encoder.setDepthStencilState(depthStencilState)
-                    
-                    let vertexBuffer = device.makeBuffer(bytes: mesh.vertexArray, length: MemoryLayout<LMRVertex>.stride * mesh.vertexCount)
-                    encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-                    
-                    encoder.setVertexBytes(&param, length: MemoryLayout<LMR3DVertexParam>.stride, index: 1)
-                    encoder.setFragmentBytes(&lightParam, length: MemoryLayout<LMR3DFragLight>.stride, index: 0)
-                    
-                    for submesh in mesh.submeshes {
-                        let indexBuffer = device.makeBuffer(bytes: submesh.indexArray, length: MemoryLayout<Int>.stride * submesh.indexCount)!
-                        encoder.setTriangleFillMode(.fill)
-                        encoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: .uint32, indexBuffer: indexBuffer, indexBufferOffset: 0)
-                    }
-                }
-            }
-        }
-        
-        encoder.setFragmentTexture(depthTexture, index: 1)
-        
-        for object in scene.objects {
-            let modelM = object.location.transform
-            if let mesh = object.mesh {
-                let normalM = float3x3(modelM.inverse.transpose)
-                var param = LMR3DVertexParam(projectM: projectM, viewM: viewM, modelM: modelM, normalM: normalM)
-                
-                encoder.setRenderPipelineState(renderPipeLineState)
-                encoder.setDepthStencilState(depthStencilState)
-                
-                let vertexBuffer = device.makeBuffer(bytes: mesh.vertexArray, length: MemoryLayout<LMRVertex>.stride * mesh.vertexCount)
-                encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-                
-                encoder.setVertexBytes(&param, length: MemoryLayout<LMR3DVertexParam>.stride, index: 1)
-                
-                encoder.setFragmentBytes(&view_pos, length: MemoryLayout<SIMD3<Float>>.stride, index: 0)
-                encoder.setFragmentBytes(&scene.ambientColor, length: MemoryLayout<SIMD3<Float>>.stride, index: 2)
-                var lightCount = lightParams.count
-                encoder.setFragmentBytes(&lightCount, length: MemoryLayout<Int>.stride, index: 3)
-                if (lightCount == 0) {
-                    lightParams.append(LMR3DFragLight(color: SIMD3<Float>(0, 0, 0), position: SIMD3<Float>(0, 0, 0)))
-                }
-                encoder.setFragmentBytes(&lightParams, length: MemoryLayout<LMR3DFragLight>.stride * lightParams.count, index: 4)
-                
-                for submesh in mesh.submeshes {
-//                    var material = Material(color: submesh.material.md_color, diffuse: submesh.material.diffuse, specular: submesh.material.specular, shininess: submesh.material.shininess)
-                    if let map_kd = submesh.material.map_kd {
-                        let texture = try self.context.generateTexture(from: map_kd)
-                        encoder.setFragmentTexture(texture, index: 0)
-                    }
-                    var material = LMR3DFragMaterial(isMapKd:(submesh.material.map_kd != nil), color: submesh.material.kd_color, diffuse: _diffuse, specular: _specular, shininess: _shininess)
-                    encoder.setFragmentBytes(&material, length: MemoryLayout<LMR3DFragMaterial>.stride, index: 1)
-                    
-                    let indexBuffer = device.makeBuffer(bytes: submesh.indexArray, length: MemoryLayout<Int>.stride * submesh.indexCount)!
-                    encoder.setTriangleFillMode(.fill)
-                    encoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: .uint32, indexBuffer: indexBuffer, indexBufferOffset: 0)
-                }
-            }
-        }
-        encoder.endEncoding()
+//        time += 0.2
+//        NSLog("%f", time)
+//        self._updateScene()
+//        
+//        guard let scene = self.scene else {
+//            return
+//        }
+//        
+//        let depthTexture = try self._renderShadow(at: commandBuffer, scene: scene)
+//        
+//        guard let renderPassDescriptor = view.currentRenderPassDescriptor else {return}
+//        guard let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {return}
+//        
+//        let w = Float(view.bounds.size.width)
+//        let h = Float(view.bounds.size.height)
+//        
+//        scene.camera.aspect = w / h
+//        var view_pos = scene.camera.position
+//        let viewM = scene.camera.viewMatrix
+//        let projectM = scene.camera.projectMatrix
+//        
+//        var lightParams: [LMR3DFragLight] = [LMR3DFragLight]()
+//        for light in scene.lights {
+//            var lightParam = LMR3DFragLight(color: light.color, position: light.position)
+//            lightParams.append(lightParam)
+//            if let object = light.object {
+//                let modelM = object.location.transform
+//                if let mesh = object.mesh {
+//                    let normalM = float3x3(modelM.inverse.transpose)
+//                    var param = LMR3DVertexParam(projectM: projectM, viewM: viewM, modelM: modelM, normalM: normalM)
+//                    encoder.setRenderPipelineState(lightRenderPipeLineState)
+//                    encoder.setDepthStencilState(depthStencilState)
+//                    
+//                    let vertexBuffer = device.makeBuffer(bytes: mesh.vertexArray, length: MemoryLayout<LMDVertex>.stride * mesh.vertexCount)
+//                    encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+//                    
+//                    encoder.setVertexBytes(&param, length: MemoryLayout<LMR3DVertexParam>.stride, index: 1)
+//                    encoder.setFragmentBytes(&lightParam, length: MemoryLayout<LMR3DFragLight>.stride, index: 0)
+//                    
+//                    for submesh in mesh.submeshes {
+//                        let indexBuffer = device.makeBuffer(bytes: submesh.indexArray, length: MemoryLayout<Int>.stride * submesh.indexCount)!
+//                        encoder.setTriangleFillMode(.fill)
+//                        encoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: .uint32, indexBuffer: indexBuffer, indexBufferOffset: 0)
+//                    }
+//                }
+//            }
+//        }
+//        
+//        encoder.setFragmentTexture(depthTexture, index: 1)
+//        
+//        for object in scene.objects {
+//            let modelM = object.location.transform
+//            if let mesh = object.mesh {
+//                let normalM = float3x3(modelM.inverse.transpose)
+//                var param = LMR3DVertexParam(projectM: projectM, viewM: viewM, modelM: modelM, normalM: normalM)
+//                
+//                encoder.setRenderPipelineState(renderPipeLineState)
+//                encoder.setDepthStencilState(depthStencilState)
+//                
+//                let vertexBuffer = device.makeBuffer(bytes: mesh.vertexArray, length: MemoryLayout<LMDVertex>.stride * mesh.vertexCount)
+//                encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+//                
+//                encoder.setVertexBytes(&param, length: MemoryLayout<LMR3DVertexParam>.stride, index: 1)
+//                
+//                encoder.setFragmentBytes(&view_pos, length: MemoryLayout<SIMD3<Float>>.stride, index: 0)
+//                encoder.setFragmentBytes(&scene.ambientColor, length: MemoryLayout<SIMD3<Float>>.stride, index: 2)
+//                var lightCount = lightParams.count
+//                encoder.setFragmentBytes(&lightCount, length: MemoryLayout<Int>.stride, index: 3)
+//                if (lightCount == 0) {
+//                    lightParams.append(LMR3DFragLight(color: SIMD3<Float>(0, 0, 0), position: SIMD3<Float>(0, 0, 0)))
+//                }
+//                encoder.setFragmentBytes(&lightParams, length: MemoryLayout<LMR3DFragLight>.stride * lightParams.count, index: 4)
+//                
+//                for submesh in mesh.submeshes {
+////                    var material = Material(color: submesh.material.md_color, diffuse: submesh.material.diffuse, specular: submesh.material.specular, shininess: submesh.material.shininess)
+//                    if let map_kd = submesh.material.map_kd {
+//                        let texture = try self.context.generateTexture(from: map_kd)
+//                        encoder.setFragmentTexture(texture, index: 0)
+//                    }
+//                    var material = LMR3DFragMaterial(isMapKd:(submesh.material.map_kd != nil), color: submesh.material.kd_color, diffuse: _diffuse, specular: _specular, shininess: _shininess)
+//                    encoder.setFragmentBytes(&material, length: MemoryLayout<LMR3DFragMaterial>.stride, index: 1)
+//                    
+//                    let indexBuffer = device.makeBuffer(bytes: submesh.indexArray, length: MemoryLayout<Int>.stride * submesh.indexCount)!
+//                    encoder.setTriangleFillMode(.fill)
+//                    encoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: .uint32, indexBuffer: indexBuffer, indexBufferOffset: 0)
+//                }
+//            }
+//        }
+//        encoder.endEncoding()
     }
     
     func draw(in view: MTKView) {
@@ -399,7 +399,7 @@ extension LMRSceneVC {
         vertexDescriptor.attributes[2].format = .float2
         vertexDescriptor.attributes[2].bufferIndex = 0
         
-        vertexDescriptor.layouts[0].stride = MemoryLayout<LMRVertex>.stride
+        vertexDescriptor.layouts[0].stride = MemoryLayout<LMDVertex>.stride
         
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = vertexFunc

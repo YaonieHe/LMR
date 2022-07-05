@@ -62,7 +62,7 @@ class LMR3DBoxVC: UIViewController, MTKViewDelegate {
         vertexDescriptor.attributes[2].format = .float2
         vertexDescriptor.attributes[2].bufferIndex = 0
         
-        vertexDescriptor.layouts[0].stride = MemoryLayout<LMRVertex>.stride
+        vertexDescriptor.layouts[0].stride = MemoryLayout<LMDVertex>.stride
         
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = vertexFunc
@@ -98,7 +98,7 @@ class LMR3DBoxVC: UIViewController, MTKViewDelegate {
        encoder.setRenderPipelineState(try renderPipeLineState())
        encoder.setDepthStencilState(depthStencilState())
        
-       let box = LMRMesh .lmr_skyBox(mds: ["top.jpg", "bottom.jpg", "left.jpg", "right.jpg", "front.jpg", "back.jpg"], size: 10)
+       let box = LMDMesh .lmr_skyBox(mds: ["top.jpg", "bottom.jpg", "left.jpg", "right.jpg", "front.jpg", "back.jpg"], size: 10)
        
        r += 0.01
        
@@ -117,7 +117,7 @@ class LMR3DBoxVC: UIViewController, MTKViewDelegate {
        var param = LMR3DBoxVertexParam(projectM: projectM, viewM: viewM, modelM: modelM)
        encoder.setVertexBytes(&param, length: MemoryLayout<LMRSample3DVertexParam>.stride, index: 1)
        
-       let vertexBuffer = device.makeBuffer(bytes: box.vertexArray, length: MemoryLayout<LMRVertex>.stride * box.vertexCount)
+       let vertexBuffer = device.makeBuffer(bytes: box.vertexArray, length: MemoryLayout<LMDVertex>.stride * box.vertexCount)
        encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
        
        

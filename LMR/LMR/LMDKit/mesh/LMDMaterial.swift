@@ -1,5 +1,5 @@
 //
-//  LMRMaterial.swift
+//  LMDMaterial.swift
 //  LMR
 //
 //  Created by hjp-Mic on 2022/6/26.
@@ -8,7 +8,7 @@
 import UIKit
 import simd
 
-class LMRMaterial: NSObject {
+class LMDMaterial: NSObject {
     open var kd_color: SIMD4<Float> = SIMD4<Float>(0, 0, 0, 1)
     open var map_kd: String?
     open var diffuse: Float = 0.1
