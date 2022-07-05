@@ -132,7 +132,7 @@ class LMR3DLightVC: UIViewController, MTKViewDelegate {
        let w = Float(view.bounds.size.width)
        let h = Float(view.bounds.size.height)
        let aspect = w / h
-       let projectM = float4x4(perspectiveProjectionRHFovY: field, aspectRatio: aspect, nearZ: nearZ, farZ: farZ)
+       let projectM = float4x4(perspectiveRightHandWithFovy: field, aspectRatio: aspect, nearZ: nearZ, farZ: farZ)
        
        
        let lightPosition = SIMD3<Float>(-10 * sin(2.23 * r), 1, -10 * cos(3.12 * r))

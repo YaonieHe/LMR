@@ -69,53 +69,56 @@ extension float4x4 {
                            SIMD4<Float>(0, 0, 0, 1)))
     }
     
-    init(perspectiveProjectionRHFovY fovy: Float, aspectRatio: Float, nearZ: Float, farZ: Float) {
+    init(perspectiveLeftHandWithFovy fovy: Float, aspectRatio: Float, nearZ: Float, farZ: Float) {
+        let ys = 1 / tanf(fovy * 0.5)
+        let xs = ys / aspectRatio
+        let zs = farZ / (farZ - nearZ)
+        self.init(columns:(SIMD4<Float>(xs,  0, 0,   0),
+                           SIMD4<Float>( 0, ys, 0,   0),
+                           SIMD4<Float>( 0,  0, zs, 1),
+                           SIMD4<Float>( 0,  0, -nearZ * zs, 0)))
+    }
+    
+    init(perspectiveRightHandWithFovy fovy: Float, aspectRatio: Float, nearZ: Float, farZ: Float) {
         let ys = 1 / tanf(fovy * 0.5)
         let xs = ys / aspectRatio
         let zs = farZ / (nearZ - farZ)
         self.init(columns:(SIMD4<Float>(xs,  0, 0,   0),
                            SIMD4<Float>( 0, ys, 0,   0),
                            SIMD4<Float>( 0,  0, zs, -1),
-                           SIMD4<Float>( 0,  0, zs * nearZ, 0)))
+                           SIMD4<Float>( 0,  0, nearZ * zs, 0)))
     }
     
-    static func lookAt(eye: SIMD3<Float>, center: SIMD3<Float>, up: SIMD3<Float>) -> float4x4 {
-        let zAxis = normalize(eye - center);
-        let xAxis = normalize(cross(up, zAxis));
-        let yAxis = cross(zAxis, xAxis);
+    static func lookAtLeftHand(eye: SIMD3<Float>, center: SIMD3<Float>, up: SIMD3<Float>) -> float4x4 {
+        let z = normalize(center - eye);
+        let x = normalize(cross(up, z));
+        let y = cross(z, x);
 
-        var P = SIMD4<Float>();
-        var Q = SIMD4<Float>();
-        var R = SIMD4<Float>();
-        var S = SIMD4<Float>();
+        let P = SIMD4<Float>(x.x, y.x, z.x, 0);
+        let Q = SIMD4<Float>(x.y, y.y, z.y, 0);
+        let R = SIMD4<Float>(x.z, y.z, z.z, 0);
+        let S = SIMD4<Float>(-dot(x, eye), -dot(y, eye), -dot(z, eye), 1);
 
-        P.x = xAxis.x;
-        P.y = yAxis.x;
-        P.z = zAxis.x;
-        P.w = 0.0;
+        return float4x4(P, Q, R, S);
+    }
+    
+    static func lookAtRightHand(eye: SIMD3<Float>, center: SIMD3<Float>, up: SIMD3<Float>) -> float4x4 {
+        let z = normalize(eye - center);
+        let x = normalize(cross(up, z));
+        let y = cross(z, x);
 
-        Q.x = xAxis.y;
-        Q.y = yAxis.y;
-        Q.z = zAxis.y;
-        Q.w = 0.0;
-
-        R.x = xAxis.z;
-        R.y = yAxis.z;
-        R.z = zAxis.z;
-        R.w = 0.0;
-
-        S.x = -dot(xAxis, eye);
-        S.y = -dot(yAxis, eye);
-        S.z = -dot(zAxis, eye);
-        S.w =  1.0;
+        let P = SIMD4<Float>(x.x, y.x, z.x, 0);
+        let Q = SIMD4<Float>(x.y, y.y, z.y, 0);
+        let R = SIMD4<Float>(x.z, y.z, z.z, 0);
+        let S = SIMD4<Float>(-dot(x, eye), -dot(y, eye), -dot(z, eye), 1);
 
         return float4x4(P, Q, R, S);
    }
     
     static func look_at_cube(eye: SIMD3<Float>, face: Int) -> float4x4 {
         let directions: [SIMD3<Float>] = [
-            SIMD3<Float>( 1,  0,  0), // Right
             SIMD3<Float>(-1,  0,  0), // Left
+            SIMD3<Float>( 1,  0,  0), // Right
             SIMD3<Float>( 0,  1,  0), // Top
             SIMD3<Float>( 0, -1,  0), // Down
             SIMD3<Float>( 0,  0,  1), // Front
@@ -131,7 +134,7 @@ extension float4x4 {
             SIMD3<Float>(0, 1,  0)
         ]
 
-        return self.lookAt(eye: eye, center: eye+directions[face], up: ups[face])
+        return self.lookAtRightHand(eye: eye, center: eye+directions[face], up: ups[face])
     }
 }
 

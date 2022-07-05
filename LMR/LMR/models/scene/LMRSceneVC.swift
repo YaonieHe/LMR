@@ -119,7 +119,7 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
             for _ in 0...0 {
                 let light = LMRLight()
                 light.color = simd_make_float3(0.6, 0.6, 0.6)
-                light.position = SIMD3<Float>(0, 1.5, -2)//simd_make_float3(Float((drand48() - 0.5) * 6), Float(2 + (drand48() - 0.5) * 1), Float((drand48() - 0.5) * 6))
+                light.position = SIMD3<Float>(-0.2, 1.5, -2)//simd_make_float3(Float((drand48() - 0.5) * 6), Float(2 + (drand48() - 0.5) * 1), Float((drand48() - 0.5) * 6))
                 let lightObj  = LMRObject(mesh: LMRMesh.lmr_box())
                 lightObj.location.scale = Float(drand48() * 0.4)
                 lightObj.location.position = light.position;
@@ -144,16 +144,35 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
                 obj.location.rotate.y = -Float.pi * 0.5
                 newScene.objects.append(obj)
             }
-            
-            do {
-                let mesh = LMRMesh.lmr_rect(size: SIMD2<Float>(10, 10), color: simd_make_float4(0.5, 0.4, 0.6, 1))
-                if let submesh = mesh.submeshes.first {
-                    submesh.material.map_kd = "kd_wall.jpeg"
-                }
-                let obj = LMRObject(mesh:mesh)
-                obj.location.position = SIMD3<Float>(0, 5, -8)
-                newScene.objects.append(obj)
-            }
+//            do {
+//                let obj = LMRObject(mesh:LMRMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
+//                obj.location.position.y = 2;
+//                obj.location.rotate.y = -Float.pi * 0.5
+//                newScene.objects.append(obj)
+//            }
+//            do {
+//                let obj = LMRObject(mesh:LMRMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
+//                obj.location.position.x = 0.9;
+//                obj.location.rotate.x = -Float.pi * 0.5
+//                newScene.objects.append(obj)
+//            }
+//            do {
+//                let obj = LMRObject(mesh:LMRMesh.lmr_rect(size: SIMD2<Float>(20, 20), color: simd_make_float4(0.5, 0.4, 0.2, 1)))
+//                obj.location.position.x = -0.7;
+//                obj.location.rotate.x = -Float.pi * 0.5
+//                newScene.objects.append(obj)
+//            }
+//            
+//            do {
+//                let mesh = LMRMesh.lmr_rect(size: SIMD2<Float>(2, 2), color: simd_make_float4(0.5, 0.4, 0.6, 1))
+//                if let submesh = mesh.submeshes.first {
+//                    submesh.material.map_kd = "kd_wall.jpeg"
+//                }
+//                let obj = LMRObject(mesh:mesh)
+//                obj.location.position = SIMD3<Float>(0, 1, 3)
+//                obj.location.rotate.x = Float.pi * 0.3
+//                newScene.objects.append(obj)
+//            }
             
             for _ in 0...5 {
                 let size = Float(0.1 + drand48() * 0.8)
@@ -165,7 +184,7 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
                     submesh.material.map_kd = "kd_box.jpeg"
                 }
                 let obj = LMRObject(mesh:mesh)
-                
+
                 obj.location.position = SIMD3<Float>(x, size * 0.5, z)
                 obj.location.rotate.x = r
                 newScene.objects.append(obj)
@@ -181,7 +200,7 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
         let c = Int(floor(time / 60))
         let p = time - Float(c) * 60
 
-        scene.camera.target.x = (p - 30) / 18 * Float.pi * (c % 2 == 1 ? -1 : 1)
+//        scene.camera.target.x = (p - 30) / 18 * Float.pi * (c % 2 == 1 ? -1 : 1)
         
     }
     
@@ -210,7 +229,7 @@ class LMRSceneVC: UIViewController, MTKViewDelegate {
         renderPassDescriptor.renderTargetArrayLength = 6
         
         let view_pos = light.position
-        var projectM = float4x4(perspectiveProjectionRHFovY: Float.pi * 0.5, aspectRatio: 1, nearZ: 0.1, farZ: 100)
+        var projectM = float4x4(perspectiveRightHandWithFovy: Float.pi * 0.5, aspectRatio: 1, nearZ: 0.1, farZ: 100)
         var viewMs = [float4x4]()
         for i in 0...5 {
 //            viewMs.append(scene.camera.viewMatrix)

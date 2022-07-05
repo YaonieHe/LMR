@@ -71,12 +71,13 @@ namespace lmr_3d {
     
     float shadow_calculation(float3 pos, float3 light_pos, depthcube<float> map) {
         float3 pos_to_light = pos - light_pos;
-        float closest_depth = map.sample(sampler, pos_to_light) * maxDepth + 0.01;
+        pos_to_light.x *= -1;
+        float closest_depth = map.sample(sampler, normalize(pos_to_light)) * maxDepth + 0.01;
         float current_depth = length(pos_to_light);
-        if (current_depth <= closest_depth) {
+        if (current_depth < closest_depth) {
             return 0;
         }
-        return fmin((current_depth - closest_depth) * 5.0, 1);
+        return 1.0;
     }
     
     
@@ -166,7 +167,6 @@ namespace lmr_3d {
     };
     
     struct ShadowFragmentOut {
-        half4 color [[color(0)]];
         float depth [[depth(less)]];
     };
     
@@ -185,7 +185,6 @@ namespace lmr_3d {
     
     fragment ShadowFragmentOut shadow_depth_f(ShadowVertexOut in [[stage_in]]) {
         ShadowFragmentOut out;
-        out.color = half4(1, 0, 0, 1);
         out.depth = length(in.pos) / maxDepth;
         return out;
     }

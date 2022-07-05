@@ -119,7 +119,7 @@ class LMRSample3DVC: UIViewController, MTKViewDelegate {
        let w = Float(view.bounds.size.width)
        let h = Float(view.bounds.size.height)
        let aspect = w / h
-       let projectM = float4x4(perspectiveProjectionRHFovY: field, aspectRatio: aspect, nearZ: nearZ, farZ: farZ)
+       let projectM = float4x4(perspectiveRightHandWithFovy: field, aspectRatio: aspect, nearZ: nearZ, farZ: farZ)
        
        var param = LMRSample3DVertexParam(projectM: projectM, viewM: viewM, modelM: modelM)
        encoder.setVertexBytes(&param, length: MemoryLayout<LMRSample3DVertexParam>.stride, index: 1)
