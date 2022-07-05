@@ -58,6 +58,7 @@
 		1A9DA7D028684F5600BB6113 /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7CA28684F5600BB6113 /* back.jpg */; };
 		1A9DA7D128684F5600BB6113 /* right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7CB28684F5600BB6113 /* right.jpg */; };
 		1A9DA7D228684F5600BB6113 /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7CC28684F5600BB6113 /* front.jpg */; };
+		1AFDB55C2874809C00DF2088 /* MTKMesh+LMR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFDB55B2874809C00DF2088 /* MTKMesh+LMR.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +116,7 @@
 		1A9DA7CA28684F5600BB6113 /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
 		1A9DA7CB28684F5600BB6113 /* right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = right.jpg; sourceTree = "<group>"; };
 		1A9DA7CC28684F5600BB6113 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
+		1AFDB55B2874809C00DF2088 /* MTKMesh+LMR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTKMesh+LMR.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 		100522A328743D87000914AE /* LMRKit */ = {
 			isa = PBXGroup;
 			children = (
+				1AFDB55A2874807500DF2088 /* mtl */,
 				100522A428743D87000914AE /* mesh */,
 				100522A728743D87000914AE /* renderer */,
 				100522B228743D87000914AE /* mdl */,
@@ -191,9 +194,9 @@
 		100522A728743D87000914AE /* renderer */ = {
 			isa = PBXGroup;
 			children = (
-				100522A828743D87000914AE /* LMRRenderer.swift */,
 				100522A928743D87000914AE /* filter */,
 				100522B128743D87000914AE /* LMR3DRenderer.swift */,
+				100522A828743D87000914AE /* LMRRenderer.swift */,
 			);
 			path = renderer;
 			sourceTree = "<group>";
@@ -380,6 +383,14 @@
 			path = skybox;
 			sourceTree = "<group>";
 		};
+		1AFDB55A2874807500DF2088 /* mtl */ = {
+			isa = PBXGroup;
+			children = (
+				1AFDB55B2874809C00DF2088 /* MTKMesh+LMR.swift */,
+			);
+			path = mtl;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -498,6 +509,7 @@
 				100522C528743D87000914AE /* LMRRenderer.swift in Sources */,
 				100522CA28743D87000914AE /* LMR3DRenderer.swift in Sources */,
 				10D5486D2862F48800E330EA /* SceneDelegate.swift in Sources */,
+				1AFDB55C2874809C00DF2088 /* MTKMesh+LMR.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,7 +656,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Y8YG5F7WN9;
+				DEVELOPMENT_TEAM = 55S998F6XB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LMR/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -673,7 +685,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Y8YG5F7WN9;
+				DEVELOPMENT_TEAM = 55S998F6XB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LMR/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

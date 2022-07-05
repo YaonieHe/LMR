@@ -14,7 +14,7 @@ class LMRContext {
     open var commandQueue: MTLCommandQueue
     open var library: MTLLibrary
     
-    private var textureLoader: MTKTextureLoader
+    open var textureLoader: MTKTextureLoader
     private var textureMap: [String: MTLTexture] = [String: MTLTexture]()
     
     init() {

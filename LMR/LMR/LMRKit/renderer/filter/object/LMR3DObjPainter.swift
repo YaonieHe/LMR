@@ -9,10 +9,14 @@ class LMR3DObjPainter {
     var encoder: MTLRenderCommandEncoder
     var viewParam: LMR3DViewParams
     
-    private var depthStencilState: MTLDepthStencilState
-    private var renderPipeLineState: MTLRenderPipelineState
+    var sampleCount: Int = 1
+    var pixelFormat: MTLPixelFormat = .rgba8Unorm_srgb
+    var depthStencilPixelFormat: MTLPixelFormat = .depth32Float
     
-    init(context: LMRContext, object: LMRObject, encoder: MTLRenderCommandEncoder, viewParam: LMR3DViewParams) {
+    private var depthStencilState: MTLDepthStencilState
+    private var pipelineDescriptor: MTLRenderPipelineDescriptor
+    
+    init(context: LMRContext, object: LMRObject, encoder: MTLRenderCommandEncoder, viewParam: LMR3DViewParams) throws {
         self.context = context
         self.object = object
         self.encoder = encoder
@@ -23,44 +27,20 @@ class LMR3DObjPainter {
         depthStateDescriptor.isDepthWriteEnabled = true
         
         self.depthStencilState = context.device.makeDepthStencilState(descriptor: depthStateDescriptor)!
-        self.renderPipeLineState = try getRenderPipeLineState(vertFunc: "", fragFunc: "")
-    }
-    
-    func getRenderPipeLineState(vertFunc: String, fragFunc: String, onlyDepth: Bool = false) throws -> MTLRenderPipelineState {
-        let vertexFunc = self.context.library.makeFunction(name: vertFunc)
-        let fragFunc = self.context.library.makeFunction(name: fragFunc)
+        
+        let vertexFunc = self.context.library.makeFunction(name: "LMR3D::vertexObject")
+        let fragFunc = self.context.library.makeFunction(name: "LMR3D::fragmentObjectColor")
        
-        let vertexDescriptor = MTLVertexDescriptor()
-        vertexDescriptor.attributes[0].offset = 0;
-        vertexDescriptor.attributes[0].format = .float3
-        vertexDescriptor.attributes[0].bufferIndex = 0
         
-       vertexDescriptor.attributes[1].offset = MemoryLayout<SIMD3<Float>>.stride;
-       vertexDescriptor.attributes[1].format = .float3
-       vertexDescriptor.attributes[1].bufferIndex = 0
-        
-        vertexDescriptor.attributes[2].offset = MemoryLayout<SIMD3<Float>>.stride * 2;
-        vertexDescriptor.attributes[2].format = .float2
-        vertexDescriptor.attributes[2].bufferIndex = 0
-        
-        vertexDescriptor.layouts[0].stride = MemoryLayout<LMDVertex>.stride
-        
-        let pipelineDescriptor = MTLRenderPipelineDescriptor()
+        pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = vertexFunc
         pipelineDescriptor.fragmentFunction = fragFunc
-        pipelineDescriptor.vertexDescriptor = vertexDescriptor
-        if !onlyDepth {
-            pipelineDescriptor.sampleCount = mtkView.sampleCount
-            pipelineDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
-        } else {
-            pipelineDescriptor.inputPrimitiveTopology = .triangle
-            pipelineDescriptor.sampleCount = 1
-//            pipelineDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
-        }
-        pipelineDescriptor.depthAttachmentPixelFormat = mtkView.depthStencilPixelFormat
+        pipelineDescriptor.vertexDescriptor = MTLVertexDescriptor.lmr_pntDesc()
 
-        return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
-   }
+        pipelineDescriptor.sampleCount = self.sampleCount
+        pipelineDescriptor.colorAttachments[0].pixelFormat = self.pixelFormat
+        pipelineDescriptor.depthAttachmentPixelFormat = self.depthStencilPixelFormat
+    }
     
     private enum BufferIndex: Int
     {
@@ -69,10 +49,15 @@ class LMR3DObjPainter {
         case objParam
     }
     
-    func draw() {
+    func draw() throws {
         let modelM = object.location.transform
         if let mesh = object.mesh {
-
+            pipelineDescriptor.sampleCount = self.sampleCount
+            pipelineDescriptor.colorAttachments[0].pixelFormat = self.pixelFormat
+            pipelineDescriptor.depthAttachmentPixelFormat = self.depthStencilPixelFormat
+            
+            let renderPipeLineState = try self.context.device.makeRenderPipelineState(descriptor: pipelineDescriptor)
+            
            encoder.setRenderPipelineState(renderPipeLineState)
            encoder.setDepthStencilState(depthStencilState)
 
@@ -85,6 +70,8 @@ class LMR3DObjPainter {
 
            for submesh in mesh.submeshes {
                var objParam = LMR3DObjParams(modelMatrix: modelM, diffuseColor: submesh.material.diffuse, specularColor: submesh.material.specular, shininess: submesh.material.shininess)
+               encoder.setVertexBytes(&objParam, length: MemoryLayout<LMR3DObjParams>.stride, index: BufferIndex.objParam.rawValue)
+               
                encoder.setFragmentBytes(&objParam, length: MemoryLayout<LMR3DObjParams>.stride, index: BufferIndex.objParam.rawValue)
 
                let indexBuffer = submesh.mtkSubMesh.indexBuffer

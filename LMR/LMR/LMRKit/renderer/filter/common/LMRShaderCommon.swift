@@ -6,8 +6,8 @@ import simd
 
 enum LMR3DVertexAttribute: Int {
     case position  = 0
-    case texcoord  = 1
-    case normal    = 2
+    case normal    = 1
+    case texcoord  = 2
 }
 
 enum LMR3DTextureIndex: Int {
