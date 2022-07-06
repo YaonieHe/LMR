@@ -31,6 +31,7 @@
 		100522D128743D87000914AE /* LMRLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522BB28743D87000914AE /* LMRLocation.swift */; };
 		100522D228743D87000914AE /* LMRScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522BC28743D87000914AE /* LMRScene.swift */; };
 		100522D428743EC9000914AE /* LMRShaderCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522D328743EC9000914AE /* LMRShaderCommon.swift */; };
+		100522D62875378E000914AE /* MTL+LMR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522D52875378E000914AE /* MTL+LMR.swift */; };
 		10D5486B2862F48800E330EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486A2862F48800E330EA /* AppDelegate.swift */; };
 		10D5486D2862F48800E330EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486C2862F48800E330EA /* SceneDelegate.swift */; };
 		10D5486F2862F48800E330EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486E2862F48800E330EA /* ViewController.swift */; };
@@ -87,6 +88,7 @@
 		100522BB28743D87000914AE /* LMRLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRLocation.swift; sourceTree = "<group>"; };
 		100522BC28743D87000914AE /* LMRScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRScene.swift; sourceTree = "<group>"; };
 		100522D328743EC9000914AE /* LMRShaderCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRShaderCommon.swift; sourceTree = "<group>"; };
+		100522D52875378E000914AE /* MTL+LMR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTL+LMR.swift"; sourceTree = "<group>"; };
 		10D548672862F48800E330EA /* LMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D5486A2862F48800E330EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10D5486C2862F48800E330EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				1AFDB55B2874809C00DF2088 /* MTKMesh+LMR.swift */,
+				100522D52875378E000914AE /* MTL+LMR.swift */,
 			);
 			path = mtl;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				100522BD28743D87000914AE /* LMDVertex.swift in Sources */,
 				100522C828743D87000914AE /* LMR3DObjPainter.swift in Sources */,
 				10D5486F2862F48800E330EA /* ViewController.swift in Sources */,
+				100522D62875378E000914AE /* MTL+LMR.swift in Sources */,
 				100522C928743D87000914AE /* LMRShader3DObject.metal in Sources */,
 				1A6D22712868508C007A4F8A /* lmr_sample3dbox_shader.metal in Sources */,
 				10D5486B2862F48800E330EA /* AppDelegate.swift in Sources */,
@@ -656,7 +660,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 55S998F6XB;
+				DEVELOPMENT_TEAM = Y8YG5F7WN9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LMR/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -685,7 +689,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 55S998F6XB;
+				DEVELOPMENT_TEAM = Y8YG5F7WN9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LMR/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
