@@ -12,4 +12,11 @@ namespace LMR3D {
         float2 texture  [[attribute(LMR3DVertexAttribute_Texcoord)]];
         float3 normal   [[attribute(LMR3DVertexAttribute_Normal)]];
     };
+    
+    struct VertexOut {
+        float4 position [[position]];
+        float3 pos;
+        float3 normal;
+        float2 texture;
+    };
 }

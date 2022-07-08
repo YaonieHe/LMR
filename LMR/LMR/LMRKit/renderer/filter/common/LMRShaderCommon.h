@@ -30,4 +30,9 @@ typedef struct  {
     float shininess;
 } LMR3DObjParams;
 
+typedef struct  {
+    vector_float3 color;
+    vector_float3 position;
+} LMR3DPointLightParams;
+
 #endif /* LMRShaderCommon_h */

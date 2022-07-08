@@ -24,7 +24,22 @@ struct LMR3DViewParams {
 
 struct LMR3DObjParams {
     var modelMatrix: float4x4;
+    var normalMatrix: float3x3;
     var diffuseColor: SIMD4<Float>;
     var specularColor: SIMD4<Float>;
     var shininess: Float;
+    
+    init(modelMatrix: float4x4, diffuseColor: SIMD4<Float>, specularColor: SIMD4<Float>, shininess: Float) {
+        self.modelMatrix = modelMatrix
+        self.diffuseColor = diffuseColor
+        self.specularColor = specularColor
+        self.shininess = shininess
+        
+        self.normalMatrix = float3x3(modelMatrix.inverse.transpose)
+    }
 }
+
+struct LMR3DPointLightParams {
+    var color: SIMD3<Float>;
+    var position: SIMD3<Float>;
+};

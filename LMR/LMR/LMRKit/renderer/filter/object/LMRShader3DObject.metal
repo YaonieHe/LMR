@@ -18,20 +18,16 @@ namespace LMR3D {
         ObjectTextureIndex_BaseColor = 0,
     } ObjectTextureIndex;
     
-    struct ObjectOut {
-        float4 position [[position]];
-        float2 texture;
-    };
-    vertex ObjectOut vertexObject(VertexIn in [[stage_in]],
+    vertex VertexOut vertexObject(VertexIn in [[stage_in]],
                         constant LMR3DViewParams &viewParam [[buffer(ObjectBufferIndex_View)]],
                         constant LMR3DObjParams &objParam [[buffer(ObjectBufferIndex_Obj)]]) {
-        ObjectOut out;
+        VertexOut out;
         out.position = viewParam.viewProjectionMatrix * objParam.modelMatrix * float4(in.position, 1);
         out.texture = in.texture;
         return out;
     }
     
-    fragment half4 fragmentObjectColor(ObjectOut in [[stage_in]],
+    fragment half4 fragmentObjectColor(VertexOut in [[stage_in]],
                                        constant LMR3DObjParams &objParam [[buffer(ObjectBufferIndex_Obj)]]) {
         return half4(objParam.diffuseColor);
     }
