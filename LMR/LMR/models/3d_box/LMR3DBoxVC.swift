@@ -98,7 +98,7 @@ class LMR3DBoxVC: UIViewController, MTKViewDelegate {
        encoder.setRenderPipelineState(try renderPipeLineState())
        encoder.setDepthStencilState(depthStencilState())
        
-       let box = LMDMesh .lmr_skyBox(mds: ["top.jpg", "bottom.jpg", "left.jpg", "right.jpg", "front.jpg", "back.jpg"], size: 10)
+       let box = LMDMesh.lmr_skyBox(mds: ["top.jpg", "bottom.jpg", "left.jpg", "right.jpg", "front.jpg", "back.jpg"], size: 10)
        
        r += 0.01
        

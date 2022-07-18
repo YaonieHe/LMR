@@ -30,10 +30,14 @@ extension MDLSubmesh {
     func lmr_setBaseColor(baseColor: SIMD4<Float>) {
         self.material?.setProperty(MDLMaterialProperty(name: "baseColor", semantic: .baseColor, float4: baseColor))
     }
+    
+    func lmr_setShininess(shininess: Float) {
+        self.material?.setProperty(MDLMaterialProperty(name: "shininess", semantic: .metallic, float: shininess))
+    }
 }
 
 extension MDLMesh {
-    open var lmr_submeshes: [MDLSubmesh] {
+    public var lmr_submeshes: [MDLSubmesh] {
         if let submeshes = self.submeshes {
             return submeshes as! [MDLSubmesh]
         } else {
@@ -48,11 +52,15 @@ extension MDLMesh {
         return mesh
     }
     
-    
-    
     func lmr_setBaseColor(baseColor: SIMD4<Float>) {
         for submesh in self.lmr_submeshes {
             submesh.lmr_setBaseColor(baseColor: baseColor)
+        }
+    }
+    
+    func lmr_setShininess(shininess: Float) {
+        for submesh in self.lmr_submeshes {
+            submesh.lmr_setShininess(shininess: shininess)
         }
     }
 }

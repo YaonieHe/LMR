@@ -7,9 +7,11 @@
 
 typedef enum LMR3DVertexAttribute {
     LMR3DVertexAttribute_Position  = 0,
-    LMR3DVertexAttribute_Texcoord  = 1,
-    LMR3DVertexAttribute_Normal    = 2
+    LMR3DVertexAttribute_Normal    = 1,
+    LMR3DVertexAttribute_Texcoord  = 2,
 } LMR3DVertexAttribute;
+
+
 
 typedef enum LMR3DTextureIndex {
     LMR3DTextureIndex_BaseColor = 0,
@@ -25,6 +27,8 @@ typedef struct  {
 
 typedef struct  {
     matrix_float4x4 modelMatrix;
+    matrix_float3x3 normalMatrix;
+    int isDiffuseTexture;
     vector_float4 diffuseColor;
     vector_float4 specularColor;
     float shininess;
@@ -34,5 +38,6 @@ typedef struct  {
     vector_float3 color;
     vector_float3 position;
 } LMR3DPointLightParams;
+
 
 #endif /* LMRShaderCommon_h */

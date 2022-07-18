@@ -33,7 +33,6 @@
 		100522D428743EC9000914AE /* LMRShaderCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522D328743EC9000914AE /* LMRShaderCommon.swift */; };
 		100522D62875378E000914AE /* MTL+LMR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522D52875378E000914AE /* MTL+LMR.swift */; };
 		100522D928753E52000914AE /* LMR3DLightPainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522D828753E52000914AE /* LMR3DLightPainter.swift */; };
-		100522DB28753E69000914AE /* LMR3DLightObjPainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522DA28753E69000914AE /* LMR3DLightObjPainter.swift */; };
 		100522DD28753E8A000914AE /* LMRShader3DLight.metal in Sources */ = {isa = PBXBuildFile; fileRef = 100522DC28753E8A000914AE /* LMRShader3DLight.metal */; };
 		10D5486B2862F48800E330EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486A2862F48800E330EA /* AppDelegate.swift */; };
 		10D5486D2862F48800E330EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486C2862F48800E330EA /* SceneDelegate.swift */; };
@@ -66,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1003B43C288561EC00CABD93 /* LMR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LMR-Bridging-Header.h"; sourceTree = "<group>"; };
 		1005229628743D7E000914AE /* ModelIOExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelIOExtensions.swift; sourceTree = "<group>"; };
 		1005229728743D7E000914AE /* MathUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathUtilities.swift; sourceTree = "<group>"; };
 		1005229C28743D87000914AE /* LMDVertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMDVertex.swift; sourceTree = "<group>"; };
@@ -93,7 +93,6 @@
 		100522D328743EC9000914AE /* LMRShaderCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRShaderCommon.swift; sourceTree = "<group>"; };
 		100522D52875378E000914AE /* MTL+LMR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTL+LMR.swift"; sourceTree = "<group>"; };
 		100522D828753E52000914AE /* LMR3DLightPainter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMR3DLightPainter.swift; sourceTree = "<group>"; };
-		100522DA28753E69000914AE /* LMR3DLightObjPainter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMR3DLightObjPainter.swift; sourceTree = "<group>"; };
 		100522DC28753E8A000914AE /* LMRShader3DLight.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LMRShader3DLight.metal; sourceTree = "<group>"; };
 		10D548672862F48800E330EA /* LMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D5486A2862F48800E330EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -270,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				100522D828753E52000914AE /* LMR3DLightPainter.swift */,
-				100522DA28753E69000914AE /* LMR3DLightObjPainter.swift */,
 				100522DC28753E8A000914AE /* LMRShader3DLight.metal */,
 			);
 			path = light;
@@ -281,6 +279,7 @@
 			children = (
 				10D548692862F48800E330EA /* LMR */,
 				10D548682862F48800E330EA /* Products */,
+				1003B43C288561EC00CABD93 /* LMR-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -442,6 +441,7 @@
 				TargetAttributes = {
 					10D548662862F48800E330EA = {
 						CreatedOnToolsVersion = 14.0;
+						LastSwiftMigration = 1400;
 					};
 				};
 			};
@@ -506,7 +506,6 @@
 				100522CE28743D87000914AE /* LMRLight.swift in Sources */,
 				100522D428743EC9000914AE /* LMRShaderCommon.swift in Sources */,
 				100522BF28743D87000914AE /* LMDSubmesh.swift in Sources */,
-				100522DB28753E69000914AE /* LMR3DLightObjPainter.swift in Sources */,
 				100522BD28743D87000914AE /* LMDVertex.swift in Sources */,
 				100522C828743D87000914AE /* LMR3DObjPainter.swift in Sources */,
 				10D5486F2862F48800E330EA /* ViewController.swift in Sources */,
@@ -678,6 +677,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y8YG5F7WN9;
@@ -697,6 +697,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hjp.LMR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "LMR-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -707,6 +709,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y8YG5F7WN9;
@@ -726,6 +729,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hjp.LMR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "LMR-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

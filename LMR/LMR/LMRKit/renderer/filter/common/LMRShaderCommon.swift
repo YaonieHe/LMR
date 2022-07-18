@@ -1,45 +1,44 @@
-//  Created on 2022/7/5.
+import Metal
 
-import UIKit
-
-import simd
-
-enum LMR3DVertexAttribute: Int {
-    case position  = 0
-    case normal    = 1
-    case texcoord  = 2
-}
-
-enum LMR3DTextureIndex: Int {
-    case baseColor = 0
-    case specular  = 1
-    case normal    = 2
-    case shadowCube = 3
-}
-
-struct LMR3DViewParams {
-    var cameraPos: SIMD3<Float>;
-    var viewProjectionMatrix: float4x4;
-}
-
-struct LMR3DObjParams {
-    var modelMatrix: float4x4;
-    var normalMatrix: float3x3;
-    var diffuseColor: SIMD4<Float>;
-    var specularColor: SIMD4<Float>;
-    var shininess: Float;
-    
+extension LMR3DObjParams {
     init(modelMatrix: float4x4, diffuseColor: SIMD4<Float>, specularColor: SIMD4<Float>, shininess: Float) {
-        self.modelMatrix = modelMatrix
-        self.diffuseColor = diffuseColor
-        self.specularColor = specularColor
-        self.shininess = shininess
-        
-        self.normalMatrix = float3x3(modelMatrix.inverse.transpose)
+        let normalMatrix = float3x3(modelMatrix.inverse.transpose)
+        self.init(modelMatrix: modelMatrix, normalMatrix: normalMatrix, isDiffuseTexture: 0, diffuseColor: diffuseColor, specularColor: specularColor, shininess: shininess)
     }
 }
 
-struct LMR3DPointLightParams {
-    var color: SIMD3<Float>;
-    var position: SIMD3<Float>;
-};
+
+class LMR3DPainter {
+    var context: LMRContext
+    var encoder: MTLRenderCommandEncoder
+    var viewParam: LMR3DViewParams
+    
+    var sampleCount: Int = 1
+    var pixelFormat: MTLPixelFormat = .rgba8Unorm_srgb
+    var depthStencilPixelFormat: MTLPixelFormat = .depth32Float
+    
+    init(context: LMRContext, encoder: MTLRenderCommandEncoder, viewParam: LMR3DViewParams) throws {
+        self.context = context
+        self.encoder = encoder
+        self.viewParam = viewParam
+    }
+}
+
+extension LMR3DPainter {
+    func normal_setRenderPipeline(_ vertexFuncName: String, _ fragmentFuncName: String) throws {
+        let pipelineDescriptor = self.context.generatePipelineDescriptor(vertexFunc: vertexFuncName, fragmentFunc: fragmentFuncName)
+        pipelineDescriptor.vertexDescriptor = MTLVertexDescriptor.lmr_pntDesc()
+        pipelineDescriptor.sampleCount = self.sampleCount
+        pipelineDescriptor.colorAttachments[0].pixelFormat = self.pixelFormat
+        pipelineDescriptor.depthAttachmentPixelFormat = self.depthStencilPixelFormat
+        
+        let renderPipeLineState = try self.context.generateRenderPipelineState(descriptor: pipelineDescriptor)
+        
+        encoder.setRenderPipelineState(renderPipeLineState)
+    }
+    
+    func normal_setDepthStencil() {
+        let depthStencilState = context.generateDepthStencilState(descriptor: MTLDepthStencilDescriptor.lmr_init())
+        encoder.setDepthStencilState(depthStencilState)
+    }
+}

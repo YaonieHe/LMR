@@ -3,23 +3,7 @@
 import Foundation
 import Metal
 
-class LMR3DObjPainter {
-    var context: LMRContext
-    var object: LMRObject
-    var encoder: MTLRenderCommandEncoder
-    var viewParam: LMR3DViewParams
-    
-    var sampleCount: Int = 1
-    var pixelFormat: MTLPixelFormat = .rgba8Unorm_srgb
-    var depthStencilPixelFormat: MTLPixelFormat = .depth32Float
-    
-    init(context: LMRContext, object: LMRObject, encoder: MTLRenderCommandEncoder, viewParam: LMR3DViewParams) throws {
-        self.context = context
-        self.object = object
-        self.encoder = encoder
-        self.viewParam = viewParam
-    }
-    
+class LMR3DObjPainter: LMR3DPainter {
     private enum BufferIndex: Int
     {
         case meshPositions = 0
@@ -27,7 +11,7 @@ class LMR3DObjPainter {
         case objParam
     }
     
-    func draw() throws {
+    func draw(_ object: LMRObject) throws {
         let modelM = object.location.transform
         if let mesh = object.mesh {
             let depthStencilState = context.generateDepthStencilState(descriptor: MTLDepthStencilDescriptor.lmr_init())
