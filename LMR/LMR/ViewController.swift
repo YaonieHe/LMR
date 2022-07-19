@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func click3dScene(_ sender: Any) {
-        let vc = LMRSceneVC()
+        let vc = LMRPointShadowVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

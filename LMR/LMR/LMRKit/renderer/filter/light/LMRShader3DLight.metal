@@ -6,24 +6,19 @@ using namespace metal;
 #include "../common/LMRShaderCommon.metal"
 
 namespace LMR3D {
-    typedef enum LightBufferIndex
+    typedef enum BufferIndex
     {
-        LightBufferIndex_MeshPositions = 0,
-        LightBufferIndex_View,
-        LightBufferIndex_Obj,
-        LightBufferIndex_Ambiant,
-        LightBufferIndex_Light,
-        LightBufferIndex_lightCount
-    } ObjectBufferIndex;
-
-    typedef enum ObjectTextureIndex
-    {
-        ObjectTextureIndex_BaseColor = 0,
-    } ObjectTextureIndex;
+        BufferIndex_MeshPositions = 0,
+        BufferIndex_View,
+        BufferIndex_Obj,
+        BufferIndex_Ambiant,
+        BufferIndex_Light,
+        BufferIndex_lightCount
+    } BufferIndex;
     
     vertex VertexOut vertexLightObject(VertexIn in [[stage_in]],
-                                            constant LMR3DViewParams &viewParam [[buffer(LightBufferIndex_View)]],
-                                            constant LMR3DObjParams &objParam [[buffer(LightBufferIndex_Obj)]]) {
+                                       constant LMR3DViewParams &viewParam [[buffer(BufferIndex_View)]],
+                                       constant LMR3DObjParams &objParam [[buffer(BufferIndex_Obj)]]) {
         VertexOut out;
         float4 pos = objParam.modelMatrix * float4(in.position, 1);
         out.position = viewParam.viewProjectionMatrix * pos;
@@ -33,30 +28,19 @@ namespace LMR3D {
         return out;
     }
     
-    constexpr sampler linearSampler (mag_filter::linear,
-                                          min_filter::linear);
-    
-    float4 getDiffColor(texture2d<half> map_md, constant LMR3DObjParams &obj, float2 texcoord) {
-        if (obj.isDiffuseTexture) {
-            return float4(map_md.sample(linearSampler, texcoord));
-        } else {
-            return obj.diffuseColor;
-        }
-    }
-    
     fragment half4 fragmentLight(VertexOut in [[stage_in]],
-                           constant LMR3DPointLightParams &light [[buffer(LightBufferIndex_Light)]]) {
+                           constant LMR3DPointLightParams &light [[buffer(BufferIndex_Light)]]) {
         half3 color = half3(light.color);
         return half4(color, 1);
     }
     
     fragment half4 fragmentPhongLight(VertexOut in [[stage_in]],
                                       texture2d<half> map_md [[texture(LMR3DTextureIndex_BaseColor)]],
-                                      constant LMR3DViewParams &viewParam [[buffer(LightBufferIndex_View)]],
-                                      constant LMR3DObjParams &objParam [[buffer(LightBufferIndex_Obj)]],
-                                      constant float3 &ambientColor [[buffer(LightBufferIndex_Ambiant)]],
-                                      constant int &lightCount [[buffer(LightBufferIndex_lightCount)]],
-                                      constant LMR3DPointLightParams *lights [[buffer(LightBufferIndex_Light)]]) {
+                                      constant LMR3DViewParams &viewParam [[buffer(BufferIndex_View)]],
+                                      constant LMR3DObjParams &objParam [[buffer(BufferIndex_Obj)]],
+                                      constant float3 &ambientColor [[buffer(BufferIndex_Ambiant)]],
+                                      constant int &lightCount [[buffer(BufferIndex_lightCount)]],
+                                      constant LMR3DPointLightParams *lights [[buffer(BufferIndex_Light)]]) {
         float3 color = float3(0, 0, 0);
         float4 diffColor = getDiffColor(map_md, objParam, in.texture);
         float4 specularColor = objParam.specularColor;
@@ -85,11 +69,11 @@ namespace LMR3D {
     
     fragment half4 fragmentBlinnPhong(VertexOut in [[stage_in]],
                                       texture2d<half> map_md [[texture(LMR3DTextureIndex_BaseColor)]],
-                                      constant LMR3DViewParams &viewParam [[buffer(LightBufferIndex_View)]],
-                                      constant LMR3DObjParams &objParam [[buffer(LightBufferIndex_Obj)]],
-                                      constant float3 &ambientColor [[buffer(LightBufferIndex_Ambiant)]],
-                                      constant int &lightCount [[buffer(LightBufferIndex_lightCount)]],
-                                      constant LMR3DPointLightParams *lights [[buffer(LightBufferIndex_Light)]]) {
+                                      constant LMR3DViewParams &viewParam [[buffer(BufferIndex_View)]],
+                                      constant LMR3DObjParams &objParam [[buffer(BufferIndex_Obj)]],
+                                      constant float3 &ambientColor [[buffer(BufferIndex_Ambiant)]],
+                                      constant int &lightCount [[buffer(BufferIndex_lightCount)]],
+                                      constant LMR3DPointLightParams *lights [[buffer(BufferIndex_Light)]]) {
         float3 color = float3(0, 0, 0);
         float4 diffColor = getDiffColor(map_md, objParam, in.texture);
         float4 specularColor = objParam.specularColor;
