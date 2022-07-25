@@ -105,19 +105,26 @@ class LMRSample3DVC: UIViewController, MTKViewDelegate {
         return try! MTKMesh(mesh: mdlMesh, device: device)
     }
     
+    var t: Float = 0
+    
    func _render(in encoder: MTLRenderCommandEncoder) throws {
        encoder.setRenderPipelineState(try renderPipeLineState())
        encoder.setDepthStencilState(depthStencilState())
        
-       let box = try getBox()
-       let modelM = float4x4(rotationAroundAxis: SIMD3<Float>(1, 1, 0), by: 0.2)
-       let viewM = float4x4(translationBy: SIMD3<Float>(0, 0, -15))
+       t += 0.05
        
-       let field = radians_from_degrees(65)
-       let nearZ: Float = 0.1
-       let farZ: Float = 100
+       let box = try getBox()
+       let modelM = float4x4(rotationAroundAxis: SIMD3<Float>(1, 1, 0), by: 0.3)
+       let viewM = float4x4(translationBy: SIMD3<Float>(0, 0, -5 - t))
+       
+       
+//       let field = radians_from_degrees(max(65 - t, 0.1))
+       let nearZ: Float = 0.1 + t
+       let farZ: Float = 100 + t
        let w = Float(view.bounds.size.width)
        let h = Float(view.bounds.size.height)
+       
+       let field = atan(1 / (5 + t)) * 2
        let aspect = w / h
        let projectM = float4x4(perspectiveRightHandWithFovy: field, aspectRatio: aspect, nearZ: nearZ, farZ: farZ)
        
