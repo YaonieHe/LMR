@@ -37,6 +37,8 @@
 		100522D62875378E000914AE /* MTL+LMR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522D52875378E000914AE /* MTL+LMR.swift */; };
 		100522D928753E52000914AE /* LMR3DLightPainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522D828753E52000914AE /* LMR3DLightPainter.swift */; };
 		100522DD28753E8A000914AE /* LMRShader3DLight.metal in Sources */ = {isa = PBXBuildFile; fileRef = 100522DC28753E8A000914AE /* LMRShader3DLight.metal */; };
+		1082C2AE2890CE0300A333D6 /* LMRRayTracingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082C2AD2890CE0300A333D6 /* LMRRayTracingRenderer.swift */; };
+		1082C2B12890DAB400A333D6 /* LMRRayTracing.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1082C2B02890DAB400A333D6 /* LMRRayTracing.metal */; };
 		10D5486B2862F48800E330EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486A2862F48800E330EA /* AppDelegate.swift */; };
 		10D5486D2862F48800E330EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486C2862F48800E330EA /* SceneDelegate.swift */; };
 		10D5486F2862F48800E330EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486E2862F48800E330EA /* ViewController.swift */; };
@@ -100,6 +102,9 @@
 		100522D52875378E000914AE /* MTL+LMR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTL+LMR.swift"; sourceTree = "<group>"; };
 		100522D828753E52000914AE /* LMR3DLightPainter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMR3DLightPainter.swift; sourceTree = "<group>"; };
 		100522DC28753E8A000914AE /* LMRShader3DLight.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LMRShader3DLight.metal; sourceTree = "<group>"; };
+		1082C2AD2890CE0300A333D6 /* LMRRayTracingRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRRayTracingRenderer.swift; sourceTree = "<group>"; };
+		1082C2B02890DAB400A333D6 /* LMRRayTracing.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LMRRayTracing.metal; sourceTree = "<group>"; };
+		1082C2B22890DAC200A333D6 /* LMRRayTracing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LMRRayTracing.h; sourceTree = "<group>"; };
 		10D548672862F48800E330EA /* LMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D5486A2862F48800E330EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10D5486C2862F48800E330EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +225,7 @@
 				100522B128743D87000914AE /* LMR3DRenderer.swift */,
 				100522A828743D87000914AE /* LMRRenderer.swift */,
 				1003B44028858FB600CABD93 /* LMR3DShadowRenderer.swift */,
+				1082C2AD2890CE0300A333D6 /* LMRRayTracingRenderer.swift */,
 			);
 			path = renderer;
 			sourceTree = "<group>";
@@ -227,6 +233,7 @@
 		100522A928743D87000914AE /* filter */ = {
 			isa = PBXGroup;
 			children = (
+				1082C2AF2890DA8300A333D6 /* rayTracing */,
 				1003B44228858FF700CABD93 /* shadow */,
 				100522D728753E26000914AE /* light */,
 				100522AA28743D87000914AE /* common */,
@@ -289,6 +296,15 @@
 				100522DC28753E8A000914AE /* LMRShader3DLight.metal */,
 			);
 			path = light;
+			sourceTree = "<group>";
+		};
+		1082C2AF2890DA8300A333D6 /* rayTracing */ = {
+			isa = PBXGroup;
+			children = (
+				1082C2B02890DAB400A333D6 /* LMRRayTracing.metal */,
+				1082C2B22890DAC200A333D6 /* LMRRayTracing.h */,
+			);
+			path = rayTracing;
 			sourceTree = "<group>";
 		};
 		10D5485E2862F48800E330EA = {
@@ -496,8 +512,10 @@
 				1003B4462885902F00CABD93 /* LMR3DShadowPainter.metal in Sources */,
 				100522D228743D87000914AE /* LMRScene.swift in Sources */,
 				100522C128743D87000914AE /* LMDMesh+Rect.swift in Sources */,
+				1082C2B12890DAB400A333D6 /* LMRRayTracing.metal in Sources */,
 				100522DD28753E8A000914AE /* LMRShader3DLight.metal in Sources */,
 				1A912D34286FEB18005F90B9 /* LMRSceneVC.swift in Sources */,
+				1082C2AE2890CE0300A333D6 /* LMRRayTracingRenderer.swift in Sources */,
 				1A912D37286FEB46005F90B9 /* lmr_3d_shader.metal in Sources */,
 				100522C628743D87000914AE /* LMRShaderCommon.metal in Sources */,
 				10D54888286318FD00E330EA /* LMRSample3DVC.swift in Sources */,
