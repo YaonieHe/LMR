@@ -8,6 +8,10 @@
 #define LMRRTTriangleMaskGeometry 1
 #define LMRRTTriangleMaskLight 2
 
+#define LMRRTRayMaskPrimary 3
+#define LMRRTRayMaskShadow 1
+#define LMRRTRayMaskSecondary 1
+
 struct LMRRTRay {
     vector_float3 origin;
     uint mask;

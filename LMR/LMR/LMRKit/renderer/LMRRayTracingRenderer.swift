@@ -109,16 +109,16 @@ class LMRRayTracingRenderer: LMRRenderer {
         let computeDescriptor = MTLComputePipelineDescriptor()
         computeDescriptor.threadGroupSizeIsMultipleOfThreadExecutionWidth = true
         
-        computeDescriptor.computeFunction = self.context.generateFunction(name: "rayKernel")
+        computeDescriptor.computeFunction = self.context.generateFunction(name: "LMRRT::rayKernel")
         rayPipeline = try self.context.device.makeComputePipelineState(descriptor: computeDescriptor, options: MTLPipelineOption(), reflection: nil)
         
-        computeDescriptor.computeFunction = self.context.generateFunction(name: "shadeKernel")
+        computeDescriptor.computeFunction = self.context.generateFunction(name: "LMRRT::shadeKernel")
         shadePipeline = try self.context.device.makeComputePipelineState(descriptor: computeDescriptor, options: MTLPipelineOption(), reflection: nil)
         
-        computeDescriptor.computeFunction = self.context.generateFunction(name: "shadowKernel")
+        computeDescriptor.computeFunction = self.context.generateFunction(name: "LMRRT::shadowKernel")
         shadowPipeline = try self.context.device.makeComputePipelineState(descriptor: computeDescriptor, options: MTLPipelineOption(), reflection: nil)
         
-        computeDescriptor.computeFunction = self.context.generateFunction(name: "accumulateKernel")
+        computeDescriptor.computeFunction = self.context.generateFunction(name: "LMRRT::accumulateKernel")
         accumulatePipeline = try self.context.device.makeComputePipelineState(descriptor: computeDescriptor, options: MTLPipelineOption(), reflection: nil)
         
     }
@@ -221,14 +221,14 @@ class LMRRayTracingRenderer: LMRRenderer {
             rayIntersector.rtShade(commandBuffer: commandBuffer)
             do {
                 guard let computeEncoder = commandBuffer.makeComputeCommandEncoder() else { return }
-                self.renderShade(encoder: computeEncoder, bounce: bounce)
+                self.renderShade(encoder: computeEncoder, uniforms: &uniform, bounce: bounce)
                 computeEncoder.endEncoding()
             }
             
             rayIntersector.rtShadow(commandBuffer: commandBuffer)
             do {
                 guard let computeEncoder = commandBuffer.makeComputeCommandEncoder() else { return }
-                self.renderShadow(encoder: computeEncoder, bounce: bounce)
+                self.renderShadow(encoder: computeEncoder, uniforms: &uniform, bounce: bounce)
                 computeEncoder.endEncoding()
                 swapRenderTarget(targets: &renderTargets)
             }
@@ -236,7 +236,7 @@ class LMRRayTracingRenderer: LMRRenderer {
         
         do {
             guard let computeEncoder = commandBuffer.makeComputeCommandEncoder() else { return }
-            self.renderAccumulate(encoder: computeEncoder)
+            self.renderAccumulate(encoder: computeEncoder, uniforms: &uniform)
             computeEncoder.endEncoding()
             swapRenderTarget(targets: &accumulationTargets)
         }
@@ -244,7 +244,7 @@ class LMRRayTracingRenderer: LMRRenderer {
         do {
             guard let renderPassDescriptor = mtkView.currentRenderPassDescriptor else { return }
             guard let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else { return }
-            self.renderCopy(encoder: renderEncoder)
+            try self.renderCopy(encoder: renderEncoder, mtkView: mtkView)
             renderEncoder.endEncoding()
         }
         
@@ -289,20 +289,62 @@ class LMRRayTracingRenderer: LMRRenderer {
         encoder.dispatchThreads(threadGroups, threadsPerThreadgroup: threadsPerThreadGroup)
     }
     
-    private func renderShade(encoder: MTLComputeCommandEncoder, bounce: Int) {
+    private func renderShade(encoder: MTLComputeCommandEncoder, uniforms: inout LMRRTUniforms, bounce: Int) {
+        guard let shadePipeline else { return }
+        encoder.setComputePipelineState(shadePipeline)
         
+        encoder.setBytes(&uniforms, length: MemoryLayout<LMRRTUniforms>.stride, index: 0)
+        encoder.setBuffer(rayIntersector?.rayBuffer, offset: 0, index: 1)
+        encoder.setBuffer(rayIntersector?.shadowBuffer, offset: 0, index: 2)
+        encoder.setBuffer(rayIntersector?.intersectionBuffer, offset: 0, index: 3)
+        encoder.setBuffer(scene?.colorBuffer, offset: 0, index: 4)
+        encoder.setBuffer(scene?.normalBuffer, offset: 0, index: 5)
+        encoder.setBuffer(scene?.maskBuffer, offset: 0, index: 6)
+        var index = bounce
+        encoder.setBytes(&index, length: MemoryLayout<Int>.stride, index: 7)
+        
+        encoder.setTexture(randomTexture, index: 0)
+        encoder.setTexture(renderTargets[0], index: 1)
+        
+        encoder.dispatchThreads(threadGroups, threadsPerThreadgroup: threadsPerThreadGroup)
     }
     
-    private func renderShadow(encoder: MTLComputeCommandEncoder, bounce: Int) {
+    private func renderShadow(encoder: MTLComputeCommandEncoder, uniforms: inout LMRRTUniforms, bounce: Int) {
+        guard let shadowPipeline else { return }
+        encoder.setComputePipelineState(shadowPipeline)
         
+        encoder.setBytes(&uniforms, length: MemoryLayout<LMRRTUniforms>.stride, index: 0)
+        encoder.setBuffer(rayIntersector?.shadowBuffer, offset: 0, index: 1)
+        encoder.setBuffer(rayIntersector?.intersectionBuffer, offset: 0, index: 2)
+        
+        encoder.setTexture(renderTargets[0], index: 0)
+        encoder.setTexture(renderTargets[1], index: 1)
+        
+        encoder.dispatchThreads(threadGroups, threadsPerThreadgroup: threadsPerThreadGroup)
     }
     
-    private func renderAccumulate(encoder: MTLComputeCommandEncoder) {
+    private func renderAccumulate(encoder: MTLComputeCommandEncoder, uniforms: inout LMRRTUniforms) {
+        guard let accumulatePipeline else { return }
+        encoder.setComputePipelineState(accumulatePipeline)
         
+        encoder.setTexture(renderTargets[0], index: 0)
+        encoder.setTexture(accumulationTargets[0], index: 1)
+        encoder.setTexture(accumulationTargets[1], index: 2)
+        
+        encoder.dispatchThreads(threadGroups, threadsPerThreadgroup: threadsPerThreadGroup)
     }
     
-    private func renderCopy(encoder: MTLRenderCommandEncoder) {
+    private func renderCopy(encoder: MTLRenderCommandEncoder, mtkView: MTKView) throws {
+        let renderDescriptor = self.context.generatePipelineDescriptor(vertexFunc: "LMRRT::copyVertex", fragmentFunc: "LMRRT::copyFragment")
+        renderDescriptor.sampleCount = mtkView.sampleCount
+        renderDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
         
+        let pipeline = try self.context.generateRenderPipelineState(descriptor: renderDescriptor)
+        
+        encoder.setRenderPipelineState(pipeline)
+        
+        encoder.setFragmentTexture(accumulationTargets[0], index: 0)
+        encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 6)
     }
 }
 

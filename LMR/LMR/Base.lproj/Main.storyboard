@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RIS-Yq-A1p">
-                                <rect key="frame" x="60" y="313.33333333333326" width="270" height="271.66666666666674"/>
+                                <rect key="frame" x="60" y="296" width="270" height="306"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxF-CJ-ZcZ">
                                         <rect key="frame" x="0.0" y="0.0" width="270" height="50"/>
@@ -57,7 +57,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="US4-OF-zkb">
-                                                <rect key="frame" x="0.0" y="34.333333333333371" width="270" height="34.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="34.333333333333314" width="270" height="34.333333333333343"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Sky Box"/>
                                                 <connections>
@@ -84,7 +84,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="kaa-iG-pgm">
-                                        <rect key="frame" x="0.0" y="203.00000000000006" width="270" height="68.666666666666686"/>
+                                        <rect key="frame" x="0.0" y="203" width="270" height="103"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xco-zl-f5P">
                                                 <rect key="frame" x="0.0" y="0.0" width="270" height="34.333333333333336"/>
@@ -95,11 +95,19 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3Z-nn-Dge">
-                                                <rect key="frame" x="0.0" y="34.333333333333258" width="270" height="34.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="34.333333333333371" width="270" height="34.333333333333343"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Point Shadow"/>
                                                 <connections>
                                                     <action selector="click3dScene:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XDT-Se-eYh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfL-hN-cKH">
+                                                <rect key="frame" x="0.0" y="68.666666666666629" width="270" height="34.333333333333343"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Ray tracing"/>
+                                                <connections>
+                                                    <action selector="clickRayTracing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Je1-7P-JD7"/>
                                                 </connections>
                                             </button>
                                         </subviews>

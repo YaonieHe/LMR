@@ -34,5 +34,10 @@ class ViewController: UIViewController {
         let vc = LMRPointShadowVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func clickRayTracing(_ sender: Any) {
+        let vc = LMRRayTracingVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 

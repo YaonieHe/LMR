@@ -39,6 +39,7 @@
 		100522DD28753E8A000914AE /* LMRShader3DLight.metal in Sources */ = {isa = PBXBuildFile; fileRef = 100522DC28753E8A000914AE /* LMRShader3DLight.metal */; };
 		1082C2AE2890CE0300A333D6 /* LMRRayTracingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082C2AD2890CE0300A333D6 /* LMRRayTracingRenderer.swift */; };
 		1082C2B12890DAB400A333D6 /* LMRRayTracing.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1082C2B02890DAB400A333D6 /* LMRRayTracing.metal */; };
+		1082C2B428913A0D00A333D6 /* LMRRayTracingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082C2B328913A0D00A333D6 /* LMRRayTracingVC.swift */; };
 		10D5486B2862F48800E330EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486A2862F48800E330EA /* AppDelegate.swift */; };
 		10D5486D2862F48800E330EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486C2862F48800E330EA /* SceneDelegate.swift */; };
 		10D5486F2862F48800E330EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D5486E2862F48800E330EA /* ViewController.swift */; };
@@ -105,6 +106,7 @@
 		1082C2AD2890CE0300A333D6 /* LMRRayTracingRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRRayTracingRenderer.swift; sourceTree = "<group>"; };
 		1082C2B02890DAB400A333D6 /* LMRRayTracing.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LMRRayTracing.metal; sourceTree = "<group>"; };
 		1082C2B22890DAC200A333D6 /* LMRRayTracing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LMRRayTracing.h; sourceTree = "<group>"; };
+		1082C2B328913A0D00A333D6 /* LMRRayTracingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRRayTracingVC.swift; sourceTree = "<group>"; };
 		10D548672862F48800E330EA /* LMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D5486A2862F48800E330EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10D5486C2862F48800E330EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 			children = (
 				10E0CCF528869870002CDA50 /* LMRPointShadowVC.swift */,
 				10D548802862F75600E330EA /* LMRSampleVC.swift */,
+				1082C2B328913A0D00A333D6 /* LMRRayTracingVC.swift */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				100522CB28743D87000914AE /* MDLMesh+LMR.swift in Sources */,
 				1005229828743D7E000914AE /* ModelIOExtensions.swift in Sources */,
 				100522C028743D87000914AE /* LMDMaterial.swift in Sources */,
+				1082C2B428913A0D00A333D6 /* LMRRayTracingVC.swift in Sources */,
 				1A6D22702868508C007A4F8A /* LMR3DBoxVC.swift in Sources */,
 				1A6D22822868A3B9007A4F8A /* LMR3DLightVC.swift in Sources */,
 				100522CF28743D87000914AE /* LMRObject.swift in Sources */,
