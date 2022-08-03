@@ -5,6 +5,13 @@
 
 using namespace metal;
 
+struct LMRRTRay {
+    packed_float3 origin;
+    uint32_t mask;
+    packed_float3 direction;
+    float maxDidtance;
+    float3 color;
+};
 
 namespace LMRRT {
     constant unsigned int primes[] = {
@@ -126,7 +133,7 @@ namespace LMRRT {
             device LMRRTIntersection & intersection = intersections[rayIdx];
             
             float3 color = ray.color;
-            
+
             if (ray.maxDidtance >= 0.0 && intersection.distance >= 0.0) {
                 uint mask = masks[intersection.primitiveIndex];
                 
@@ -175,6 +182,44 @@ namespace LMRRT {
         }
     }
     
+    kernel void shadowKernel(uint2 tid [[thread_position_in_grid]],
+                             constant LMRRTUniforms & uniforms,
+                             device LMRRTRay *shadowRays,
+                             device float *intersections,
+                             texture2d<float, access::read> srcTex,
+                             texture2d<float, access::write> dstTex) {
+        if (tid.x < uniforms.width && tid.y < uniforms.height) {
+            unsigned int rayIdx = tid.y * uniforms.width + tid.x;
+            device LMRRTRay & shadowRay = shadowRays[rayIdx];
+            
+            float intersectionDistence = intersections[rayIdx];
+            
+            float3 color = srcTex.read(tid).xyz;
+            
+            if (shadowRay.maxDidtance >= 0.0 && intersectionDistence < 0) {
+                color += shadowRay.color;
+            }
+            dstTex.write(float4(color, 1.0), tid);
+        }
+    }
+    
+    kernel void accumulateKernel(uint2 tid [[thread_position_in_grid]],
+                                 constant LMRRTUniforms & uniforms,
+                                 texture2d<float> renderTex,
+                                 texture2d<float> prevTex,
+                                 texture2d<float, access::write> accumTex) {
+        if (tid.x < uniforms.width && tid.y < uniforms.height) {
+            float3 color = renderTex.read(tid).xyz;
+            float3 prevColor = prevTex.read(tid).xyz;
+            prevColor *= uniforms.frameIndex;
+            
+            color += prevColor;
+            color /= (uniforms.frameIndex + 1);
+            accumTex.write(float4(color, 1.0), tid);
+        }
+        
+    }
+    
     constant float2 quadVertices[] = {
         float2(-1, -1),
         float2(-1,  1),
@@ -209,8 +254,8 @@ namespace LMRRT {
         
         // Apply a very simple tonemapping function to reduce the dynamic range of the
         // input image into a range which can be displayed on screen.
-        color = color / (1.0f + color);
+        color = color / (1.0 + color);
         
-        return float4(color, 1.0f);
+        return float4(color, 1.0);
     }
 }

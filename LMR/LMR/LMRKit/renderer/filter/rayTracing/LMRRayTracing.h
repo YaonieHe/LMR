@@ -12,17 +12,9 @@
 #define LMRRTRayMaskShadow 1
 #define LMRRTRayMaskSecondary 1
 
-struct LMRRTRay {
-    vector_float3 origin;
-    uint mask;
-    vector_float3 direction;
-    float maxDidtance;
-    vector_float3 color;
-};
-
 struct LMRRTIntersection {
     float distance;
-    int primitiveIndex;
+    unsigned int primitiveIndex;
     vector_float2 coordinates;
 };
 

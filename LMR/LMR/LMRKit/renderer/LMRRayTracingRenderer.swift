@@ -61,7 +61,7 @@ class LMRRayTracingRenderer: LMRRenderer {
         transform = float4x4(translationBy: SIMD3<Float>(0.3275, 0.3, 0.3725)) * float4x4(rotationAroundAxis: SIMD3<Float>(0, 1, 0), by: -0.3) * float4x4(scale: SIMD3<Float>(0.6, 0.6, 0.6))
         newScene.addCube(faceMask: Scene.FaceMask.all(), color: SIMD3<Float>(0.725, 0.71, 0.68), transform: transform, inwardNormals: false, triangleMask: UInt32(LMRRTTriangleMaskGeometry))
         
-        transform = float4x4(translationBy: SIMD3<Float>(0.335, 0.6, 0.29)) * float4x4(rotationAroundAxis: SIMD3<Float>(0, 1, 0), by: 0.3) * float4x4(scale: SIMD3<Float>(0.6, 1.2, 0.6))
+        transform = float4x4(translationBy: SIMD3<Float>(-0.335, 0.6, -0.29)) * float4x4(rotationAroundAxis: SIMD3<Float>(0, 1, 0), by: 0.3) * float4x4(scale: SIMD3<Float>(0.6, 1.2, 0.6))
         newScene.addCube(faceMask: Scene.FaceMask.all(), color: SIMD3<Float>(0.725, 0.71, 0.68), transform: transform, inwardNormals: false, triangleMask: UInt32(LMRRTTriangleMaskGeometry))
         
         newScene.updateBuffer(device: context.device)
@@ -200,7 +200,10 @@ class LMRRayTracingRenderer: LMRRenderer {
         return uniform
     }
     
+    var renderLock: NSLock = NSLock()
+    
     func render(to mtkView: MTKView) throws {
+        renderLock.lock()
         try self.updateSize(size: mtkView.drawableSize)
         
         guard let scene = self.scene else { return }
@@ -216,9 +219,10 @@ class LMRRayTracingRenderer: LMRRenderer {
             self.renderRay(encoder: computeEncoder, uniforms: &uniform)
             computeEncoder.endEncoding()
         }
-        
+
         for bounce in 0 ..< 3 {
             rayIntersector.rtShade(commandBuffer: commandBuffer)
+
             do {
                 guard let computeEncoder = commandBuffer.makeComputeCommandEncoder() else { return }
                 self.renderShade(encoder: computeEncoder, uniforms: &uniform, bounce: bounce)
@@ -253,6 +257,7 @@ class LMRRayTracingRenderer: LMRRenderer {
         }
         
         commandBuffer.commit()
+        renderLock.unlock()
         
     }
     
@@ -286,7 +291,7 @@ class LMRRayTracingRenderer: LMRRenderer {
         encoder.setTexture(randomTexture, index: 0)
         encoder.setTexture(renderTargets[0], index: 1)
         
-        encoder.dispatchThreads(threadGroups, threadsPerThreadgroup: threadsPerThreadGroup)
+        encoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadsPerThreadGroup)
     }
     
     private func renderShade(encoder: MTLComputeCommandEncoder, uniforms: inout LMRRTUniforms, bounce: Int) {
@@ -306,7 +311,7 @@ class LMRRayTracingRenderer: LMRRenderer {
         encoder.setTexture(randomTexture, index: 0)
         encoder.setTexture(renderTargets[0], index: 1)
         
-        encoder.dispatchThreads(threadGroups, threadsPerThreadgroup: threadsPerThreadGroup)
+        encoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadsPerThreadGroup)
     }
     
     private func renderShadow(encoder: MTLComputeCommandEncoder, uniforms: inout LMRRTUniforms, bounce: Int) {
@@ -320,18 +325,20 @@ class LMRRayTracingRenderer: LMRRenderer {
         encoder.setTexture(renderTargets[0], index: 0)
         encoder.setTexture(renderTargets[1], index: 1)
         
-        encoder.dispatchThreads(threadGroups, threadsPerThreadgroup: threadsPerThreadGroup)
+        encoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadsPerThreadGroup)
     }
     
     private func renderAccumulate(encoder: MTLComputeCommandEncoder, uniforms: inout LMRRTUniforms) {
         guard let accumulatePipeline else { return }
         encoder.setComputePipelineState(accumulatePipeline)
         
+        encoder.setBytes(&uniforms, length: MemoryLayout<LMRRTUniforms>.stride, index: 0)
+        
         encoder.setTexture(renderTargets[0], index: 0)
         encoder.setTexture(accumulationTargets[0], index: 1)
         encoder.setTexture(accumulationTargets[1], index: 2)
         
-        encoder.dispatchThreads(threadGroups, threadsPerThreadgroup: threadsPerThreadGroup)
+        encoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadsPerThreadGroup)
     }
     
     private func renderCopy(encoder: MTLRenderCommandEncoder, mtkView: MTKView) throws {
@@ -473,13 +480,13 @@ extension LMRRayTracingRenderer {
         
         var rayStride: Int {
             get {
-                return MemoryLayout<LMRRTRay>.stride
+                return MemoryLayout<MPSRayOriginMaskDirectionMaxDistance>.stride + MemoryLayout<SIMD3<Float>>.stride
             }
         }
         
         var intersectionStride: Int {
             get {
-                return MemoryLayout<LMRRTIntersection>.stride
+                return MemoryLayout<MPSIntersectionDistancePrimitiveIndexCoordinates>.stride
             }
         }
         
@@ -504,9 +511,9 @@ extension LMRRayTracingRenderer {
                 shadowBuffer = nil
                 intersectionBuffer = nil
             } else {
-                rayBuffer = device.makeBuffer(length: rayStride * count, options: .storageModePrivate)
-                shadowBuffer = device.makeBuffer(length: rayStride * count, options: .storageModePrivate)
-                intersectionBuffer = device.makeBuffer(length: intersectionStride * count, options: .storageModePrivate)
+                rayBuffer = device.makeBuffer(length: rayStride * count, options: .storageModeShared)
+                shadowBuffer = device.makeBuffer(length: rayStride * count, options: .storageModeShared)
+                intersectionBuffer = device.makeBuffer(length: intersectionStride * count, options: .storageModeShared)
             }
         }
         

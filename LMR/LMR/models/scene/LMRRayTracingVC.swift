@@ -6,28 +6,25 @@ import MetalKit
 import simd
 
 class LMRRayTracingVC: UIViewController, MTKViewDelegate {
-    var mtkView: MTKView {view as! MTKView}
+    var mtkView: MTKView = MTKView()
     var renderer: LMRRayTracingRenderer = LMRRayTracingRenderer()
-    
-    override func loadView() {
-        super.loadView()
-        if view is MTKView {
-            return
-        }
-        view = MTKView(frame: view.frame)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mtkView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
+        view.addSubview(mtkView)
+        
         mtkView.device = self.renderer.context.device
         mtkView.sampleCount = 4
         mtkView.colorPixelFormat = .bgra8Unorm_srgb
-        mtkView.depthStencilPixelFormat = .depth32Float
         mtkView.delegate = self
     }
     
-    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        mtkView.center = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
+    }
     
     func draw(in view: MTKView) {
         do {
