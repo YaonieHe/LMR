@@ -78,7 +78,7 @@ class LMRRayTracingRenderer: LMRRenderer {
         light.forward = SIMD3<Float>(0, -1, 0)
         light.right = SIMD3<Float>(0.25, 0, 0)
         light.up = SIMD3<Float>(0, 0, 0.25)
-        light.color = SIMD3<Float>(4.0, 4.0, 4.0)
+        light.color = SIMD3<Float>(4.0, 4.0, 2.0)
         newScene.light = light
         
         scene = newScene
