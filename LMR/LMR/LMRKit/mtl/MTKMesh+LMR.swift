@@ -26,4 +26,30 @@ extension MTLVertexDescriptor {
         vertexDescriptor.layouts[0].stride = MemoryLayout<Float>.size * 8
         return vertexDescriptor
     }
+    
+    static func lmr_pnttbDesc() -> MTLVertexDescriptor {
+        let vertexDescriptor = MTLVertexDescriptor()
+        vertexDescriptor.attributes[0].offset = 0;
+        vertexDescriptor.attributes[0].format = .float3
+        vertexDescriptor.attributes[0].bufferIndex = 0
+
+        vertexDescriptor.attributes[1].offset = MemoryLayout<Float>.size * 3;
+        vertexDescriptor.attributes[1].format = .float3
+        vertexDescriptor.attributes[1].bufferIndex = 0
+
+        vertexDescriptor.attributes[2].offset = MemoryLayout<Float>.size * 6;
+        vertexDescriptor.attributes[2].format = .float2
+        vertexDescriptor.attributes[2].bufferIndex = 0
+        
+        vertexDescriptor.attributes[3].offset = MemoryLayout<Float>.size * 8;
+        vertexDescriptor.attributes[3].format = .float3
+        vertexDescriptor.attributes[3].bufferIndex = 0
+        
+        vertexDescriptor.attributes[4].offset = MemoryLayout<Float>.size * 11;
+        vertexDescriptor.attributes[4].format = .float3
+        vertexDescriptor.attributes[4].bufferIndex = 0
+
+        vertexDescriptor.layouts[0].stride = MemoryLayout<Float>.size * 14
+        return vertexDescriptor
+    }
 }

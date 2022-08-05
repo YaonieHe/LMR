@@ -35,4 +35,38 @@ class LMRMesh {
         }
         self.submeshes = submeshArray
     }
+    class func createMeshes(object: MDLObject, vertexDescriptor: MDLVertexDescriptor, textureLoader: MTKTextureLoader, device: MTLDevice, tangent: Bool = true) throws -> [LMRMesh] {
+        var result = [LMRMesh]()
+        
+        if object.isKind(of: MDLMesh.self) {
+            let mdlMesh = object as! MDLMesh
+            
+            if (tangent) {
+                mdlMesh.addTangentBasis(forTextureCoordinateAttributeNamed: MDLVertexAttributeTextureCoordinate, normalAttributeNamed: MDLVertexAttributeNormal, tangentAttributeNamed: MDLVertexAttributeTangent)
+                mdlMesh.addTangentBasis(forTextureCoordinateAttributeNamed: MDLVertexAttributeTextureCoordinate, tangentAttributeNamed: MDLVertexAttributeTangent, bitangentAttributeNamed: MDLVertexAttributeBitangent)
+            }
+            
+            mdlMesh.vertexDescriptor = vertexDescriptor;
+            let lmrMesh = try LMRMesh(mdlMesh: mdlMesh, textureLoader: textureLoader, device: device)
+            result.append(lmrMesh)
+        }
+        
+        for child in object.children.objects {
+            let subResult = try self.createMeshes(object: child, vertexDescriptor: vertexDescriptor, textureLoader: textureLoader, device: device, tangent: tangent)
+            if subResult.count > 0 {
+                result.append(contentsOf: subResult)
+            }
+        }
+        
+        return result
+    }
+    
+    class func createMeshes(asset: MDLAsset, vertexDescriptor: MDLVertexDescriptor, textureLoader: MTKTextureLoader, device: MTLDevice, tangent: Bool = true) throws -> [LMRMesh] {
+        var result = [LMRMesh]()
+        for i in 0 ..< asset.count {
+            let obj = asset.object(at: i)
+            result.append(contentsOf: try self.createMeshes(object: obj, vertexDescriptor: vertexDescriptor, textureLoader: textureLoader, device: device, tangent: tangent))
+        }
+        return result
+    }
 }

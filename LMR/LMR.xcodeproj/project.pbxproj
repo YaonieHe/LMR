@@ -37,6 +37,15 @@
 		100522D62875378E000914AE /* MTL+LMR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522D52875378E000914AE /* MTL+LMR.swift */; };
 		100522D928753E52000914AE /* LMR3DLightPainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100522D828753E52000914AE /* LMR3DLightPainter.swift */; };
 		100522DD28753E8A000914AE /* LMRShader3DLight.metal in Sources */ = {isa = PBXBuildFile; fileRef = 100522DC28753E8A000914AE /* LMRShader3DLight.metal */; };
+		10252DF9289CC3280061CBA5 /* Temple.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 10252DF7289CC3280061CBA5 /* Temple.mtl */; };
+		10252DFA289CC3280061CBA5 /* Temple.obj in Resources */ = {isa = PBXBuildFile; fileRef = 10252DF8289CC3280061CBA5 /* Temple.obj */; };
+		10252DFC289CC34D0061CBA5 /* FoliageBaseColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 10252DFB289CC34D0061CBA5 /* FoliageBaseColor.png */; };
+		10252DFE289CC35C0061CBA5 /* FoliageNormals.png in Resources */ = {isa = PBXBuildFile; fileRef = 10252DFD289CC35C0061CBA5 /* FoliageNormals.png */; };
+		10252E00289CC37C0061CBA5 /* FoliageSpecular.png in Resources */ = {isa = PBXBuildFile; fileRef = 10252DFF289CC37C0061CBA5 /* FoliageSpecular.png */; };
+		10252E02289CC38F0061CBA5 /* StructureBaseColor.png in Resources */ = {isa = PBXBuildFile; fileRef = 10252E01289CC38F0061CBA5 /* StructureBaseColor.png */; };
+		10252E04289CC3980061CBA5 /* StructureNormals.png in Resources */ = {isa = PBXBuildFile; fileRef = 10252E03289CC3980061CBA5 /* StructureNormals.png */; };
+		10252E06289CC3A10061CBA5 /* StructureSpecular.png in Resources */ = {isa = PBXBuildFile; fileRef = 10252E05289CC3A10061CBA5 /* StructureSpecular.png */; };
+		10252E08289CC6FF0061CBA5 /* LMRTileForwardPlusRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10252E07289CC6FF0061CBA5 /* LMRTileForwardPlusRenderer.swift */; };
 		1082C2AE2890CE0300A333D6 /* LMRRayTracingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082C2AD2890CE0300A333D6 /* LMRRayTracingRenderer.swift */; };
 		1082C2B12890DAB400A333D6 /* LMRRayTracing.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1082C2B02890DAB400A333D6 /* LMRRayTracing.metal */; };
 		1082C2B428913A0D00A333D6 /* LMRRayTracingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082C2B328913A0D00A333D6 /* LMRRayTracingVC.swift */; };
@@ -103,6 +112,15 @@
 		100522D52875378E000914AE /* MTL+LMR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTL+LMR.swift"; sourceTree = "<group>"; };
 		100522D828753E52000914AE /* LMR3DLightPainter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMR3DLightPainter.swift; sourceTree = "<group>"; };
 		100522DC28753E8A000914AE /* LMRShader3DLight.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LMRShader3DLight.metal; sourceTree = "<group>"; };
+		10252DF7289CC3280061CBA5 /* Temple.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Temple.mtl; sourceTree = "<group>"; };
+		10252DF8289CC3280061CBA5 /* Temple.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Temple.obj; sourceTree = "<group>"; };
+		10252DFB289CC34D0061CBA5 /* FoliageBaseColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FoliageBaseColor.png; sourceTree = "<group>"; };
+		10252DFD289CC35C0061CBA5 /* FoliageNormals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FoliageNormals.png; sourceTree = "<group>"; };
+		10252DFF289CC37C0061CBA5 /* FoliageSpecular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FoliageSpecular.png; sourceTree = "<group>"; };
+		10252E01289CC38F0061CBA5 /* StructureBaseColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StructureBaseColor.png; sourceTree = "<group>"; };
+		10252E03289CC3980061CBA5 /* StructureNormals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StructureNormals.png; sourceTree = "<group>"; };
+		10252E05289CC3A10061CBA5 /* StructureSpecular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StructureSpecular.png; sourceTree = "<group>"; };
+		10252E07289CC6FF0061CBA5 /* LMRTileForwardPlusRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRTileForwardPlusRenderer.swift; sourceTree = "<group>"; };
 		1082C2AD2890CE0300A333D6 /* LMRRayTracingRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRRayTracingRenderer.swift; sourceTree = "<group>"; };
 		1082C2B02890DAB400A333D6 /* LMRRayTracing.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LMRRayTracing.metal; sourceTree = "<group>"; };
 		1082C2B22890DAC200A333D6 /* LMRRayTracing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LMRRayTracing.h; sourceTree = "<group>"; };
@@ -228,6 +246,7 @@
 				100522A828743D87000914AE /* LMRRenderer.swift */,
 				1003B44028858FB600CABD93 /* LMR3DShadowRenderer.swift */,
 				1082C2AD2890CE0300A333D6 /* LMRRayTracingRenderer.swift */,
+				10252E07289CC6FF0061CBA5 /* LMRTileForwardPlusRenderer.swift */,
 			);
 			path = renderer;
 			sourceTree = "<group>";
@@ -298,6 +317,21 @@
 				100522DC28753E8A000914AE /* LMRShader3DLight.metal */,
 			);
 			path = light;
+			sourceTree = "<group>";
+		};
+		10252DF6289CC3190061CBA5 /* obj */ = {
+			isa = PBXGroup;
+			children = (
+				10252E05289CC3A10061CBA5 /* StructureSpecular.png */,
+				10252E03289CC3980061CBA5 /* StructureNormals.png */,
+				10252E01289CC38F0061CBA5 /* StructureBaseColor.png */,
+				10252DFF289CC37C0061CBA5 /* FoliageSpecular.png */,
+				10252DFB289CC34D0061CBA5 /* FoliageBaseColor.png */,
+				10252DFD289CC35C0061CBA5 /* FoliageNormals.png */,
+				10252DF7289CC3280061CBA5 /* Temple.mtl */,
+				10252DF8289CC3280061CBA5 /* Temple.obj */,
+			);
+			path = obj;
 			sourceTree = "<group>";
 		};
 		1082C2AF2890DA8300A333D6 /* rayTracing */ = {
@@ -398,6 +432,7 @@
 		1A9DA7C528684F4500BB6113 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				10252DF6289CC3190061CBA5 /* obj */,
 				1A9DA7C628684F5600BB6113 /* skybox */,
 			);
 			path = res;
@@ -488,20 +523,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10252E02289CC38F0061CBA5 /* StructureBaseColor.png in Resources */,
 				10D548772862F48A00E330EA /* LaunchScreen.storyboard in Resources */,
 				1A6B72AD28717D63009D34F6 /* kn_wall.jpg in Resources */,
+				10252DF9289CC3280061CBA5 /* Temple.mtl in Resources */,
 				1A9DA7CE28684F5600BB6113 /* left.jpg in Resources */,
+				10252E04289CC3980061CBA5 /* StructureNormals.png in Resources */,
 				1A912D3D28707E50005F90B9 /* bottom_1.jpg in Resources */,
 				1A6B72A928717D5C009D34F6 /* kd_wall.jpeg in Resources */,
 				10D548742862F48A00E330EA /* Assets.xcassets in Resources */,
 				1A6B72AA28717D5C009D34F6 /* sk_box.png in Resources */,
 				1A9DA7CF28684F5600BB6113 /* top.jpg in Resources */,
 				1A9DA7D028684F5600BB6113 /* back.jpg in Resources */,
+				10252DFE289CC35C0061CBA5 /* FoliageNormals.png in Resources */,
+				10252DFA289CC3280061CBA5 /* Temple.obj in Resources */,
+				10252E06289CC3A10061CBA5 /* StructureSpecular.png in Resources */,
 				1A9DA7D228684F5600BB6113 /* front.jpg in Resources */,
 				1A9DA7CD28684F5600BB6113 /* bottom.jpg in Resources */,
+				10252DFC289CC34D0061CBA5 /* FoliageBaseColor.png in Resources */,
 				1A6B72AB28717D5C009D34F6 /* kd_box.jpeg in Resources */,
 				1A9DA7D128684F5600BB6113 /* right.jpg in Resources */,
 				10D548722862F48800E330EA /* Main.storyboard in Resources */,
+				10252E00289CC37C0061CBA5 /* FoliageSpecular.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +563,7 @@
 				1A912D34286FEB18005F90B9 /* LMRSceneVC.swift in Sources */,
 				1082C2AE2890CE0300A333D6 /* LMRRayTracingRenderer.swift in Sources */,
 				1A912D37286FEB46005F90B9 /* lmr_3d_shader.metal in Sources */,
+				10252E08289CC6FF0061CBA5 /* LMRTileForwardPlusRenderer.swift in Sources */,
 				100522C628743D87000914AE /* LMRShaderCommon.metal in Sources */,
 				10D54888286318FD00E330EA /* LMRSample3DVC.swift in Sources */,
 				1005229928743D7E000914AE /* MathUtilities.swift in Sources */,

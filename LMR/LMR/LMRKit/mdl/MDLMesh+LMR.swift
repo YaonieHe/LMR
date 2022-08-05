@@ -11,17 +11,53 @@ extension MDLVertexDescriptor {
         vertexDescriptor.vertexAttributes[0].format = .float3
         vertexDescriptor.vertexAttributes[0].offset = 0
         vertexDescriptor.vertexAttributes[0].bufferIndex = 0
+        
         vertexDescriptor.vertexAttributes[1].name = MDLVertexAttributeNormal
         vertexDescriptor.vertexAttributes[1].format = .float3
         vertexDescriptor.vertexAttributes[1].offset = MemoryLayout<Float>.size * 3
         vertexDescriptor.vertexAttributes[1].bufferIndex = 0
+        
         vertexDescriptor.vertexAttributes[2].name = MDLVertexAttributeTextureCoordinate
         vertexDescriptor.vertexAttributes[2].format = .float2
         vertexDescriptor.vertexAttributes[2].offset = MemoryLayout<Float>.size * 6
         vertexDescriptor.vertexAttributes[2].bufferIndex = 0
+        
         vertexDescriptor.bufferLayouts[0].stride = MemoryLayout<Float>.size * 8
         
         return vertexDescriptor
+    }
+    
+    static func lmr_pnttbDesc() -> MDLVertexDescriptor {
+        let vertexDescriptor = MDLVertexDescriptor()
+        vertexDescriptor.vertexAttributes[0].name = MDLVertexAttributePosition
+        vertexDescriptor.vertexAttributes[0].format = .float3
+        vertexDescriptor.vertexAttributes[0].offset = 0
+        vertexDescriptor.vertexAttributes[0].bufferIndex = 0
+        
+        vertexDescriptor.vertexAttributes[1].name = MDLVertexAttributeNormal
+        vertexDescriptor.vertexAttributes[1].format = .float3
+        vertexDescriptor.vertexAttributes[1].offset = MemoryLayout<Float>.size * 3
+        vertexDescriptor.vertexAttributes[1].bufferIndex = 0
+        
+        vertexDescriptor.vertexAttributes[2].name = MDLVertexAttributeTextureCoordinate
+        vertexDescriptor.vertexAttributes[2].format = .float2
+        vertexDescriptor.vertexAttributes[2].offset = MemoryLayout<Float>.size * 6
+        vertexDescriptor.vertexAttributes[2].bufferIndex = 0
+        
+        vertexDescriptor.vertexAttributes[3].name = MDLVertexAttributeTangent
+        vertexDescriptor.vertexAttributes[3].format = .float3
+        vertexDescriptor.vertexAttributes[3].offset = MemoryLayout<Float>.size * 8
+        vertexDescriptor.vertexAttributes[3].bufferIndex = 0
+        
+        vertexDescriptor.vertexAttributes[3].name = MDLVertexAttributeBitangent
+        vertexDescriptor.vertexAttributes[4].format = .float3
+        vertexDescriptor.vertexAttributes[4].offset = MemoryLayout<Float>.size * 11
+        vertexDescriptor.vertexAttributes[4].bufferIndex = 0
+        
+        vertexDescriptor.bufferLayouts[0].stride = MemoryLayout<Float>.size * 14
+        
+        return vertexDescriptor
+        
     }
 }
 
