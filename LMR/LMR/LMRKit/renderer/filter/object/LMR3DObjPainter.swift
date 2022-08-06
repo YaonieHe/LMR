@@ -11,13 +11,19 @@ class LMR3DObjPainter: LMR3DPainter {
         case objParam
     }
     
+    open var vertexDescriptor:  MTLVertexDescriptor?
+    
     func draw(_ object: LMRObject) throws {
         let modelM = object.location.transform
         if let mesh = object.mesh {
             let depthStencilState = context.generateDepthStencilState(descriptor: MTLDepthStencilDescriptor.lmr_init())
             
             let pipelineDescriptor = self.context.generatePipelineDescriptor(vertexFunc: "LMR3D::vertexObject", fragmentFunc: "LMR3D::fragmentObjectColor")
-            pipelineDescriptor.vertexDescriptor = MTLVertexDescriptor.lmr_pntDesc()
+            if let vertexDescriptor = vertexDescriptor {
+                pipelineDescriptor.vertexDescriptor = vertexDescriptor
+            } else {
+                pipelineDescriptor.vertexDescriptor = MTLVertexDescriptor.lmr_pntDesc()
+            }
             pipelineDescriptor.sampleCount = self.sampleCount
             pipelineDescriptor.colorAttachments[0].pixelFormat = self.pixelFormat
             pipelineDescriptor.depthAttachmentPixelFormat = self.depthStencilPixelFormat
@@ -36,6 +42,10 @@ class LMR3DObjPainter: LMR3DPainter {
 
            for submesh in mesh.submeshes {
                var objParam = LMR3DObjParams(modelMatrix: modelM, diffuseColor: submesh.material.diffuse, specularColor: submesh.material.specular, shininess: submesh.material.shininess)
+               if let diffTexture = submesh.diffuseTexture {
+                   objParam.isDiffuseTexture = 1
+                   encoder.setFragmentTexture(diffTexture, index: 0)
+               }
                encoder.setVertexBytes(&objParam, length: MemoryLayout<LMR3DObjParams>.stride, index: BufferIndex.objParam.rawValue)
                
                encoder.setFragmentBytes(&objParam, length: MemoryLayout<LMR3DObjParams>.stride, index: BufferIndex.objParam.rawValue)

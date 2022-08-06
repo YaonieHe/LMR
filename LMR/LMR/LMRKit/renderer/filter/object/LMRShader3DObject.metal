@@ -28,7 +28,8 @@ namespace LMR3D {
     }
     
     fragment half4 fragmentObjectColor(VertexOut in [[stage_in]],
-                                       constant LMR3DObjParams &objParam [[buffer(ObjectBufferIndex_Obj)]]) {
-        return half4(objParam.diffuseColor);
+                                       constant LMR3DObjParams &objParam [[buffer(ObjectBufferIndex_Obj)]],
+                                       texture2d<half> baseColorMap [[texture(0)]]) {
+        return half4(getDiffColor(baseColorMap, objParam, in.texture));
     }
 }

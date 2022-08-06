@@ -49,7 +49,7 @@ extension MDLVertexDescriptor {
         vertexDescriptor.vertexAttributes[3].offset = MemoryLayout<Float>.size * 8
         vertexDescriptor.vertexAttributes[3].bufferIndex = 0
         
-        vertexDescriptor.vertexAttributes[3].name = MDLVertexAttributeBitangent
+        vertexDescriptor.vertexAttributes[4].name = MDLVertexAttributeBitangent
         vertexDescriptor.vertexAttributes[4].format = .float3
         vertexDescriptor.vertexAttributes[4].offset = MemoryLayout<Float>.size * 11
         vertexDescriptor.vertexAttributes[4].bufferIndex = 0
@@ -94,10 +94,30 @@ extension MDLMesh {
         }
     }
     
-    func lmr_setShininess(shininess: Float) {
+    override func lmr_setShininess(shininess: Float) {
         for submesh in self.lmr_submeshes {
             submesh.lmr_setShininess(shininess: shininess)
+        }
+        
+        super.lmr_setShininess(shininess: shininess)
+    }
+}
+
+extension MDLObject {
+    @objc func lmr_setShininess(shininess: Float) {
+        if self.children != nil {
+            for child in self.children.objects {
+                child.lmr_setShininess(shininess: shininess)
+            }
         }
     }
 }
 
+extension MDLAsset {
+    func lmr_setShininess(shininess: Float) {
+        for i in 0 ..< self.count {
+            let obj = self.object(at: i)
+            obj.lmr_setShininess(shininess: shininess)
+        }
+    }
+}

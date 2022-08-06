@@ -59,6 +59,7 @@
 		10D54888286318FD00E330EA /* LMRSample3DVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D54887286318FD00E330EA /* LMRSample3DVC.swift */; };
 		10D5488A286319AE00E330EA /* lmr_sample3d_shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 10D54889286319AE00E330EA /* lmr_sample3d_shader.metal */; };
 		10E0CCF628869870002CDA50 /* LMRPointShadowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0CCF528869870002CDA50 /* LMRPointShadowVC.swift */; };
+		1A3E5B2C289E996A00793CDC /* LMR3DObjRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E5B2B289E996A00793CDC /* LMR3DObjRenderer.swift */; };
 		1A6B72A928717D5C009D34F6 /* kd_wall.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1A6B72A628717D5B009D34F6 /* kd_wall.jpeg */; };
 		1A6B72AA28717D5C009D34F6 /* sk_box.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A6B72A728717D5B009D34F6 /* sk_box.png */; };
 		1A6B72AB28717D5C009D34F6 /* kd_box.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1A6B72A828717D5C009D34F6 /* kd_box.jpeg */; };
@@ -137,6 +138,7 @@
 		10D54887286318FD00E330EA /* LMRSample3DVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRSample3DVC.swift; sourceTree = "<group>"; };
 		10D54889286319AE00E330EA /* lmr_sample3d_shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = lmr_sample3d_shader.metal; sourceTree = "<group>"; };
 		10E0CCF528869870002CDA50 /* LMRPointShadowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRPointShadowVC.swift; sourceTree = "<group>"; };
+		1A3E5B2B289E996A00793CDC /* LMR3DObjRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMR3DObjRenderer.swift; sourceTree = "<group>"; };
 		1A6B72A628717D5B009D34F6 /* kd_wall.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kd_wall.jpeg; sourceTree = "<group>"; };
 		1A6B72A728717D5B009D34F6 /* sk_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sk_box.png; sourceTree = "<group>"; };
 		1A6B72A828717D5C009D34F6 /* kd_box.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kd_box.jpeg; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				1003B44028858FB600CABD93 /* LMR3DShadowRenderer.swift */,
 				1082C2AD2890CE0300A333D6 /* LMRRayTracingRenderer.swift */,
 				10252E07289CC6FF0061CBA5 /* LMRTileForwardPlusRenderer.swift */,
+				1A3E5B2B289E996A00793CDC /* LMR3DObjRenderer.swift */,
 			);
 			path = renderer;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				100522D228743D87000914AE /* LMRScene.swift in Sources */,
 				100522C128743D87000914AE /* LMDMesh+Rect.swift in Sources */,
 				1082C2B12890DAB400A333D6 /* LMRRayTracing.metal in Sources */,
+				1A3E5B2C289E996A00793CDC /* LMR3DObjRenderer.swift in Sources */,
 				100522DD28753E8A000914AE /* LMRShader3DLight.metal in Sources */,
 				1A912D34286FEB18005F90B9 /* LMRSceneVC.swift in Sources */,
 				1082C2AE2890CE0300A333D6 /* LMRRayTracingRenderer.swift in Sources */,
@@ -750,7 +754,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Y8YG5F7WN9;
+				DEVELOPMENT_TEAM = 55S998F6XB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LMR/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -782,7 +786,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Y8YG5F7WN9;
+				DEVELOPMENT_TEAM = 55S998F6XB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LMR/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

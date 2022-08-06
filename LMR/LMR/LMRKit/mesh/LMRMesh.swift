@@ -50,11 +50,12 @@ class LMRMesh {
             let lmrMesh = try LMRMesh(mdlMesh: mdlMesh, textureLoader: textureLoader, device: device)
             result.append(lmrMesh)
         }
-        
-        for child in object.children.objects {
-            let subResult = try self.createMeshes(object: child, vertexDescriptor: vertexDescriptor, textureLoader: textureLoader, device: device, tangent: tangent)
-            if subResult.count > 0 {
-                result.append(contentsOf: subResult)
+        if object.children != nil {
+            for child in object.children.objects {
+                let subResult = try self.createMeshes(object: child, vertexDescriptor: vertexDescriptor, textureLoader: textureLoader, device: device, tangent: tangent)
+                if subResult.count > 0 {
+                    result.append(contentsOf: subResult)
+                }
             }
         }
         

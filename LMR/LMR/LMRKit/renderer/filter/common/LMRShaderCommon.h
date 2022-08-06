@@ -6,9 +6,11 @@
 #include <simd/simd.h>
 
 typedef enum LMR3DVertexAttribute {
-    LMR3DVertexAttribute_Position  = 0,
-    LMR3DVertexAttribute_Normal    = 1,
-    LMR3DVertexAttribute_Texcoord  = 2,
+    LMR3DVertexAttribute_Position   = 0,
+    LMR3DVertexAttribute_Normal     = 1,
+    LMR3DVertexAttribute_Texcoord   = 2,
+    LMR3DVertexAttribute_Tangent    = 3,
+    LMR3DVertexAttribute_Bitangent  = 4
 } LMR3DVertexAttribute;
 
 
@@ -30,8 +32,10 @@ typedef struct  {
     matrix_float3x3 normalMatrix;
     int isDiffuseTexture;
     vector_float4 diffuseColor;
+    int isSpecularTexture;
     vector_float4 specularColor;
     float shininess;
+    int isNormalTexture;
 } LMR3DObjParams;
 
 typedef struct  {

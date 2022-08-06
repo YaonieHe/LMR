@@ -111,7 +111,7 @@ class LMRTileForwardPlusRenderer: LMRRenderer {
     open func render(to mtkView: MTKView) throws {
         try self.setupScene()
         
-        guard let scene else { return }
+        guard let scene = self.scene else { return }
         self.moveStep(scene: scene)
         
         

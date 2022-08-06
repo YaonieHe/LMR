@@ -9,6 +9,18 @@ class LMRSampleVC: UIViewController, MTKViewDelegate {
     var mtkView: MTKView {view as! MTKView}
     var renderer: LMR3DRenderer = LMR3DRenderer()
     
+
+    convenience init(obj: Bool = false) {
+        self.init()
+        if obj {
+            renderer = LMR3DObjRenderer()
+        }
+    }
+    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
     override func loadView() {
         super.loadView()
         if view is MTKView {
@@ -33,7 +45,7 @@ class LMRSampleVC: UIViewController, MTKViewDelegate {
         do {
             try self.renderer.render(to: view)
         } catch {
-            
+            assertionFailure("error: \(error)")
         }
     }
     

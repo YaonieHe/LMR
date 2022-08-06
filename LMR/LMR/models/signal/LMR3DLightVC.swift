@@ -18,7 +18,6 @@ struct LMR3DLightVertexParam {
 };
 
 class LMR3DLightVC: UIViewController, MTKViewDelegate {
-
     var mtkView: MTKView {view as! MTKView}
     var device: MTLDevice!
     var commandQueue: MTLCommandQueue!

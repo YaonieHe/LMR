@@ -281,7 +281,7 @@ class LMRRayTracingRenderer: LMRRenderer {
     }
     
     private func renderRay(encoder: MTLComputeCommandEncoder, uniforms: inout LMRRTUniforms) {
-        guard let rayPipeline else { return }
+        guard let rayPipeline = self.rayPipeline else { return }
         
         encoder.setComputePipelineState(rayPipeline)
         
@@ -295,7 +295,7 @@ class LMRRayTracingRenderer: LMRRenderer {
     }
     
     private func renderShade(encoder: MTLComputeCommandEncoder, uniforms: inout LMRRTUniforms, bounce: Int) {
-        guard let shadePipeline else { return }
+        guard let shadePipeline = self.shadePipeline else { return }
         encoder.setComputePipelineState(shadePipeline)
         
         encoder.setBytes(&uniforms, length: MemoryLayout<LMRRTUniforms>.stride, index: 0)
@@ -315,7 +315,7 @@ class LMRRayTracingRenderer: LMRRenderer {
     }
     
     private func renderShadow(encoder: MTLComputeCommandEncoder, uniforms: inout LMRRTUniforms, bounce: Int) {
-        guard let shadowPipeline else { return }
+        guard let shadowPipeline = self.shadowPipeline else { return }
         encoder.setComputePipelineState(shadowPipeline)
         
         encoder.setBytes(&uniforms, length: MemoryLayout<LMRRTUniforms>.stride, index: 0)
@@ -329,7 +329,7 @@ class LMRRayTracingRenderer: LMRRenderer {
     }
     
     private func renderAccumulate(encoder: MTLComputeCommandEncoder, uniforms: inout LMRRTUniforms) {
-        guard let accumulatePipeline else { return }
+        guard let accumulatePipeline = self.accumulatePipeline else { return }
         encoder.setComputePipelineState(accumulatePipeline)
         
         encoder.setBytes(&uniforms, length: MemoryLayout<LMRRTUniforms>.stride, index: 0)

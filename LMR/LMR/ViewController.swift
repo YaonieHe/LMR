@@ -30,6 +30,12 @@ class ViewController: UIViewController {
         let vc = LMR3DLightVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func click3DObjFile(_ sender: Any) {
+        let vc = LMRSampleVC(obj: true)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func click3dScene(_ sender: Any) {
         let vc = LMRPointShadowVC()
         self.navigationController?.pushViewController(vc, animated: true)

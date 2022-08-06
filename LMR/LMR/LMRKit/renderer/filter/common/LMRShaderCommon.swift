@@ -3,7 +3,7 @@ import Metal
 extension LMR3DObjParams {
     init(modelMatrix: float4x4, diffuseColor: SIMD4<Float>, specularColor: SIMD4<Float>, shininess: Float) {
         let normalMatrix = float3x3(modelMatrix.inverse.transpose)
-        self.init(modelMatrix: modelMatrix, normalMatrix: normalMatrix, isDiffuseTexture: 0, diffuseColor: diffuseColor, specularColor: specularColor, shininess: shininess)
+        self.init(modelMatrix: modelMatrix, normalMatrix: normalMatrix, isDiffuseTexture: 0, diffuseColor: diffuseColor, isSpecularTexture: 0, specularColor: specularColor, shininess: shininess, isNormalTexture: 0)
     }
 }
 
@@ -25,9 +25,9 @@ class LMR3DPainter {
 }
 
 extension LMR3DPainter {
-    func normal_setRenderPipeline(_ vertexFuncName: String, _ fragmentFuncName: String) throws {
+    func normal_setRenderPipeline(_ vertexFuncName: String, _ fragmentFuncName: String, vertexDescriptor: MTLVertexDescriptor) throws {
         let pipelineDescriptor = self.context.generatePipelineDescriptor(vertexFunc: vertexFuncName, fragmentFunc: fragmentFuncName)
-        pipelineDescriptor.vertexDescriptor = MTLVertexDescriptor.lmr_pntDesc()
+        pipelineDescriptor.vertexDescriptor = vertexDescriptor
         pipelineDescriptor.sampleCount = self.sampleCount
         pipelineDescriptor.colorAttachments[0].pixelFormat = self.pixelFormat
         pipelineDescriptor.depthAttachmentPixelFormat = self.depthStencilPixelFormat
@@ -35,6 +35,10 @@ extension LMR3DPainter {
         let renderPipeLineState = try self.context.generateRenderPipelineState(descriptor: pipelineDescriptor)
         
         encoder.setRenderPipelineState(renderPipeLineState)
+    }
+    
+    func normal_setRenderPipeline(_ vertexFuncName: String, _ fragmentFuncName: String) throws {
+        try self.normal_setRenderPipeline(vertexFuncName, fragmentFuncName, vertexDescriptor: MTLVertexDescriptor.lmr_pntDesc())
     }
     
     func normal_setDepthStencil() {
