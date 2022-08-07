@@ -9,8 +9,7 @@ import Foundation
 
 import MetalKit
 
-class LMR3DObjRenderer: LMR3DRenderer {
-    
+class LMR3DObjRenderer: LMR3DRenderer {    
     private func setupScene() throws {
         if self.scene != nil {
             return

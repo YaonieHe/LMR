@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RIS-Yq-A1p">
-                                <rect key="frame" x="60" y="290.66666666666669" width="270" height="317.00000000000006"/>
+                                <rect key="frame" x="60" y="275" width="270" height="348"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxF-CJ-ZcZ">
                                         <rect key="frame" x="0.0" y="0.0" width="270" height="50"/>
@@ -84,7 +84,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="kaa-iG-pgm">
-                                        <rect key="frame" x="0.0" y="193" width="270" height="124"/>
+                                        <rect key="frame" x="0.0" y="193" width="270" height="155"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xco-zl-f5P">
                                                 <rect key="frame" x="0.0" y="0.0" width="270" height="31"/>
@@ -95,7 +95,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3J-ha-fxM">
-                                                <rect key="frame" x="0.0" y="30.999999999999943" width="270" height="31"/>
+                                                <rect key="frame" x="0.0" y="31" width="270" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Obj file"/>
                                                 <connections>
@@ -103,7 +103,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3Z-nn-Dge">
-                                                <rect key="frame" x="0.0" y="61.999999999999943" width="270" height="31"/>
+                                                <rect key="frame" x="0.0" y="62" width="270" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Point Shadow"/>
                                                 <connections>
@@ -111,11 +111,19 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfL-hN-cKH">
-                                                <rect key="frame" x="0.0" y="92.999999999999943" width="270" height="31"/>
+                                                <rect key="frame" x="0.0" y="93" width="270" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Ray tracing"/>
                                                 <connections>
                                                     <action selector="clickRayTracing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Je1-7P-JD7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8v-8i-dxR">
+                                                <rect key="frame" x="0.0" y="124" width="270" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Forward +"/>
+                                                <connections>
+                                                    <action selector="clickForwardPlus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aEc-87-u1d"/>
                                                 </connections>
                                             </button>
                                         </subviews>

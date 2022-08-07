@@ -55,4 +55,14 @@ namespace LMR3D {
             return obj.specularColor;
         }
     }
+    
+    static float3 getNormal(texture2d<half> map_kn, constant LMR3DObjParams &obj, PNTTBVertexOut in [[stage_in]]) {
+        float3 normal = normalize(in.normal);
+        if (obj.isNormalTexture) {
+            float4 kn_sample = float4(map_kn.sample(linearSampler, in.texture));
+            float3 tangent_normal = normalize((kn_sample.xyz * 2.0) - 1.0);
+            normal = normalize(tangent_normal.x * in.tangent + tangent_normal.y * in.bitangent + tangent_normal.z * in.normal);
+        }
+        return normal;
+    }
 }

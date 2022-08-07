@@ -77,6 +77,8 @@
 		1A9DA7D028684F5600BB6113 /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7CA28684F5600BB6113 /* back.jpg */; };
 		1A9DA7D128684F5600BB6113 /* right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7CB28684F5600BB6113 /* right.jpg */; };
 		1A9DA7D228684F5600BB6113 /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A9DA7CC28684F5600BB6113 /* front.jpg */; };
+		1ACCA216289F812B00643038 /* LMRTileForwardPlusShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1ACCA215289F812B00643038 /* LMRTileForwardPlusShader.metal */; };
+		1ACCA219289FF74C00643038 /* LMRTileForwardPlusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACCA218289FF74C00643038 /* LMRTileForwardPlusVC.swift */; };
 		1AFDB55C2874809C00DF2088 /* MTKMesh+LMR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFDB55B2874809C00DF2088 /* MTKMesh+LMR.swift */; };
 /* End PBXBuildFile section */
 
@@ -156,6 +158,9 @@
 		1A9DA7CA28684F5600BB6113 /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
 		1A9DA7CB28684F5600BB6113 /* right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = right.jpg; sourceTree = "<group>"; };
 		1A9DA7CC28684F5600BB6113 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
+		1ACCA215289F812B00643038 /* LMRTileForwardPlusShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LMRTileForwardPlusShader.metal; sourceTree = "<group>"; };
+		1ACCA217289F84F300643038 /* LMRTileForwardPlusShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LMRTileForwardPlusShader.h; sourceTree = "<group>"; };
+		1ACCA218289FF74C00643038 /* LMRTileForwardPlusVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRTileForwardPlusVC.swift; sourceTree = "<group>"; };
 		1AFDB55B2874809C00DF2088 /* MTKMesh+LMR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTKMesh+LMR.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -257,6 +262,7 @@
 		100522A928743D87000914AE /* filter */ = {
 			isa = PBXGroup;
 			children = (
+				1ACCA214289F810B00643038 /* TileForwardPlus */,
 				1082C2AF2890DA8300A333D6 /* rayTracing */,
 				1003B44228858FF700CABD93 /* shadow */,
 				100522D728753E26000914AE /* light */,
@@ -428,6 +434,7 @@
 				10E0CCF528869870002CDA50 /* LMRPointShadowVC.swift */,
 				10D548802862F75600E330EA /* LMRSampleVC.swift */,
 				1082C2B328913A0D00A333D6 /* LMRRayTracingVC.swift */,
+				1ACCA218289FF74C00643038 /* LMRTileForwardPlusVC.swift */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -457,6 +464,15 @@
 				1A9DA7C928684F5600BB6113 /* top.jpg */,
 			);
 			path = skybox;
+			sourceTree = "<group>";
+		};
+		1ACCA214289F810B00643038 /* TileForwardPlus */ = {
+			isa = PBXGroup;
+			children = (
+				1ACCA215289F812B00643038 /* LMRTileForwardPlusShader.metal */,
+				1ACCA217289F84F300643038 /* LMRTileForwardPlusShader.h */,
+			);
+			path = TileForwardPlus;
 			sourceTree = "<group>";
 		};
 		1AFDB55A2874807500DF2088 /* mtl */ = {
@@ -566,6 +582,7 @@
 				100522DD28753E8A000914AE /* LMRShader3DLight.metal in Sources */,
 				1A912D34286FEB18005F90B9 /* LMRSceneVC.swift in Sources */,
 				1082C2AE2890CE0300A333D6 /* LMRRayTracingRenderer.swift in Sources */,
+				1ACCA219289FF74C00643038 /* LMRTileForwardPlusVC.swift in Sources */,
 				1A912D37286FEB46005F90B9 /* lmr_3d_shader.metal in Sources */,
 				10252E08289CC6FF0061CBA5 /* LMRTileForwardPlusRenderer.swift in Sources */,
 				100522C628743D87000914AE /* LMRShaderCommon.metal in Sources */,
@@ -598,6 +615,7 @@
 				100522D128743D87000914AE /* LMRLocation.swift in Sources */,
 				100522C228743D87000914AE /* LMDMesh+Box.swift in Sources */,
 				100522C328743D87000914AE /* LMRSubmesh.swift in Sources */,
+				1ACCA216289F812B00643038 /* LMRTileForwardPlusShader.metal in Sources */,
 				100522CD28743D87000914AE /* LMRConst.swift in Sources */,
 				10D548812862F75600E330EA /* LMRSampleVC.swift in Sources */,
 				100522C528743D87000914AE /* LMRRenderer.swift in Sources */,

@@ -45,5 +45,9 @@ class ViewController: UIViewController {
         let vc = LMRRayTracingVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    @IBAction func clickForwardPlus(_ sender: Any) {
+        let vc = LMRTileForwardPlusVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
