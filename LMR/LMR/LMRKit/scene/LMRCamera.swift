@@ -10,11 +10,15 @@ import UIKit
 import simd
 
 class LMRCamera {
+    open var leftHand: Bool = false
     open var position: SIMD3<Float> = SIMD3<Float>(0, 0, 1)
     open var up: SIMD3<Float> = SIMD3<Float>(0, 1, 0)
     open var target: SIMD3<Float> = SIMD3<Float>(0, 0, 0)
     
     open var viewMatrix: float4x4 {
+        if (leftHand) {
+            return float4x4.lookAtLeftHand(eye: position, center: target, up: up)
+        }
         return float4x4.lookAtRightHand(eye: position, center: target, up: up)
     }
     
@@ -24,6 +28,9 @@ class LMRCamera {
     open var aspect: Float = 1
     
     open var projectMatrix: float4x4 {
+        if (leftHand) {
+            return float4x4.init(perspectiveLeftHandWithFovy: field, aspectRatio: aspect, nearZ: nearZ, farZ: farZ)
+        }
         let matrix = float4x4(perspectiveRightHandWithFovy: field, aspectRatio: aspect, nearZ: nearZ, farZ: farZ)
         return matrix
     }

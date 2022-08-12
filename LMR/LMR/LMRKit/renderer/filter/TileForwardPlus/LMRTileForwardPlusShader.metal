@@ -126,8 +126,8 @@ namespace LMR3D {
             {normalize(float3(0, 1, -minTileViewAtZ1.y)), 0}, // top
             {normalize(float3(-1, 0, minTileViewAtZ1.x)), 0}, // left
             {normalize(float3(0, -1, maxTileViewAtZ1.y)), 0}, // bottom
-            {normalize(float3(0, 0, -1)), -minDepthView}, // near
-            {normalize(float3(0, 0, 1)), maxDepthView}, // far
+            {float3(0, 0, -1), -minDepthView}, // near
+            {float3(0, 0, 1), maxDepthView}, // far
         };
         
         for (uint baseLightId = 0; baseLightId < frameData.lightCount; baseLightId += threadgroup_linear_size) {
@@ -137,7 +137,7 @@ namespace LMR3D {
                 break;
             }
             
-            LMRTFPLightParam light = lights[lightId];
+            device LMRTFPLightParam & light = lights[lightId];
             
             float3 pos = light.position;
             float radius = light.radius;
@@ -150,6 +150,9 @@ namespace LMR3D {
                     break;
                 }
             }
+//            if (distance_point_plane(tilePlanes[4], pos) > 500) {
+//                visible = false;
+//            }
             
             if (visible) {
                 int slot = atomic_fetch_add_explicit(&tileData->numLights, 1, memory_order_relaxed);
@@ -204,7 +207,7 @@ namespace LMR3D {
             
             float length_sq = dot(toLight, toLight);
             toLight = normalize(toLight);
-            float attenuation = 1;//fmax(1.0 - sqrt(length_sq) / light.radius, 0);
+            float attenuation = fmax(1.0 - sqrt(length_sq) / light.radius, 0);
             
             float diffuse = max(dot(normal, toLight), 0.0);
             out += light.color * color.xyz * diffuse * attenuation;
@@ -229,14 +232,14 @@ namespace LMR3D {
         
         const device LMRTFPLightParam &light = light_data[iid];
         
-        float angle = 2 * M_PI_F/ param.vertexCount;
+        float angle = 2 * M_PI_F / param.vertexCount;
         int point = vid % 2 ? (vid + 1) / 2 : -vid / 2;
-        float3 vertex_position = float3(sin(angle * point), cos(angle * point), 0);
+        float3 vertex_position = 2.5 * float3(sin(angle * point), cos(angle * point), 0);
         
-        float4 fairy_eye_pos = param.viewMatrix * float4(light.position ,1);
+        float4 fairy_eye_pos = param.viewMatrix * float4(light.position , 1);
         
         TFPFairyOut out;
-        out.position = param.projectionMatrix * float4(vertex_position + fairy_eye_pos.xyz,1);
+        out.position = param.projectionMatrix * float4(vertex_position + fairy_eye_pos.xyz, 1);
 
         out.color = half3(light.color);
 

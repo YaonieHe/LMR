@@ -56,8 +56,9 @@ class LMRTileForwardPlusRenderer: LMRRenderer {
         }
         
         let newScene = LMRScene()
-        newScene.ambientColor = SIMD3<Float>(0.2, 0.2, 0.2);
-        newScene.camera.position = SIMD3<Float>(0, 400, 1000)
+        newScene.ambientColor = SIMD3<Float>(0.05, 0.05, 0.05);
+        newScene.camera.leftHand = true
+        newScene.camera.position = SIMD3<Float>(0, 700, 1000)
         newScene.camera.target = SIMD3<Float>(0, 0, 0)
         newScene.camera.nearZ = 1
         newScene.camera.farZ = 1500
@@ -73,7 +74,6 @@ class LMRTileForwardPlusRenderer: LMRRenderer {
         
         for lmrMesh in lmrMeshArray {
             let obj = LMRObject(mesh: lmrMesh)
-//            obj.location.rotate.y = 0.5
             newScene.objects.append(obj)
         }
         
@@ -130,11 +130,9 @@ class LMRTileForwardPlusRenderer: LMRRenderer {
                 tfpLight.angle += tfpLight.speed
             }
         }
-//        for obj in scene.objects {
-//            obj.location.rotate.x += 0.01
-//        }
-//        let angle = Float(frameIdx) * 0.01
-//        scene.camera.position = SIMD3<Float>(x: 1000 * sinf(angle), y: 75, z: 1000 * cosf(angle))
+
+        let angle = Float(frameIdx) * 0.004
+        scene.camera.position = SIMD3<Float>(x: 1000 * sinf(angle), y: scene.camera.position.y, z: 1000 * cosf(angle))
     }
     
     var renderPassDescriptor: MTLRenderPassDescriptor?
@@ -332,30 +330,36 @@ class LMRTileForwardPlusRenderer: LMRRenderer {
         }
     }
     
-    private var lightBuffer: MTLBuffer?
-    
     private func getLightBuffer(scene: LMRScene) throws -> MTLBuffer {
+        let viewParam = scene.camera.viewMatrix;
         var lightParams = [LMRTFPLightParam]()
         for light in scene.lights {
             if let tfpLight = light as? LMRTFPLight {
-                lightParams.append(tfpLight.tfpLightParam)
+                var param = tfpLight.tfpLightParam
+                let wordPosition = viewParam * SIMD4<Float>(param.position, 1)
+                param.position = wordPosition.xyz
+                lightParams.append(param)
             }
         }
         if let buffer = self.context.device.makeBuffer(bytes: &lightParams, length:  MemoryLayout<LMRTFPLightParam>.stride * lightParams.count) {
             return buffer
         }
         throw LMRError("create buffer error")
-//        if lightBuffer == nil {
-//            lightBuffer = self.context.device.makeBuffer(length: MemoryLayout<LMRTFPLightParam>.stride * lightParams.count, options: .storageModeShared)
-//        }
-//
-//        guard let buffer = lightBuffer else {
-//            throw LMRError("create buffer error")
-//        }
-        
-        
     }
     
+    private func getWorldLightBuffer(scene: LMRScene) throws -> MTLBuffer {
+        var lightParams = [LMRTFPLightParam]()
+        for light in scene.lights {
+            if let tfpLight = light as? LMRTFPLight {
+                let param = tfpLight.tfpLightParam
+                lightParams.append(param)
+            }
+        }
+        if let buffer = self.context.device.makeBuffer(bytes: &lightParams, length:  MemoryLayout<LMRTFPLightParam>.stride * lightParams.count) {
+            return buffer
+        }
+        throw LMRError("create buffer error")
+    }
     
     private var size: CGSize = CGSize.zero
     
@@ -403,6 +407,7 @@ class LMRTileForwardPlusRenderer: LMRRenderer {
         var viewParam = LMR3DViewParams(cameraPos: scene.camera.position, viewProjectionMatrix: scene.camera.projectMatrix * scene.camera.viewMatrix)
         var frameData = getFrameData(scene: scene, drawableSize: mtkView.drawableSize)
         let lightsData = try getLightBuffer(scene: scene)
+        let lightsWorldData = try getWorldLightBuffer(scene: scene)
 
         
         let depthPrePassPipelineState = try getDepthPrePassState(mtkView: mtkView)
@@ -424,13 +429,14 @@ class LMRTileForwardPlusRenderer: LMRRenderer {
         encoder.setTileBuffer(lightsData, offset: 0, index: BufferIndex.light.rawValue)
         encoder.dispatchThreadsPerTile(MTLSize(width: tileWidth, height: tileHeight, depth: 1))
 
+        
         let forwardState = try getForwardPipelineState(mtkView: mtkView)
         encoder.setRenderPipelineState(forwardState)
         encoder.setDepthStencilState(relaxdDepthState)
         encoder.setThreadgroupMemoryLength(threadgroupBufferSize, offset: 0, index: Int(LMRTFPThreadgroupIndices_LightList.rawValue))
         encoder.setThreadgroupMemoryLength(tileDataSize, offset: threadgroupBufferSize, index: Int(LMRTFPThreadgroupIndices_TileData.rawValue))
         encoder.setVertexBytes(&viewParam, length: MemoryLayout<LMR3DViewParams>.stride, index: BufferIndex.view.rawValue)
-        encoder.setFragmentBuffer(lightsData, offset: 0, index: BufferIndex.light.rawValue)
+        encoder.setFragmentBuffer(lightsWorldData, offset: 0, index: BufferIndex.light.rawValue)
         encoder.setFragmentBytes(&frameData, length: MemoryLayout<LMRTFPFrameData>.stride, index: BufferIndex.frameData.rawValue)
         encoder.setFragmentBytes(&viewParam, length: MemoryLayout<LMR3DViewParams>.stride, index: BufferIndex.view.rawValue)
         drawObjs(scene: scene, at: encoder)
@@ -440,8 +446,8 @@ class LMRTileForwardPlusRenderer: LMRRenderer {
         encoder.setRenderPipelineState(fairyState)
         encoder.setDepthStencilState(depthState)
         encoder.setVertexBytes(&fairyParam, length: MemoryLayout<LMRTFPFairyParam>.stride, index: BufferIndex.view.rawValue)
-        encoder.setVertexBuffer(lightsData, offset: 0, index: BufferIndex.light.rawValue)
-        encoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 7, instanceCount: Int(frameData.lightCount))
+        encoder.setVertexBuffer(lightsWorldData, offset: 0, index: BufferIndex.light.rawValue)
+        encoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 21, instanceCount: Int(frameData.lightCount))
         
         encoder.endEncoding()
         
