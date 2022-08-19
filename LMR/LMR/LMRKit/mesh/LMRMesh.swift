@@ -35,6 +35,17 @@ class LMRMesh {
         }
         self.submeshes = submeshArray
     }
+    
+    convenience init(mdlMesh: MDLMesh, textureLoader: MTKTextureLoader, device: MTLDevice, vertexDescriptor: MDLVertexDescriptor, tangent: Bool = true) throws {
+        if (tangent) {
+            mdlMesh.addTangentBasis(forTextureCoordinateAttributeNamed: MDLVertexAttributeTextureCoordinate, normalAttributeNamed: MDLVertexAttributeNormal, tangentAttributeNamed: MDLVertexAttributeTangent)
+            mdlMesh.addTangentBasis(forTextureCoordinateAttributeNamed: MDLVertexAttributeTextureCoordinate, tangentAttributeNamed: MDLVertexAttributeTangent, bitangentAttributeNamed: MDLVertexAttributeBitangent)
+        }
+        mdlMesh.vertexDescriptor = vertexDescriptor;
+        
+        try self.init(mdlMesh: mdlMesh, textureLoader: textureLoader, device: device)
+    }
+    
     class func createMeshes(object: MDLObject, vertexDescriptor: MDLVertexDescriptor, textureLoader: MTKTextureLoader, device: MTLDevice, tangent: Bool = true) throws -> [LMRMesh] {
         var result = [LMRMesh]()
         

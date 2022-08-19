@@ -49,5 +49,10 @@ class ViewController: UIViewController {
         let vc = LMRTileForwardPlusVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func clickReflection(_ sender: Any) {
+        let vc = LMRReflectionVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 

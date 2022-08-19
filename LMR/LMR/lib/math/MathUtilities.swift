@@ -136,6 +136,28 @@ extension float4x4 {
 
         return self.lookAtRightHand(eye: eye, center: eye+directions[face], up: ups[face])
     }
+    
+    static func left_look_at_cube(eye: SIMD3<Float>, face: Int) -> float4x4 {
+        let directions: [SIMD3<Float>] = [
+            SIMD3<Float>( 1,  0,  0), // Right
+            SIMD3<Float>( -1,  0,  0), // Left
+            SIMD3<Float>( 0,  1,  0), // Top
+            SIMD3<Float>( 0, -1,  0), // Down
+            SIMD3<Float>( 0,  0,  1), // Front
+            SIMD3<Float>( 0,  0, -1)  // Back
+        ]
+
+        let ups: [SIMD3<Float>] = [
+            SIMD3<Float>(0, 1,  0),
+            SIMD3<Float>(0, 1,  0),
+            SIMD3<Float>(0, 0, -1),
+            SIMD3<Float>(0, 0,  1),
+            SIMD3<Float>(0, 1,  0),
+            SIMD3<Float>(0, 1,  0)
+        ]
+
+        return self.lookAtLeftHand(eye: eye, center: eye+directions[face], up: ups[face])
+    }
 }
 
 func radians_from_degrees(_ degrees: Float) -> Float {
