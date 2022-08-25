@@ -54,5 +54,10 @@ class ViewController: UIViewController {
         let vc = LMRReflectionVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func clickTerrain(_ sender: Any) {
+        let vc = LMRTerrainVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 

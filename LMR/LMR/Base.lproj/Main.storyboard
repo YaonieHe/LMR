@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RIS-Yq-A1p">
-                                <rect key="frame" x="60" y="246" width="270" height="409"/>
+                                <rect key="frame" x="60" y="228.99999999999997" width="270" height="443.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxF-CJ-ZcZ">
                                         <rect key="frame" x="0.0" y="0.0" width="270" height="50"/>
@@ -84,7 +84,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="kaa-iG-pgm">
-                                        <rect key="frame" x="0.0" y="203" width="270" height="206"/>
+                                        <rect key="frame" x="0.0" y="203" width="270" height="240.33333333333337"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xco-zl-f5P">
                                                 <rect key="frame" x="0.0" y="0.0" width="270" height="34.333333333333336"/>
@@ -103,7 +103,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3Z-nn-Dge">
-                                                <rect key="frame" x="0.0" y="68.666666666666629" width="270" height="34.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="68.666666666666686" width="270" height="34.333333333333343"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Point Shadow"/>
                                                 <connections>
@@ -132,6 +132,14 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Reflection"/>
                                                 <connections>
                                                     <action selector="clickReflection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JZh-gZ-m0m"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDb-dZ-1z4">
+                                                <rect key="frame" x="0.0" y="206" width="270" height="34.333333333333343"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Terrain"/>
+                                                <connections>
+                                                    <action selector="clickTerrain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S0S-gW-Rxd"/>
                                                 </connections>
                                             </button>
                                         </subviews>

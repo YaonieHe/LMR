@@ -46,6 +46,9 @@
 		10252E04289CC3980061CBA5 /* StructureNormals.png in Resources */ = {isa = PBXBuildFile; fileRef = 10252E03289CC3980061CBA5 /* StructureNormals.png */; };
 		10252E06289CC3A10061CBA5 /* StructureSpecular.png in Resources */ = {isa = PBXBuildFile; fileRef = 10252E05289CC3A10061CBA5 /* StructureSpecular.png */; };
 		10252E08289CC6FF0061CBA5 /* LMRTileForwardPlusRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10252E07289CC6FF0061CBA5 /* LMRTileForwardPlusRenderer.swift */; };
+		106B8EEC28B70692000A8942 /* LMRTerrainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106B8EE728B70692000A8942 /* LMRTerrainVC.swift */; };
+		106B8EED28B70692000A8942 /* LMRTETerrainFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106B8EEA28B70692000A8942 /* LMRTETerrainFilter.swift */; };
+		106B8EEE28B70692000A8942 /* LMRTerrainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106B8EEB28B70692000A8942 /* LMRTerrainRenderer.swift */; };
 		1082C2AE2890CE0300A333D6 /* LMRRayTracingRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082C2AD2890CE0300A333D6 /* LMRRayTracingRenderer.swift */; };
 		1082C2B12890DAB400A333D6 /* LMRRayTracing.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1082C2B02890DAB400A333D6 /* LMRRayTracing.metal */; };
 		1082C2B428913A0D00A333D6 /* LMRRayTracingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082C2B328913A0D00A333D6 /* LMRRayTracingVC.swift */; };
@@ -128,6 +131,9 @@
 		10252E03289CC3980061CBA5 /* StructureNormals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StructureNormals.png; sourceTree = "<group>"; };
 		10252E05289CC3A10061CBA5 /* StructureSpecular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StructureSpecular.png; sourceTree = "<group>"; };
 		10252E07289CC6FF0061CBA5 /* LMRTileForwardPlusRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRTileForwardPlusRenderer.swift; sourceTree = "<group>"; };
+		106B8EE728B70692000A8942 /* LMRTerrainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRTerrainVC.swift; sourceTree = "<group>"; };
+		106B8EEA28B70692000A8942 /* LMRTETerrainFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRTETerrainFilter.swift; sourceTree = "<group>"; };
+		106B8EEB28B70692000A8942 /* LMRTerrainRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMRTerrainRenderer.swift; sourceTree = "<group>"; };
 		1082C2AD2890CE0300A333D6 /* LMRRayTracingRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMRRayTracingRenderer.swift; sourceTree = "<group>"; };
 		1082C2B02890DAB400A333D6 /* LMRRayTracing.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LMRRayTracing.metal; sourceTree = "<group>"; };
 		1082C2B22890DAC200A333D6 /* LMRRayTracing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LMRRayTracing.h; sourceTree = "<group>"; };
@@ -354,6 +360,32 @@
 			path = obj;
 			sourceTree = "<group>";
 		};
+		106B8EE628B70692000A8942 /* terrain */ = {
+			isa = PBXGroup;
+			children = (
+				106B8EF028B706CC000A8942 /* filter */,
+				106B8EEF28B706C1000A8942 /* shader */,
+				106B8EE728B70692000A8942 /* LMRTerrainVC.swift */,
+				106B8EEB28B70692000A8942 /* LMRTerrainRenderer.swift */,
+			);
+			path = terrain;
+			sourceTree = "<group>";
+		};
+		106B8EEF28B706C1000A8942 /* shader */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = shader;
+			sourceTree = "<group>";
+		};
+		106B8EF028B706CC000A8942 /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				106B8EEA28B70692000A8942 /* LMRTETerrainFilter.swift */,
+			);
+			name = filter;
+			sourceTree = "<group>";
+		};
 		1082C2AF2890DA8300A333D6 /* rayTracing */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,6 +484,7 @@
 		1A912D35286FEB1C005F90B9 /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				106B8EE628B70692000A8942 /* terrain */,
 				10E0CCF528869870002CDA50 /* LMRPointShadowVC.swift */,
 				10D548802862F75600E330EA /* LMRSampleVC.swift */,
 				1082C2B328913A0D00A333D6 /* LMRRayTracingVC.swift */,
@@ -596,12 +629,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				106B8EEE28B70692000A8942 /* LMRTerrainRenderer.swift in Sources */,
 				1003B4462885902F00CABD93 /* LMR3DShadowPainter.metal in Sources */,
 				100522D228743D87000914AE /* LMRScene.swift in Sources */,
 				100522C128743D87000914AE /* LMDMesh+Rect.swift in Sources */,
 				1082C2B12890DAB400A333D6 /* LMRRayTracing.metal in Sources */,
 				1A3E5B2C289E996A00793CDC /* LMR3DObjRenderer.swift in Sources */,
 				100522DD28753E8A000914AE /* LMRShader3DLight.metal in Sources */,
+				106B8EEC28B70692000A8942 /* LMRTerrainVC.swift in Sources */,
 				10B9475028AB70E10058D406 /* LMRReflectionVC.swift in Sources */,
 				1A912D34286FEB18005F90B9 /* LMRSceneVC.swift in Sources */,
 				1082C2AE2890CE0300A333D6 /* LMRRayTracingRenderer.swift in Sources */,
@@ -637,6 +672,7 @@
 				10D5488A286319AE00E330EA /* lmr_sample3d_shader.metal in Sources */,
 				1A6D22812868A3B9007A4F8A /* lmr_3dlight_shader.metal in Sources */,
 				100522D128743D87000914AE /* LMRLocation.swift in Sources */,
+				106B8EED28B70692000A8942 /* LMRTETerrainFilter.swift in Sources */,
 				100522C228743D87000914AE /* LMDMesh+Box.swift in Sources */,
 				10B9474D28AB42B40058D406 /* LMRReflectionShader.metal in Sources */,
 				100522C328743D87000914AE /* LMRSubmesh.swift in Sources */,
