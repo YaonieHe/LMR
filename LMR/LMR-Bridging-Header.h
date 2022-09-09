@@ -7,3 +7,7 @@
 #import "LMRRayTracing.h"
 #import "LMRTileForwardPlusShader.h"
 #import "LMRReflectionShader.h"
+
+#import "LMRTerrainShader.h"
+
+#import "LMRTerrainShader.h"
